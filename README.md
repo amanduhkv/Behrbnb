@@ -2,7 +2,9 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+<a href="https://drive.google.com/uc?export=view&id=<FILEID>"><img src="https://drive.google.com/uc?export=view&id=1-tREIOyTxyNinmeB38WgzeU8bdF1f3wH" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
+
+<!-- ![image](https://drive.google.com/file/d/1-tREIOyTxyNinmeB38WgzeU8bdF1f3wH/view?usp=sharing) -->
 
 ## API Documentation
 
