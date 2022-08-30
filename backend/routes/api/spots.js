@@ -4,7 +4,7 @@ const router = express.Router();
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { Spot, User, SpotImage } = require('../../db/models');
 
-router.get('/current', requireAuth, async(req,res) => {
+router.get('/current', requireAuth, async (req, res) => {
   const currentUserId = req.user.id
 
   const spots = await Spot.findAll({
@@ -12,18 +12,18 @@ router.get('/current', requireAuth, async(req,res) => {
       ownerId: currentUserId
     }
   });
-  res.json({Spots: spots});
+  res.json({ Spots: spots });
 });
 
-router.get('/:spotId', async(req, res) => {
+router.get('/:spotId', async (req, res) => {
   const spots = await Spot.findByPk(req.params.spotId, {
     include: [
-      {model: SpotImage},
-      {model: User, as: 'Owner'}
+      { model: SpotImage },
+      { model: User, as: 'Owner' }
     ]
   });
 
-  if(!spots) {
+  if (!spots) {
     return res
       .status(404)
       .json({
@@ -34,17 +34,17 @@ router.get('/:spotId', async(req, res) => {
   return res.json(spots);
 });
 
-router.get('/', async(req, res, next) => {
+router.get('/', async (req, res, next) => {
   const spots = await Spot.findAll();
-  return res.json({Spots: spots});
+  return res.json({ Spots: spots });
 });
 
-router.post('/:spotId/images', requireAuth, async(req, res, next) => {
+router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const { url } = req.body;
 
   const findSpot = await Spot.findByPk(req.params.spotId);
 
-  if(!findSpot) {
+  if (!findSpot) {
     return res
       .status(404)
       .json({
@@ -61,26 +61,26 @@ router.post('/:spotId/images', requireAuth, async(req, res, next) => {
   res.json(spotImage);
 });
 
-router.post('/', requireAuth, async(req,res, next) => {
+router.post('/', requireAuth, async (req, res, next) => {
   const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body;
 
 
-  if(!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+  if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
     return res.status(400).json({
-        message: "Validation Error",
-        statusCode: 400,
-        errors: [{
-          "address": "Street address is required",
-          "city": "City is required",
-          "state": "State is required",
-          "country": "Country is required",
-          "lat": "Latitude is not valid",
-          "lng": "Longitude is not valid",
-          "name": "Name must be less than 50 characters",
-          "description": "Description is required",
-          "price": "Price per day is required"
-        }]
-      })
+      message: "Validation Error",
+      statusCode: 400,
+      errors: [{
+        "address": "Street address is required",
+        "city": "City is required",
+        "state": "State is required",
+        "country": "Country is required",
+        "lat": "Latitude is not valid",
+        "lng": "Longitude is not valid",
+        "name": "Name must be less than 50 characters",
+        "description": "Description is required",
+        "price": "Price per day is required"
+      }]
+    })
   }
 
   const newSpot = await Spot.create({
@@ -98,7 +98,51 @@ router.post('/', requireAuth, async(req,res, next) => {
   return res.json(newSpot);
 });
 
+router.put('/:spotId', requireAuth, async (req, res) => {
+  const spot = await Spot.findByPk(req.params.spotId);
+  const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+    if (!spot) {
+      return res
+        .status(404)
+        .json({
+          "message": "Spot couldn't be found",
+          "statusCode": 404
+        })
+    }
+    if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+      return res
+      .status(400)
+      .json({
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {
+          "address": "Street address is required",
+          "city": "City is required",
+          "state": "State is required",
+          "country": "Country is required",
+          "lat": "Latitude is not valid",
+          "lng": "Longitude is not valid",
+          "name": "Name must be less than 50 characters",
+          "description": "Description is required",
+          "price": "Price per day is required"
+        }
+      })
+    }
+
+    spot.address = address
+    spot.city = city
+    spot.state = state
+    spot.country = country
+    spot.lat = lat
+    spot.lng = lng
+    spot.name = name
+    spot.description = description
+    spot.price = price
+    spot.update();
+
+    return res.json(spot);
+})
 
 
 module.exports = router;
