@@ -9,11 +9,6 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
   const { url } = req.body;
 
   const findReview = await Review.findByPk(req.params.reviewId);
-  const images = await ReviewImage.findAll({
-    where: {
-      reviewId: findReview.id
-    }
-  });
 
   if(!findReview) {
     return res
@@ -23,6 +18,13 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
         "statusCode": 404
       })
   };
+
+  const images = await ReviewImage.findAll({
+    where: {
+      reviewId: findReview.id
+    }
+  });
+  
   if(images.length >= 10) {
     return res
       .status(403)
