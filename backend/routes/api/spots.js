@@ -5,6 +5,36 @@ const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth')
 const { Spot, User, SpotImage } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
+router.get('/current', requireAuth, async(req,res) => {
+  const currentUser = await User.findByPk(req.body.id);
+
+  const spots = await Spot.findAll({
+    where: {
+      ownerId: currentUser.id
+    }
+  });
+  res.json(spots);
+  // res.json(currentUser);
+});
+
+router.get('/:spotId', async(req, res) => {
+  const spots = await Spot.findByPk(req.params.spotId, {
+    include: [
+      {model: SpotImage},
+      {model: User, as: 'Owner'}
+    ]
+  });
+
+  if(!spots) {
+    return res
+      .status(404)
+      .json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
+  return res.json(spots);
+});
 
 router.get('/', async(req, res, next) => {
   const spots = await Spot.findAll();

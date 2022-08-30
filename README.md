@@ -47,6 +47,8 @@ correct role(s) or permission(s).
     }
     ```
 
+## USERS
+
 ### Get the Current User
 
 Returns the information about the current user that is logged in.
