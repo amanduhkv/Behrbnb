@@ -3,18 +3,16 @@ const router = express.Router();
 
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { Spot, User, SpotImage } = require('../../db/models');
-const { handleValidationErrors } = require('../../utils/validation');
 
 router.get('/current', requireAuth, async(req,res) => {
-  const currentUser = await User.findByPk(req.body.id);
+  const currentUserId = req.user.id
 
   const spots = await Spot.findAll({
     where: {
-      ownerId: currentUser.id
+      ownerId: currentUserId
     }
   });
-  res.json(spots);
-  // res.json(currentUser);
+  res.json({Spots: spots});
 });
 
 router.get('/:spotId', async(req, res) => {
@@ -38,7 +36,7 @@ router.get('/:spotId', async(req, res) => {
 
 router.get('/', async(req, res, next) => {
   const spots = await Spot.findAll();
-  return res.json(spots);
+  return res.json({Spots: spots});
 });
 
 router.post('/:spotId/images', requireAuth, async(req, res, next) => {
