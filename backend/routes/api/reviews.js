@@ -58,5 +58,36 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
   return res.json(newReview);
 });
 
+router.put('/:reviewId', requireAuth, async (req, res) => {
+  const updateReview = await Review.findByPk(req.params.reviewId);
+  const { review, stars } = req.body;
+
+  if(!updateReview) {
+    return res
+      .status(404)
+      .json({
+        "message": "Review couldn't be found",
+        "statusCode": 404
+      })
+  };
+  if(!review || !stars) {
+    return res
+      .status(400)
+      .json({
+        "message": "Validation error",
+        "statusCode": 400,
+        "errors": {
+          "review": "Review text is required",
+          "stars": "Stars must be an integer from 1 to 5",
+        }
+      })
+  };
+
+  updateReview.review = review;
+  updateReview.stars = stars;
+  updateReview.update();
+
+  return res.json(updateReview);
+})
 
 module.exports = router;
