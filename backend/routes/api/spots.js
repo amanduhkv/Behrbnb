@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { Spot, User, SpotImage } = require('../../db/models');
+const { Spot, User, SpotImage, Review } = require('../../db/models');
+const user = require('../../db/models/user');
 
 router.get('/current', requireAuth, async (req, res) => {
   const currentUserId = req.user.id
@@ -60,6 +61,53 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   });
   res.json(spotImage);
 });
+
+router.post('/:spotId/reviews', requireAuth, async(req, res) => {
+  const { review, stars } = req.body;
+  const findSpot = await Spot.findByPk(req.params.spotId);
+  const previousReview = await Review.findOne({
+    where: {
+      userId: req.user.id
+    }
+  })
+
+  if(previousReview) {
+    return res
+      .status(403)
+      .json({
+        "message": "User already has a review for this spot",
+        "statusCode": 403
+      })
+  }
+  if(!review || !stars) {
+    return res
+      .status(400)
+      .json({
+        "message": "Validation error",
+        "statusCode": 400,
+        "errors": {
+          "review": "Review text is required",
+          "stars": "Stars must be an integer from 1 to 5",
+        }
+      })
+  }
+  if(!findSpot) {
+    return res
+      .status(404)
+      .json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
+
+  const spotReview = await Review.create({
+    userId: req.user.id,
+    spotId: findSpot.id,
+    review,
+    stars
+  })
+  res.json(spotReview)
+})
 
 router.post('/', requireAuth, async (req, res, next) => {
   const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body;
