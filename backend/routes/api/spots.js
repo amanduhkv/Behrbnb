@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { Spot, User } = require('../../db/models');
+const { Spot, User, SpotImage } = require('../../db/models');
+const { handleValidationErrors } = require('../../utils/validation');
 
 
 router.get('/', async(req, res, next) => {
@@ -10,12 +11,27 @@ router.get('/', async(req, res, next) => {
   return res.json(spots);
 });
 
-router.post('/:spotId/images', async(req, res, next) => {
-  const { url, preview } = req.body;
+router.post('/:spotId/images', requireAuth, async(req, res, next) => {
+  const { url } = req.body;
 
   const findSpot = await Spot.findByPk(req.params.spotId);
-  const newImage = await Spot.create({})
-})
+
+  if(!findSpot) {
+    return res
+      .status(404)
+      .json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
+
+  const spotImage = await SpotImage.create({
+    spotId: findSpot.id,
+    url,
+    preview: true,
+  });
+  res.json(spotImage);
+});
 
 router.post('/', requireAuth, async(req,res, next) => {
   const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body;
