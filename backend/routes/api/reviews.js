@@ -19,7 +19,7 @@ router.get('/current', requireAuth, async(req, res) => {
     ]
   });
   res.json({Reviews: currentUserReview});
-})
+});
 
 
 router.post('/:reviewId/images', requireAuth, async(req, res) => {
