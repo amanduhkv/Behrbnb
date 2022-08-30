@@ -102,16 +102,16 @@ router.put('/:spotId', requireAuth, async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId);
   const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
-    if (!spot) {
-      return res
-        .status(404)
-        .json({
-          "message": "Spot couldn't be found",
-          "statusCode": 404
-        })
-    }
-    if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-      return res
+  if (!spot) {
+    return res
+      .status(404)
+      .json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
+  if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+    return res
       .status(400)
       .json({
         "message": "Validation Error",
@@ -128,20 +128,41 @@ router.put('/:spotId', requireAuth, async (req, res) => {
           "price": "Price per day is required"
         }
       })
-    }
+  }
 
-    spot.address = address
-    spot.city = city
-    spot.state = state
-    spot.country = country
-    spot.lat = lat
-    spot.lng = lng
-    spot.name = name
-    spot.description = description
-    spot.price = price
-    spot.update();
+  spot.address = address
+  spot.city = city
+  spot.state = state
+  spot.country = country
+  spot.lat = lat
+  spot.lng = lng
+  spot.name = name
+  spot.description = description
+  spot.price = price
+  spot.update();
 
-    return res.json(spot);
+  return res.json(spot);
+});
+
+router.delete('/:spotId', requireAuth, async (req, res) => {
+  const deleteSpot = await Spot.findByPk(req.params.spotId);
+  if (!deleteSpot) {
+    return res
+      .status(404)
+      .json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
+
+  await deleteSpot.destroy();
+
+  return res
+    .status(200)
+    .json({
+      "message": "Successfully deleted",
+      "statusCode": 200
+    })
 })
 
 
