@@ -91,14 +91,14 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
         }
       })
   }
-  // if(previousReview) {
-  //   return res
-  //     .status(403)
-  //     .json({
-  //       "message": "User already has a review for this spot",
-  //       "statusCode": 403
-  //     })
-  // }
+  if(previousReview) {
+    return res
+      .status(403)
+      .json({
+        "message": "User already has a review for this spot",
+        "statusCode": 403
+      })
+  }
 
 
   const spotReview = await Review.create({

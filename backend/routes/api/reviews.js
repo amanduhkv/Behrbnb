@@ -5,6 +5,23 @@ const { requireAuth } = require('../../utils/auth');
 const { Spot, User, SpotImage, Review, ReviewImage } = require('../../db/models');
 
 
+router.get('/current', requireAuth, async(req, res) => {
+  const currentUserId = req.user.id
+  const currentUserReview = await Review.findAll({
+    where: {
+      userId: currentUserId
+    },
+    attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt'],
+    include: [
+      {model: User},
+      {model: Spot},
+      {model: ReviewImage}
+    ]
+  });
+  res.json({Reviews: currentUserReview});
+})
+
+
 router.post('/:reviewId/images', requireAuth, async(req, res) => {
   const { url } = req.body;
 
@@ -24,7 +41,7 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
       reviewId: findReview.id
     }
   });
-  
+
   if(images.length >= 10) {
     return res
       .status(403)
