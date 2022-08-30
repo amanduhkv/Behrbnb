@@ -71,12 +71,12 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
     }
   })
 
-  if(previousReview) {
+  if(!findSpot) {
     return res
-      .status(403)
+      .status(404)
       .json({
-        "message": "User already has a review for this spot",
-        "statusCode": 403
+        "message": "Spot couldn't be found",
+        "statusCode": 404
       })
   }
   if(!review || !stars) {
@@ -91,14 +91,15 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
         }
       })
   }
-  if(!findSpot) {
-    return res
-      .status(404)
-      .json({
-        "message": "Spot couldn't be found",
-        "statusCode": 404
-      })
-  }
+  // if(previousReview) {
+  //   return res
+  //     .status(403)
+  //     .json({
+  //       "message": "User already has a review for this spot",
+  //       "statusCode": 403
+  //     })
+  // }
+
 
   const spotReview = await Review.create({
     userId: req.user.id,
@@ -132,7 +133,7 @@ router.post('/', requireAuth, async (req, res, next) => {
   }
 
   const newSpot = await Spot.create({
-    ownerId,
+    ownerId: req.user.id,
     address,
     city,
     state,
