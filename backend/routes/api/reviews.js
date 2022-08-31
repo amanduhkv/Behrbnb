@@ -85,7 +85,7 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
 
   updateReview.review = review;
   updateReview.stars = stars;
-  updateReview.update();
+  updateReview.save();
 
   return res.json(updateReview);
 });
