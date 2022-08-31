@@ -30,24 +30,26 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
         "statusCode": 404
       })
   }
-  else if (req.user.id !== ownerId) {
+  //if you ARE NOT the owner of the spot
+  else if (req.user.id !== spot.ownerId) {
     const bookings = await Booking.findAll({
+      where: {
+        spotId: spot.id
+      },
+      attributes: ['spotId', 'startDate', 'endDate']
+    })
+    return res.json({Bookings: bookings})
+  }
+  //if you ARE the owner of the spot
+  else if (req.user.id === spot.ownerId) {
+    const bookings = await Booking.findAll({
+      include: {model: User, attributes: ['id', 'firstName', 'lastName']},
       where: {
         spotId: spot.id
       }
     })
     return res.json({Bookings: bookings})
   }
-  else {
-    const bookings = await Booking.findAll({
-      include: User,
-      where: {
-        spotId: spot.id
-      }
-    })
-    return res.json({Bookings: bookings})
-  }
-
 })
 
 router.get('/:spotId/reviews', async (req, res) => {
