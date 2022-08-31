@@ -51,7 +51,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         "statusCode": 403
       })
   }
-  if(updateBooking.startDate >= startDate && updateBooking.endDate <= endDate || updateBooking.startDate <= startDate && updateBooking.endDate >= endDate) {
+  if(updateBooking.startDate >= startDate && updateBooking.endDate <= endDate || updateBooking.startDate <= startDate && updateBooking.endDate >= endDate || updateBooking.startDate >= startDate && updateBooking.endDate >= endDate || updateBooking.startDate <= startDate && updateBooking.endDate <= endDate) {
     return res
     .status(403)
     .json({

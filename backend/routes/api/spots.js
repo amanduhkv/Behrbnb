@@ -173,7 +173,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
       })
   }
   for (let aBooking of currentBookings) {
-    if(aBooking.startDate >= startDate && aBooking.endDate <= endDate || aBooking.startDate <= startDate && aBooking.endDate >= endDate) {
+    if(aBooking.startDate >= startDate && aBooking.endDate <= endDate || aBooking.startDate <= startDate && aBooking.endDate >= endDate || aBooking.startDate >= startDate && aBooking.endDate >= endDate || aBooking.startDate <= startDate && aBooking.endDate <= endDate) {
       return res
         .status(403)
         .json({
