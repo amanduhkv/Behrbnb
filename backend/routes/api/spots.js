@@ -94,8 +94,50 @@ router.get('/:spotId', async (req, res) => {
   return res.json(spots);
 });
 
+
+//GET all spots
 router.get('/', async (req, res, next) => {
-  const spots = await Spot.findAll();
+  //query parameters
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+  if(!size || size > 20) {
+    size = 20
+  }
+  if(!page) {
+    page = 0
+  }
+  if(size < 0 || page < 0 || minPrice < 0 || maxPrice < 0) {
+    return res
+      .status(400)
+      .json({
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {
+          "page": "Page must be greater than or equal to 0",
+          "size": "Size must be greater than or equal to 0",
+          "maxLat": "Maximum latitude is invalid",
+          "minLat": "Minimum latitude is invalid",
+          "minLng": "Maximum longitude is invalid",
+          "maxLng": "Minimum longitude is invalid",
+          "minPrice": "Maximum price must be greater than or equal to 0",
+          "maxPrice": "Minimum price must be greater than or equal to 0"
+        }
+      })
+  }
+
+  size = parseInt(size);
+  page = parseInt(page);
+
+  let pagination = {};
+  if(page >= 0 && size >= 0) {
+    pagination.limit = size;
+    pagination.offset = size * (page - 1);
+  }
+
+  //query to get all spots
+  const spots = await Spot.findAll({
+    ...pagination
+  });
   return res.json({ Spots: spots });
 });
 
