@@ -75,6 +75,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 //DELETE a booking
 router.delete('/:bookingId', requireAuth, async (req, res) => {
   const deleteBooking = await Booking.findByPk(req.params.bookingId);
+  
   const date = new Date();
   let day = date.getDate();
   let month = date.getMonth();
