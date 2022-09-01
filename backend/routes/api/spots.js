@@ -81,11 +81,16 @@ router.get('/:spotId/reviews', async (req, res) => {
   return res.json({Reviews: reviewsOfSpot})
 })
 
+
+//GET details of a spot by id
 router.get('/:spotId', async (req, res) => {
   const spots = await Spot.findByPk(req.params.spotId, {
     include: [
       { model: SpotImage },
-      { model: User, as: 'Owner' }
+      { model: User,
+        as: 'Owner',
+        attributes: ['id', 'firstName', 'lastName']
+      }
     ]
   });
 
