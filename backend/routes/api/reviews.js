@@ -22,6 +22,7 @@ router.get('/current', requireAuth, async(req, res) => {
 });
 
 
+//CREATE an image for a review
 router.post('/:reviewId/images', requireAuth, async(req, res) => {
   const { url } = req.body;
 
@@ -55,7 +56,10 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
     reviewId: findReview.id,
     url,
   });
-  return res.json(newReview);
+  return res.json({
+    id: newReview.id,
+    url
+  });
 });
 
 router.put('/:reviewId', requireAuth, async (req, res) => {

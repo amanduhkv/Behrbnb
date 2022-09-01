@@ -321,6 +321,8 @@ router.post('/', requireAuth, async (req, res, next) => {
   return res.json(newSpot);
 });
 
+
+//EDIT a spot
 router.put('/:spotId', requireAuth, async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId);
   const { address, city, state, country, lat, lng, name, description, price } = req.body;

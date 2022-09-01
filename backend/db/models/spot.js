@@ -40,6 +40,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Spot',
+    // scopes: {
+    //   editSpot: {
+    //     attributes: {
+    //       exclude: ['id', 'ownerId', 'createdAt', 'updatedAt']
+    //     }
+    //   }
+    // }
   });
   return Spot;
 };
