@@ -5,14 +5,20 @@ const { Op } = require("sequelize");
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { Spot, User, SpotImage, Review, ReviewImage, Booking } = require('../../db/models');
 
-
+//GET all spots owned by current user
 router.get('/current', requireAuth, async (req, res) => {
   const currentUserId = req.user.id
 
   const spots = await Spot.findAll({
     where: {
       ownerId: currentUserId
-    }
+    },
+    include: [
+      {
+        model: SpotImage,
+        attributes: [['url', 'previewImage']],
+        where: {preview: true}}
+    ]
   });
   res.json({ Spots: spots });
 });
