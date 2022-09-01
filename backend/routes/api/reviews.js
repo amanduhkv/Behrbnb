@@ -5,6 +5,7 @@ const { requireAuth } = require('../../utils/auth');
 const { Spot, User, SpotImage, Review, ReviewImage } = require('../../db/models');
 
 
+//GET reviews of current user
 router.get('/current', requireAuth, async(req, res) => {
   const currentUserId = req.user.id
   const currentUserReview = await Review.findAll({
@@ -13,12 +14,44 @@ router.get('/current', requireAuth, async(req, res) => {
     },
     attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt'],
     include: [
-      {model: User},
-      {model: Spot},
-      {model: ReviewImage}
+      {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      },
+      {
+        model: Spot,
+        attributes: {
+          exclude: ['description', 'createdAt', 'updatedAt']
+        },
+        // include: {
+        //   model: SpotImage,
+        //   attributes: [['url', 'previewImage']],
+        //   where: {preview: true}
+        // }
+      },
+      {
+        model: ReviewImage,
+        attributes: ['id', 'url']
+      }
     ]
   });
-  res.json({Reviews: currentUserReview});
+
+  const reviews = [];
+  for (let aReview of currentUserReview) {
+    let tempReview = aReview.toJSON();
+    const previewImage = await SpotImage.findOne({
+      raw: true,
+      where: {
+        preview: true,
+        spotId: tempReview.spotId
+      }
+    });
+
+    tempReview.Spot.previewImage = previewImage.url
+    reviews.push(tempReview);
+  }
+
+  res.json({Reviews: reviews});
 });
 
 

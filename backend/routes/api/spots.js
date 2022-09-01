@@ -17,7 +17,8 @@ router.get('/current', requireAuth, async (req, res) => {
       {
         model: SpotImage,
         attributes: [['url', 'previewImage']],
-        where: {preview: true}}
+        where: {preview: true}
+      }
     ]
   });
   res.json({ Spots: spots });
@@ -225,7 +226,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   }
 
   const spotImage = await SpotImage.create({
-    // spotId: findSpot.id,
+    spotId: findSpot.id,
     url,
     preview,
   });
