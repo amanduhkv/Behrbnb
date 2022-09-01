@@ -169,6 +169,15 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
   const { startDate, endDate } = req.body;
 
   const spot = await Spot.findByPk(req.params.spotId);
+  if(!spot) {
+    return res
+      .status(404)
+      .json({
+        "message": "Spot couldn't be found",
+        "statusCode": 404
+      })
+  }
+  // console.log(req.params.spotId)
   const currentBookings = await Booking.findAll({
     where: {
       spotId: spot.id
@@ -186,14 +195,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         }
       })
   }
-  if(!spot) {
-    return res
-      .status(404)
-      .json({
-        "message": "Spot couldn't be found",
-        "statusCode": 404
-      })
-  }
+
   for (let aBooking of currentBookings) {
     if(aBooking.startDate >= startDate && aBooking.endDate <= endDate || aBooking.startDate <= startDate && aBooking.endDate >= endDate || aBooking.startDate >= startDate && aBooking.endDate >= endDate || aBooking.startDate <= startDate && aBooking.endDate <= endDate) {
       return res

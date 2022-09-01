@@ -1,7 +1,7 @@
 const express = require('express');
 
 const {requireAuth} = require('../../utils/auth');
-const { Booking, Spot, User } = require('../../db/models');
+const { Booking, Spot, User, SpotImage } = require('../../db/models');
 
 const router = express.Router();
 
@@ -12,10 +12,28 @@ router.get('/current', requireAuth, async (req, res) => {
       userId: req.user.id
     },
     include: [
-      {model: Spot, attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']}
+      {
+        model: Spot,
+        attributes: {
+          exclude: ['description', 'createdAt', 'updatedAt']
+        }
+      }
     ]
   });
-  return res.json({Bookings: currentUserBookings});
+
+  const bookings = [];
+  for (let aBooking of currentUserBookings) {
+    let thisReview = aBooking.toJSON();
+    const previewImage = await SpotImage.findOne({
+      where: {
+        preview: true,
+        spotId: thisReview.spotId
+      }
+    });
+    thisReview.Spot.previewImage = previewImage.url;
+    bookings.push(thisReview)
+  }
+  return res.json({Bookings: bookings});
 })
 
 
