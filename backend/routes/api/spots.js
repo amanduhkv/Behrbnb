@@ -59,6 +59,8 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
   }
 })
 
+
+//GET reviews by spot id
 router.get('/:spotId/reviews', async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId);
   if(!spot) {
@@ -75,8 +77,16 @@ router.get('/:spotId/reviews', async (req, res) => {
     },
     attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt'],
     include: [
-      {model: User},
-      {model: ReviewImage}
+      {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      },
+      {
+        model: ReviewImage,
+        attributes: {
+          exclude: ['reviewId', 'createdAt', 'updatedAt']
+        }
+      }
     ]
   });
   return res.json({Reviews: reviewsOfSpot})
