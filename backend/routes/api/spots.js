@@ -12,16 +12,36 @@ router.get('/current', requireAuth, async (req, res) => {
   const spots = await Spot.findAll({
     where: {
       ownerId: currentUserId
-    },
-    include: [
-      {
-        model: SpotImage,
-        attributes: [['url', 'previewImage']],
-        where: {preview: true}
-      }
-    ]
+    }
   });
-  res.json({ Spots: spots });
+
+  const updatedSpot = [];
+
+  for (let aSpot of spots) {
+    let thisSpot = aSpot.toJSON();
+
+    const sumOfReviews = await Review.sum('stars')
+    const allReviews = await Review.count();
+    const avgRating = (sumOfReviews / allReviews)
+
+    thisSpot.avgRating = avgRating;
+
+    const previewImage = await SpotImage.findOne({
+      where: {
+        preview: true,
+        spotId: thisSpot.id
+      }
+    });
+
+    if (previewImage) {
+      thisSpot.previewImage = previewImage.url
+    }
+    else {
+      thisSpot.previewImage = 'Preview image currently does not exist'
+    }
+    updatedSpot.push(thisSpot)
+  }
+  return res.json({ Spots: updatedSpot });
 });
 
 
@@ -105,6 +125,8 @@ router.get('/:spotId', async (req, res) => {
     ]
   });
 
+  console.log(spots.toJSON())
+
   if (!spots) {
     return res
       .status(404)
@@ -113,7 +135,24 @@ router.get('/:spotId', async (req, res) => {
         "statusCode": 404
       })
   }
-  return res.json(spots);
+
+  const updatedSpot = [];
+  const newSpot = spots.toJSON();
+    const sumOfReviews = await Review.sum('stars')
+    const allReviews = await Review.count({
+      where: {
+        spotId: spots.id
+      }
+    });
+    const avgRating = (sumOfReviews / allReviews)
+
+    newSpot.numReviews = allReviews
+    newSpot.avgStarRating = avgRating;
+
+
+    updatedSpot.push(newSpot)
+
+  return res.json({ Spots: updatedSpot });
 });
 
 
@@ -160,22 +199,34 @@ router.get('/', async (req, res, next) => {
   const spots = await Spot.findAll({
     ...pagination
   });
-  console.log(spots)
-  const spotPreviewImage = [];
+
+  const updatedSpot = [];
+
   for (let aSpot of spots) {
     let thisSpot = aSpot.toJSON();
-    console.log('this spot: ', thisSpot)
+
+    const sumOfReviews = await Review.sum('stars')
+    const allReviews = await Review.count();
+    const avgRating = (sumOfReviews / allReviews)
+
+    thisSpot.avgRating = avgRating;
+
     const previewImage = await SpotImage.findOne({
       where: {
         preview: true,
         spotId: thisSpot.id
       }
     });
-    console.log(previewImage)
-    // thisSpot.Spot.previewImage = previewImage
-    spotPreviewImage.push(thisSpot)
+
+    if (previewImage) {
+      thisSpot.previewImage = previewImage.url
+    }
+    else {
+      thisSpot.previewImage = 'Preview image currently does not exist'
+    }
+    updatedSpot.push(thisSpot)
   }
-  return res.json({ Spots: spotPreviewImage, page, size });
+  return res.json({ Spots: updatedSpot, page, size });
 });
 
 
