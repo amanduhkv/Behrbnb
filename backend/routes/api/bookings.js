@@ -108,7 +108,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         "statusCode": 404
       })
   }
-  if(currentDate >= deleteBooking.startDate || currentDate <= deleteBooking.endDate) {
+  if(currentDate >= deleteBooking.startDate && currentDate <= deleteBooking.endDate) {
     return res
       .status(403)
       .json({
