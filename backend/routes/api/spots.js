@@ -117,17 +117,19 @@ router.get('/:spotId/reviews', async (req, res) => {
 router.get('/:spotId', async (req, res) => {
   const spots = await Spot.findByPk(req.params.spotId, {
     include: [
-      { model: SpotImage },
+      {
+        model: SpotImage,
+        attributes: ['id', 'url', 'preview']
+      },
       { model: User,
         as: 'Owner',
         attributes: ['id', 'firstName', 'lastName']
       }
     ]
   });
+  console.log(spots)
 
-  console.log(spots.toJSON())
-
-  if (!spots) {
+  if (!spots || spots === null) {
     return res
       .status(404)
       .json({
