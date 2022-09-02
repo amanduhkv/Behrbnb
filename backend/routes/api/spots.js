@@ -126,9 +126,9 @@ router.get('/', async (req, res, next) => {
     size = 20
   }
   if(!page) {
-    page = 0
+    page = 1
   }
-  if(size < 0 || page < 0 || minPrice < 0 || maxPrice < 0) {
+  if(size <= 0 || page <= 0 || minPrice <= 0 || maxPrice <= 0) {
     return res
       .status(400)
       .json({
@@ -151,7 +151,7 @@ router.get('/', async (req, res, next) => {
   page = parseInt(page);
 
   let pagination = {};
-  if(page >= 0 && size >= 0) {
+  if(page > 0 && size > 0) {
     pagination.limit = size;
     pagination.offset = size * (page - 1);
   }
@@ -160,7 +160,22 @@ router.get('/', async (req, res, next) => {
   const spots = await Spot.findAll({
     ...pagination
   });
-  return res.json({ Spots: spots });
+  console.log(spots)
+  const spotPreviewImage = [];
+  for (let aSpot of spots) {
+    let thisSpot = aSpot.toJSON();
+    console.log('this spot: ', thisSpot)
+    const previewImage = await SpotImage.findOne({
+      where: {
+        preview: true,
+        spotId: thisSpot.id
+      }
+    });
+    console.log(previewImage)
+    // thisSpot.Spot.previewImage = previewImage
+    spotPreviewImage.push(thisSpot)
+  }
+  return res.json({ Spots: spotPreviewImage, page, size });
 });
 
 
