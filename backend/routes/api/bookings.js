@@ -30,7 +30,12 @@ router.get('/current', requireAuth, async (req, res) => {
         spotId: thisReview.spotId
       }
     });
-    thisReview.Spot.previewImage = previewImage.url;
+    if(previewImage) {
+      thisReview.Spot.previewImage = previewImage.url;
+    }
+    else {
+      thisReview.Spot.previewImage = "Preview image currently does not exist.";
+    }
     bookings.push(thisReview)
   }
   return res.json({Bookings: bookings});
