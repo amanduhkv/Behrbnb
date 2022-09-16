@@ -19,17 +19,18 @@ router.get("/api/csrf/restore", (req, res) => {
 
 router.use('/api', apiRouter);
 
-// Static routes
-// Serve React build files in production
-if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
-
-  // Add a XSRF-TOKEN cookie in development
+// Add a XSRF-TOKEN cookie in development
+if (process.env.NODE_ENV !== 'production') {
   router.get('/api/csrf/restore', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
     return res.json({});
   });
+}
 
+// Static routes
+// Serve React build files in production
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
   // Serve the frontend's index.html file at the root route
   router.get('/', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
