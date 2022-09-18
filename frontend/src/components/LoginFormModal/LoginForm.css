@@ -1,5 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;700&display=swap");
 
 form {
-  font-family: 'Poppins', sans-serif
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+img.bear {
+  height: 34px;
+  /* border: red solid 1px; */
+}
+
+button.modal {
+  display: flex;
+  align-items: center;
+  border: .5px solid rgb(211, 209, 209);
+  border-radius: 30px;
+  background-color: white;
+
+  padding: 3px 2px;
+}
+
+#burger {
+  margin-left: 10px
 }
