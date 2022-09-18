@@ -7,9 +7,15 @@
 .nav-bar {
   display: flex;
   justify-content: space-between;
-  margin: 20px
+  margin: 20px;
+  border-bottom: 1px solid rgb(211, 209, 209);
 }
 
 img.logo {
   width: 150px
+}
+
+.upper-right {
+  display: flex;
+  align-items: center;
 }

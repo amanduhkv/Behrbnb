@@ -32,7 +32,7 @@ function Navigation({ isLoaded }) {
           <img className='logo' src='https://media.discordapp.net/attachments/992922379682599084/1020896309265309736/behr.png?width=1069&height=223' alt='logo' />
         </NavLink>
       </div>
-      <div>
+      <div className='upper-right'>
         {isLoaded && sessionLinks}
       </div>
     </div>
