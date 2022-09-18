@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;700&display=swap");
 
+*{
+  margin: 0;
+  padding: 0
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -25,4 +30,41 @@ button.modal {
 
 #burger {
   margin-left: 10px
+}
+
+h4 {
+  display: flex;
+  justify-content: center;
+
+  padding-bottom: 20px;
+}
+
+label, span {
+  padding: 10px
+}
+
+.modal-cred {
+  border-top: 1px solid rgb(211, 209, 209);
+}
+
+.modal-x {
+  background-color: white;
+  border: none;
+  /* margin-right: 75px; */
+}
+
+span.or:before,
+span.or:after {
+  content: " ";
+  flex: 1 1;
+  border-bottom: 1px solid rgb(211, 209, 209);
+}
+
+span.before-or,
+span.after-or,
+span.or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 75%;
 }

@@ -22,12 +22,18 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className='modal-title'>
+        <button className='modal-x'>
+          <i class="fa-solid fa-x"></i>
+        </button>
+        <h4>Log in or sign up</h4>
+      </div>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
+      <label className='modal-cred'>
         Username or Email
         <input
           type="text"
@@ -46,13 +52,13 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
-      <hr/>
+      <span className='or'>or</span>
       <button
-      type='submit'
-      onClick={() => {
-        setCredential('honeylover123')
-        setPassword('password')
-      }}
+        type='submit'
+        onClick={() => {
+          setCredential('honeylover123')
+          setPassword('password')
+        }}
       >
         Demo Login
       </button>

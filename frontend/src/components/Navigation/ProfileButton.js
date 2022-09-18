@@ -32,18 +32,17 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className='profile-button' onClick={openMenu}>
-        <span>burger</span>
-        <span>bear</span>
-        {/* <i className="fas fa-user-circle" /> */}
+        <i id='burger' class="fa-sharp fa-solid fa-bars"></i>
+        <img className='bear' src='https://drive.google.com/uc?export=view&id=1VREYIKcLE9WLjacwaosrzf9PyoRzlw2t' alt='bear' />
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
+        <div className="profile-dropdown">
+          <div>{user.username}</div>
+          <div>{user.email}</div>
+          <div>
             <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+          </div>
+        </div>
       )}
     </>
   );
