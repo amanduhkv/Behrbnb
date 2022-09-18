@@ -46,6 +46,16 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+      <hr/>
+      <button
+      type='submit'
+      onClick={() => {
+        setCredential('honeylover123')
+        setPassword('password')
+      }}
+      >
+        Demo Login
+      </button>
     </form>
   );
 }
