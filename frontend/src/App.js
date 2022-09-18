@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-function App() {
-  return (
-    <h1>Hello from App</h1>
-=======
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
@@ -28,7 +23,6 @@ function App() {
         </Switch>
       )}
     </>
->>>>>>> dev
   );
 }
 
