@@ -28,6 +28,10 @@ button.modal {
   padding: 3px 2px;
 }
 
+button.modal:hover {
+  box-shadow: 0px 3px 4px rgba(211, 209, 209, 0.8);
+}
+
 #burger {
   margin-left: 10px
 }
