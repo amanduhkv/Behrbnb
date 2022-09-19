@@ -31,7 +31,9 @@ const SingleSpot = () => {
       <div>
         <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn2rxCQ-CBZqmyMh9k5H5T-LgcBlN7TbK-Sw&usqp=CAU' />
       </div>
-      <p>{`Entire home hosted by ${singleSpot.Owner.firstName}`}</p>
+      {/* <p>{`Entire home hosted by ${singleSpot.Owner.firstName}`}</p> */}
+      <hr></hr>
+
     </div>
   )
 }
