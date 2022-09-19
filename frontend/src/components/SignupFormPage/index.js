@@ -16,7 +16,7 @@ function SignupFormPage() {
   const [errors, setErrors] = useState([]);
 
   //comment this back in after you make a logout button:
-  // if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();

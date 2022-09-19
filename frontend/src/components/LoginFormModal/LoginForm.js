@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import '../LoginFormModal/LoginForm.css'
+import { NavLink } from "react-router-dom";
 
 function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,18 +24,13 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className='modal-title'>
-        <button className='modal-x'>
-          <i class="fa-solid fa-x"></i>
-        </button>
-        <h4>Log in or sign up</h4>
-      </div>
+      <div className='modal-cred'>Welcome to Behrbnb</div>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label className='modal-cred'>
+      <label>
         Username or Email
         <input
           type="text"
@@ -62,6 +59,11 @@ function LoginForm() {
       >
         Demo Login
       </button>
+      <span className='or'>or</span>
+      {/* <div>
+        {`Not an existing user? `}
+        <NavLink to='/signup'>Sign up</NavLink>
+      </div> */}
     </form>
   );
 }

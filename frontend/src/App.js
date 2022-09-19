@@ -23,9 +23,9 @@ function App() {
           <Route exact path='/'>
             <Spots />
           </Route>
-          <Route path="/signup">
+          {/* <Route path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route path="/spots/:spotId">
             <SingleSpot />
           </Route>
