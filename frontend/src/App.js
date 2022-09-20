@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Spots from './components/Spots/index'
 import SingleSpot from "./components/SingleSpot";
 import CreateSpotForm from "./components/CreateSpotForm.js";
+import GetSpotsCurrentUser from "./components/Spots/CurrentUserSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
           {/* <Route path="/signup">
             <SignupFormPage />
           </Route> */}
+          <Route path='/spots/current'>
+            <GetSpotsCurrentUser />
+          </Route>
           <Route path="/spots/:spotId">
             <SingleSpot />
           </Route>
