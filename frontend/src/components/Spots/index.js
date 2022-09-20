@@ -31,6 +31,10 @@ const Spots = () => {
               <span id='number'>{`$${spot.price}`}</span>
               <span id='night'>night</span>
             </div>
+            <div className='reviews'>
+              <i class="fa-sharp fa-solid fa-star"></i>
+              {`${spot.avgRating}`}
+            </div>
           </div>
         </div>
       ))}

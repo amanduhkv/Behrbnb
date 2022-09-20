@@ -4,6 +4,22 @@
   font-family:'Poppins', sans-serif;
 }
 
+#nav-add-spot {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 30px;
+  margin-right: 10px;
+}
+
+#nav-add-spot:hover {
+  text-decoration: none;
+  background-color: rgba(235, 233, 233, 0.5);
+}
+
+
+
 .nav-bar {
   width: 100%;
   background-color: white;

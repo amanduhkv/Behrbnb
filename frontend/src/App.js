@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 
 import Spots from './components/Spots/index'
 import SingleSpot from "./components/SingleSpot";
+import CreateSpotForm from "./components/CreateSpotForm.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,11 +24,14 @@ function App() {
           <Route exact path='/'>
             <Spots />
           </Route>
-          <Route path="/signup">
+          {/* <Route path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route path="/spots/:spotId">
             <SingleSpot />
+          </Route>
+          <Route path='/spots'>
+            <CreateSpotForm />
           </Route>
         </Switch>
       )}

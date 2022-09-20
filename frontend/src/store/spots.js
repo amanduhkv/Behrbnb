@@ -1,5 +1,8 @@
+import { csrfFetch } from "./csrf";
+
 export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
 export const A_SPOT = 'spots/A_SPOT';
+export const CREATE_SPOT = 'spots/CREATE_SPOT';
 
 const load = (spotsList) => ({
   type: LOAD_SPOTS,
@@ -11,6 +14,11 @@ const aSpot = (spot) => ({
   spot
 });
 
+const create = spot => ({
+  type: CREATE_SPOT,
+  spot
+})
+
 export const getSpots = () => async dispatch => {
   const response = await fetch('/api/spots');
 
@@ -20,13 +28,36 @@ export const getSpots = () => async dispatch => {
   };
 };
 
+// export const getSpotCurrentUser = () => async dispatch => {
+//   const response = await csrfFetch('/api/spots/current');
+
+//   if(response.ok) {
+//     const currentUserSpots = await response.json();
+//     dispatch(load(currentUserSpots));
+//   }
+// }
+
 export const getASpot = spotId => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}`);
 
   if (response.ok) {
     const spot = await response.json();
-    console.log('spot:', spot)
+    // console.log('spot:', spot)
     dispatch(aSpot(spot))
+  }
+}
+
+export const createSpot = spot => async dispatch => {
+  const response = await csrfFetch(`/api/spots`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(spot)
+  });
+  // console.log('here')
+  if (response.ok) {
+    const newSpot = await response.json();
+    dispatch(create(newSpot));
+    return newSpot;
   }
 }
 
@@ -49,18 +80,20 @@ const spotsReducer = (state = initialState, action) => {
         allSpots
       }
     case A_SPOT:
-      // if(!state[action.spot.Spots.id]) {
-      //   const newState = {
-      //     ...state,
-      //     [action.spot.Spots.id]: action.spot.Spots
-      //   };
-      //   return newState
-      // }
-      // console.log('action.spot:', action.spot.Spots[0])
       return {
         ...state,
         singleSpot: action.spot.Spots[0]
       }
+    case CREATE_SPOT:
+      const createState = {
+        ...state,
+        allSpots: {
+          ...state.allSpots,
+          [action.spot.id]: action.spot
+        }
+      }
+      // console.log('hi')
+      return createState;
     default:
       return state;
   }

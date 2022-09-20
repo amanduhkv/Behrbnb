@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
+import SignupFormPage from '../SignupFormPage';
+
 import LoginForm from './LoginForm';
 
 function LoginFormModal() {
@@ -14,6 +16,7 @@ function LoginFormModal() {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <LoginForm />
+          <SignupFormPage />
         </Modal>
       )}
     </>
