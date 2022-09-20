@@ -4,6 +4,7 @@ import { NavLink, Route, useParams } from 'react-router-dom';
 import { getASpot } from '../../store/spots';
 import { Modal } from '../../context/Modal';
 import EditSpotForm from '../Spots/EditSpotForm';
+import DeleteSpot from '../Spots/DeleteSpot';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
@@ -29,8 +30,9 @@ const SingleSpot = () => {
           <EditSpotForm />
         </Modal>
         )}
+        <DeleteSpot />
       </>
-    )
+    );
   }
 
   return (
@@ -52,6 +54,7 @@ const SingleSpot = () => {
       {/* <p>{`Entire home hosted by ${singleSpot.Owner.firstName}`}</p> */}
       <hr></hr>
       {addEditButton}
+      {/* <DeleteSpot /> */}
     </div>
   )
 }

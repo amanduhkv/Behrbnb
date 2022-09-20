@@ -8,7 +8,7 @@ const GetSpotsCurrentUser = () => {
     return state.spots.allSpots;
   });
   const spotsArr = Object.values(spots);
-  console.log('These are spots:', spots)
+  // console.log('These are spots:', spots)
   const dispatch = useDispatch();
 
   useEffect(() => {

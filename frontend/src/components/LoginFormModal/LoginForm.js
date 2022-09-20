@@ -30,7 +30,7 @@ function LoginForm({ onClose }) {
         <span className='modal-title'>Log in or sign up</span>
       </div>
       {showModal && (
-      <form onSubmit={handleSubmit}>
+      <form id='login-form' onSubmit={handleSubmit}>
         <div className='modal-cred'>Welcome to Behrbnb</div>
         <ul>
           {errors.map((error, idx) => (

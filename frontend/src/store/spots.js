@@ -4,6 +4,7 @@ export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
 export const A_SPOT = 'spots/A_SPOT';
 export const CREATE_SPOT = 'spots/CREATE_SPOT';
 export const UPDATE_SPOT = 'spots/UPDATE_SPOT';
+export const DELETE_SPOT = 'spots/DELETE_SPOT';
 
 const load = (spotsList) => ({
   type: LOAD_SPOTS,
@@ -26,6 +27,11 @@ const update = (spot, id) => ({
   id
 })
 
+const deletion = (id) => ({
+  type: DELETE_SPOT,
+  id
+})
+
 export const getSpots = () => async dispatch => {
   const response = await fetch('/api/spots');
 
@@ -41,8 +47,8 @@ export const getSpotCurrentUser = () => async dispatch => {
   if(response.ok) {
     const currentUserSpots = await response.json();
     dispatch(load(currentUserSpots));
-  }
-}
+  };
+};
 
 export const getASpot = spotId => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}`);
@@ -51,8 +57,8 @@ export const getASpot = spotId => async dispatch => {
     const spot = await response.json();
     // console.log('spot:', spot)
     dispatch(aSpot(spot))
-  }
-}
+  };
+};
 
 export const createSpot = spot => async dispatch => {
   const response = await csrfFetch(`/api/spots`, {
@@ -65,8 +71,8 @@ export const createSpot = spot => async dispatch => {
     const newSpot = await response.json();
     dispatch(create(newSpot));
     return newSpot;
-  }
-}
+  };
+};
 
 export const updateSpot = (spot, id) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${id}`, {
@@ -80,6 +86,18 @@ export const updateSpot = (spot, id) => async dispatch => {
     console.log('this is working', updatedSpot)
     dispatch(update(updatedSpot));
     return updatedSpot;
+  };
+};
+
+export const deleteSpot = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/spots/${id}`, {
+    method: 'DELETE'
+  });
+
+  if(response.ok) {
+    const deletedSpot = await response.json();
+    dispatch(deletion(deletedSpot));
+    return ('Successfully deleted');
   }
 }
 
@@ -96,7 +114,7 @@ const spotsReducer = (state = initialState, action) => {
       action.spotsList.Spots.forEach(spot => {
         allSpots[spot.id] = spot
       });
-      console.log('newState: ', newState)
+      // console.log('newState: ', newState)
       return {
         ...state,
         allSpots
@@ -118,6 +136,14 @@ const spotsReducer = (state = initialState, action) => {
       }
       // console.log('hi')
       return createState;
+    case DELETE_SPOT:
+      const deleteState = {
+        allSpots: { ...state.allSpots },
+        singleSpot: { ...state.singleSpot }
+      }
+      // console.log('this about to be yeeted', deleteState)
+      delete deleteState.singleSpot.id;
+      return deleteState;
     default:
       return state;
   }
