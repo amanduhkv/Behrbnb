@@ -30,49 +30,49 @@ function LoginForm({ onClose }) {
         <span className='modal-title'>Log in or sign up</span>
       </div>
       {showModal && (
-      <form id='login-form' onSubmit={handleSubmit}>
-        <div className='modal-cred'>Welcome to Behrbnb</div>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Username or Email
+        <form id='login-form' onSubmit={handleSubmit}>
+          <div className='modal-cred'>Welcome to Behrbnb</div>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+
           <input
+            id='cred1'
             type="text"
+            placeholder="Username or Email"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
           <input
+            id='cred2'
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <button id='modal-button' type="submit">Log In</button>
-        <span className='or'>or</span>
-        <button
-          id='modal-button'
-          type='submit'
-          onClick={() => {
-            setCredential('honeylover123')
-            setPassword('password')
-          }}
-        >
-          Demo Login
-        </button>
-        <span id='signup-title'>Join Us!</span>
-        {/* <div>
+
+          <button id='modal-button' type="submit">Log In</button>
+
+          <button
+            id='modal-button'
+            type='submit'
+            onClick={() => {
+              setCredential('honeylover123')
+              setPassword('password')
+            }}
+          >
+            Demo Login
+          </button>
+          <span className='or'>or</span>
+          {/* <div>
         {`Not an existing user? `}
         <NavLink to='/signup'>Sign up</NavLink>
       </div> */}
-      </form>
+        </form>
       )}
 
     </div>
