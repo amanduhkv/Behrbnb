@@ -1,25 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
-import { getSpotCurrentUser, updateSpot } from '../../store/spots';
+import { getASpot, updateSpot } from '../../store/spots';
 
 const EditSpotForm = () => {
+  const {spotId} = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const spot = useSelector(state => state.spots.singleSpot)
 
-  const [address, setAddress] = useState(spot.address);
-  const [city, setCity] = useState(spot.city);
-  const [state, setState] = useState(spot.state);
-  const [country, setCountry] = useState(spot.country);
-  const [lat, setLat] = useState(spot.lat);
-  const [lng, setLng] = useState(spot.lng);
-  const [name, setName] = useState(spot.name);
-  const [description, setDescription] = useState(spot.description);
-  const [price, setPrice] = useState(spot.price);
+
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
 
   const updateAddress = e => setAddress(e.target.value)
   const updateCity = e => setCity(e.target.value)
@@ -32,14 +34,13 @@ const EditSpotForm = () => {
   const updatePrice= e => setPrice(e.target.value)
 
   useEffect(() => {
-    dispatch(getSpotCurrentUser());
+    dispatch(getASpot(spotId));
   }, [dispatch]);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     const newSpot = {
-      ...spot,
       address,
       city,
       state,
@@ -51,10 +52,23 @@ const EditSpotForm = () => {
       price
     };
 
-    let updatedSpot = await dispatch(updateSpot(newSpot));
+    let updatedSpot = await dispatch(updateSpot(newSpot, spot.id));
     if(updatedSpot) {
-      history.pushState(`/spot/${updatedSpot.id}`)
+      history.push(`/spots/${spot.id}`)
     }
+    reset();
+  };
+
+  const reset = () => {
+    setAddress('');
+    setCity('');
+    setState('');
+    setCountry('');
+    setLat('');
+    setLng('');
+    setName('');
+    setDescription('');
+    setPrice('');
   };
 
   return (

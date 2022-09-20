@@ -1,19 +1,37 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
-import { getASpot } from '../../store/spots'
+import { getASpot } from '../../store/spots';
+import { Modal } from '../../context/Modal';
+import EditSpotForm from '../Spots/EditSpotForm';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
+  const sessionUser = useSelector(state => state.session.user)
   const singleSpot = useSelector(state => state.spots.singleSpot);
-  console.log('single spot', singleSpot)
+  // console.log('single spot', singleSpot)
   const dispatch = useDispatch();
+  const [editModal, setEditModal] = useState(false);
 
   useEffect(() => {
     dispatch(getASpot(spotId));
   }, [dispatch])
 
   if (!singleSpot) return null;
+
+  let addEditButton;
+  if(sessionUser.id === singleSpot.ownerId) {
+    addEditButton = (
+      <>
+        <button onClick={() => setEditModal(true)}>Edit Spot</button>
+        {editModal && (
+        <Modal onClose={() => setEditModal(false)}>
+          <EditSpotForm />
+        </Modal>
+        )}
+      </>
+    )
+  }
 
   return (
     <div>
@@ -33,7 +51,7 @@ const SingleSpot = () => {
       </div>
       {/* <p>{`Entire home hosted by ${singleSpot.Owner.firstName}`}</p> */}
       <hr></hr>
-
+      {addEditButton}
     </div>
   )
 }

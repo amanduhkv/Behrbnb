@@ -11,6 +11,7 @@ import CreateSpotForm from "./components/CreateSpotForm.js";
 import GetSpotsCurrentUser from "./components/Spots/CurrentUserSpots";
 import EditSpotForm from "./components/Spots/EditSpotForm";
 
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,7 +35,6 @@ function App() {
           </Route>
           <Route path="/spots/:spotId">
             <SingleSpot />
-            <EditSpotForm />
           </Route>
           <Route path='/spots'>
             <CreateSpotForm />
