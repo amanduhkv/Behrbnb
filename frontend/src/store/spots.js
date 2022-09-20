@@ -33,7 +33,7 @@ export const getASpot = spotId => async dispatch => {
 
   if (response.ok) {
     const spot = await response.json();
-    console.log('spot:', spot)
+    // console.log('spot:', spot)
     dispatch(aSpot(spot))
   }
 }
@@ -44,7 +44,7 @@ export const createSpot = spot => async dispatch => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(spot)
   });
-  console.log('here')
+  // console.log('here')
   if (response.ok) {
     const newSpot = await response.json();
     dispatch(create(newSpot));
@@ -83,7 +83,7 @@ const spotsReducer = (state = initialState, action) => {
           [action.spot.id]: action.spot
         }
       }
-      console.log('hi')
+      // console.log('hi')
       return createState;
     default:
       return state;

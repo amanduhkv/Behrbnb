@@ -48,7 +48,7 @@ label, span {
 }
 
 .modal-cred {
-  border-top: 1px solid rgb(211, 209, 209);
+  /* border-top: 1px solid rgb(211, 209, 209); */
   font-size: 19px;
   font-weight: 400;
   padding: 20px 0;
