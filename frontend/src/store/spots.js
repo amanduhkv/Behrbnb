@@ -28,6 +28,15 @@ export const getSpots = () => async dispatch => {
   };
 };
 
+// export const getSpotCurrentUser = () => async dispatch => {
+//   const response = await csrfFetch('/api/spots/current');
+
+//   if(response.ok) {
+//     const currentUserSpots = await response.json();
+//     dispatch(load(currentUserSpots));
+//   }
+// }
+
 export const getASpot = spotId => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}`);
 
