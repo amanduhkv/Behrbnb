@@ -46,8 +46,9 @@ router.get('/current', requireAuth, async(req, res) => {
         spotId: tempReview.spotId
       }
     });
+    console.log(previewImage)
 
-    tempReview.Spot.previewImage = previewImage.url
+    previewImage ? tempReview.Spot.previewImage = previewImage.url : tempReview.Spot.previewImage = 'image does not exist'
     reviews.push(tempReview);
   }
 

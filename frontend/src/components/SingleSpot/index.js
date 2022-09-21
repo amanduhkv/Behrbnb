@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { getASpot } from '../../store/spots';
 import { Modal } from '../../context/Modal';
 import EditSpotForm from '../Spots/EditSpotForm';
 import DeleteSpot from '../Spots/DeleteSpot';
+import '../SingleSpot/SingleSpot.css'
+import Reviews from '../Reviews/Reviews';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
@@ -44,7 +46,7 @@ const SingleSpot = () => {
         </span>
         {/* dis wrong v */}
         {/* <span>{singleSpot.avgRating}</span> */}
-        <span>{singleSpot.numReviews} reviews</span>
+        <NavLink id='review-link' to={`/spots/${singleSpot.id}/reviews`}>{singleSpot.numReviews} reviews</NavLink>
         <span>
           {`${singleSpot.city}, ${singleSpot.state}, ${singleSpot.country}`}
         </span>
@@ -55,7 +57,7 @@ const SingleSpot = () => {
       {/* <p>{`Entire home hosted by ${singleSpot.Owner.firstName}`}</p> */}
       <hr></hr>
       {addEditButton}
-      {/* <DeleteSpot /> */}
+      <Reviews />
     </div>
   )
 }

@@ -1,33 +1,28 @@
 #bear {
   width: 44px;
   margin-right: 10px;
+  /* border: blue 1px solid; */
 }
 
 #bear-name {
   display: flex;
   align-items: center;
-  /* border: solid red 1px; */
-  margin: 10px 0;
+}
+
+#each-review {
+  margin: 12px 0;
 }
 
 #review-container {
-  /* border: rgb(235, 233, 233) solid 1px;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 20px;
-  border: solid red 1px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 20px;
+  margin: 20px auto;
   border: rgba(235,233,233,0.5) solid 1px;
   box-shadow: 2px 2px 5px rgb(148, 148, 148);
-  width: 550px;
+  width: fit-content;
   border-radius: 12px;
-  padding: 10px;
+  padding: 20px;
 }
 
 #review-title {
@@ -38,4 +33,13 @@
 #reviewer-name {
   font-size: 16px;
   font-weight: 600;
+}
+
+#reviewer-review {
+  /* border: blue 1px solid; */
+  margin-top: 4px;
+}
+
+#star {
+  margin-right: 8px;
 }
