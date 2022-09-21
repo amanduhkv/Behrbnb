@@ -2,8 +2,9 @@
   text-decoration: none;
   background-color: rgb(230,30,87);
   color: white;
-  font-size: 13px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
+
 
   margin-top: 10px;
   border-radius: 8px;
@@ -13,10 +14,24 @@
   justify-content: center;
 }
 
+.create-content {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border: rgb(197, 191, 191) 0.2px solid;
+  border-radius: 8px;
+}
+
 .create-spot-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 20px;
   border: rgba(235,233,233,0.5) solid 1px;
   box-shadow: 2px 2px 5px rgb(148, 148, 148);
+  width: 550px;
+  border-radius: 12px;
+  padding: 10px;
 }
 
 .form-for-spot {
@@ -31,18 +46,40 @@
   border: none;
   border-radius: 8px;
   padding: 10px;
+  font-size: 14px;
 }
 
-#spot-input {
-  border: rgba(235,233,233,0.5) solid 1px;
-  box-shadow: 2px 2px 5px rgb(148, 148, 148);
-  border-radius: 12px;
-  margin: 10px;
-  padding: 5px;
+#spot-input1{
+  padding: 15px;
+  font-size: 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: rgb(197, 191, 191) 0.2px solid;
 }
+
+#spot-input2{
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#spot-input,
+#spot-input2 {
+  border: rgb(197, 191, 191) 0.2px solid;
+  padding: 15px;
+  font-size: 16px;
+  /* border-top: white; */
+}
+
+
+#spot-input1:hover,
+#spot-input2:hover,
+#spot-input:hover,
+textarea:hover {
+  background-color: rgba(235,233,233,0.5);
+}
+
 
 textarea {
   height: 125px;
-  width: 500px;
   resize: none;
 }

@@ -49,78 +49,80 @@ const CreateSpotForm = () => {
     <div className='form-for-spot'>
       <form className='create-spot-form' onSubmit={handleSubmit}>
         <h2>Create a New Spot</h2>
-        <input
-          id='spot-input'
-          type='text'
-          placeholder='address'
-          value={address}
-          onChange={e => setAddress(e.target.value)}
-          required
-        />
-        <input
-          id='spot-input'
-          type='text'
-          placeholder='city'
-          value={city}
-          onChange={e => setCity(e.target.value)}
-          required
-        />
-        <input
-          id='spot-input'
-          type='state'
-          placeholder='state'
-          value={state}
-          onChange={e => setState(e.target.value)}
-          required
-        />
-        <input
-          id='spot-input'
-          type='country'
-          placeholder='country'
-          value={country}
-          onChange={e => setCountry(e.target.value)}
-          required
-        />
-        <input
-          id='spot-input'
-          type='number'
-          placeholder='latitude'
-          value={lat}
-          onChange={e => setLat(e.target.value)}
-          required
-        />
-        <input
-          id='spot-input'
-          type='number'
-          placeholder='longitude'
-          value={lng}
-          onChange={e => setLng(e.target.value)}
-          required
-        />
-        <input
-          id='spot-input'
-          type='name'
-          placeholder='name'
-          value={name}
-          onChange={e => setName(e.target.value)}
-          required
-        />
-        <textarea
-          id='spot-input'
-          placeholder='description'
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-          required
-        />
-        <input
-          id='spot-input'
-          placeholder='$'
-          type='number'
-          min="0"
-          value={price}
-          onChange={e => setPrice(e.target.value)}
-          required
-        />
+        <div className='create-content'>
+          <input
+            id='spot-input1'
+            type='text'
+            placeholder='Address'
+            value={address}
+            onChange={e => setAddress(e.target.value)}
+            required
+          />
+          <input
+            id='spot-input'
+            type='text'
+            placeholder='City'
+            value={city}
+            onChange={e => setCity(e.target.value)}
+            required
+          />
+          <input
+            id='spot-input'
+            type='state'
+            placeholder='State'
+            value={state}
+            onChange={e => setState(e.target.value)}
+            required
+          />
+          <input
+            id='spot-input'
+            type='country'
+            placeholder='Country'
+            value={country}
+            onChange={e => setCountry(e.target.value)}
+            required
+          />
+          <input
+            id='spot-input'
+            type='number'
+            placeholder='Latitude'
+            value={lat}
+            onChange={e => setLat(e.target.value)}
+            required
+          />
+          <input
+            id='spot-input'
+            type='number'
+            placeholder='Longitude'
+            value={lng}
+            onChange={e => setLng(e.target.value)}
+            required
+          />
+          <input
+            id='spot-input'
+            type='name'
+            placeholder='Name'
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+          />
+          <textarea
+            id='spot-input'
+            placeholder='Description'
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+            required
+          />
+          <input
+            id='spot-input2'
+            placeholder='$'
+            type='number'
+            min="0"
+            value={price}
+            onChange={e => setPrice(e.target.value)}
+            required
+          />
+        </div>
         <button id='host-button' type='submit'>Host the Spot</button>
         <NavLink id='cancel-link' to='/'>Cancel</NavLink>
       </form>

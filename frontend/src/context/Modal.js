@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
-import x from '../assets/x.svg';
+
 
 const ModalContext = React.createContext();
 
@@ -31,12 +31,6 @@ export function Modal({ onClose, children }) {
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
       <div id="modal-content">
-        <div id='modal-box'>
-          <button id="modal-x" onClick={onClose}>
-            <img id='x-button' src={x} alt='x' />
-          </button>
-          <span className='modal-title'>Log in or sign up</span>
-        </div>
           {children}
       </div>
     </div>,

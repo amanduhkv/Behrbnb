@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Route, useParams } from 'react-router-dom';
-import { getSpots } from '../../store/spots'
-import './Spots.css'
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom';
+import { getSpotCurrentUser } from '../../store/spots';
 
-const Spots = () => {
+const GetSpotsCurrentUser = () => {
   const spots = useSelector(state => {
     return state.spots.allSpots;
   });
@@ -13,7 +12,7 @@ const Spots = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSpots())
+    dispatch(getSpotCurrentUser())
   }, [dispatch]);
 
   if (!spots) return null
@@ -43,4 +42,4 @@ const Spots = () => {
   )
 }
 
-export default Spots;
+export default GetSpotsCurrentUser;

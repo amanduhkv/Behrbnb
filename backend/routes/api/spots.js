@@ -322,7 +322,8 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
   const findSpot = await Spot.findByPk(req.params.spotId);
   const previousReview = await Review.findOne({
     where: {
-      userId: req.user.id
+      userId: req.user.id,
+      spotId: req.params.spotId
     }
   })
 
