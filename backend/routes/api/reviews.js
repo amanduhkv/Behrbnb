@@ -48,7 +48,7 @@ router.get('/current', requireAuth, async(req, res) => {
     });
     console.log(previewImage)
 
-    previewImage ? tempReview.Spot.previewImage = previewImage.url : tempReview.Spot.previewImage = 'image does not exist'
+    previewImage ? tempReview.Spot.previewImage = previewImage.url : tempReview.Spot.previewImage = 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'
     reviews.push(tempReview);
   }
 

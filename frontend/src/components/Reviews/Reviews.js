@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { getReviews } from "../../store/reviews";
 import './Reviews.css'
 import bear from '../../assets/bear.svg';
+import CreateReview from "./CreateReview";
 
 const Reviews = () => {
   const { spotId } = useParams();
@@ -37,6 +38,7 @@ const Reviews = () => {
 
           </div>
         ))}
+        <NavLink id='button-leave-review' to={`/spots/${spotId}/reviews`}>Leave a review</NavLink>
 
     </div>
   )

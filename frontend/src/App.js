@@ -12,6 +12,7 @@ import GetSpotsCurrentUser from "./components/Spots/CurrentUserSpots";
 import EditSpotForm from "./components/Spots/EditSpotForm";
 import Reviews from "./components/Reviews/Reviews";
 import UserReviews from "./components/Reviews/UserReviews";
+import CreateReview from "./components/Reviews/CreateReview";
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
             <GetSpotsCurrentUser />
           </Route>
           <Route exact path='/spots/:spotId/reviews'>
-            <Reviews />
+            <CreateReview />
           </Route>
           <Route path="/spots/:spotId">
             <SingleSpot />

@@ -42,11 +42,11 @@ const SingleSpot = () => {
       <h2>{singleSpot.name}</h2>
       <div>
         <span>
-          <i class="fa-sharp fa-solid fa-star"></i>
+          <i className="fa-sharp fa-solid fa-star"></i>
         </span>
         {/* dis wrong v */}
         {/* <span>{singleSpot.avgRating}</span> */}
-        <NavLink id='review-link' to={`/spots/${singleSpot.id}/reviews`}>{singleSpot.numReviews} reviews</NavLink>
+        <NavLink id='review-link' to={`/spots/${singleSpot.id}/reviews`}>{singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}</NavLink>
         <span>
           {`${singleSpot.city}, ${singleSpot.state}, ${singleSpot.country}`}
         </span>
