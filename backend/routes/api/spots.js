@@ -138,7 +138,9 @@ router.get('/:spotId', async (req, res) => {
 
   const updatedSpot = [];
   const newSpot = spots.toJSON();
-    const sumOfReviews = await Review.sum('stars')
+    const sumOfReviews = await Review.sum('stars', {
+      where: {spotId: newSpot.id}
+    })
     const allReviews = await Review.count({
       where: {
         spotId: spots.id

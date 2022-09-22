@@ -8,6 +8,7 @@ import DeleteSpot from '../Spots/DeleteSpot';
 import '../SingleSpot/SingleSpot.css'
 import Reviews from '../Reviews/Reviews';
 import broken from '../../assets/no-image.svg';
+import bear from '../../assets/bear.svg';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
@@ -45,10 +46,10 @@ const SingleSpot = () => {
           <h2 id='spot-name'>{singleSpot.name}</h2>
           <div>
             <span>
-              <i className="fa-sharp fa-solid fa-star"></i>
+              <i id='star' className="fa-sharp fa-solid fa-star"></i>
             </span>
             {/* dis wrong v */}
-            {/* <span>{singleSpot.avgRating}</span> */}
+            <span>{singleSpot.avgStarRating ?? 'new'}</span>
             <NavLink id='review-link' to={`/spots/${singleSpot.id}/reviews`}>{singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}</NavLink>
             <span>
               {`${singleSpot.city}, ${singleSpot.state}, ${singleSpot.country}`}
@@ -68,10 +69,9 @@ const SingleSpot = () => {
             </div>
 
           </div>
-          {/* <p>{`Entire home hosted by ${singleSpot.Owner.firstName}`}</p> */}
+          <p>{`Entire home hosted by ${singleSpot?.Owner.firstName}`}</p>
           <br></br>
           <br></br>
-          <hr></hr>
           {addEditButton}
           <Reviews />
         </div>

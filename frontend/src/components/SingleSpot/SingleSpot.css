@@ -5,10 +5,12 @@
 }
 
 #quad-images {
+  border: 1px red solid;
   display: flex;
+  align-items: center;
   margin: 0 800px 20px 80px;
 
-  height: 420px;
+  height: 400px;
   width: 420px;
 
 }
@@ -26,14 +28,19 @@
 }
 
 .spot-images {
+  border: 1px red solid;
   display: flex;
-
+  align-items: center;
+  margin: 0 80px;
   height: 400px;
   width: 600px;
 }
 
 #spot-name {
-  display: flex;
-  /* border: 1px red solid; */
-  margin: 0 800px 0 80px;
+  margin: 0 80px;
+  font-weight: 300;
+}
+
+#star {
+  margin-left: 70px;
 }
