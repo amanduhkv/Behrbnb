@@ -53,7 +53,7 @@ const CreateReview = () => {
         </div>
         <div id='buttons'>
           <button id='review-button' type='submit'>Submit Review</button>
-          <NavLink id='review-cancel' to={`/spots/${spotId}/reviews`}>Cancel</NavLink>
+          <NavLink id='review-cancel' to={`/spots/${spotId}`}>Cancel</NavLink>
         </div>
       </form>
     </div>
