@@ -21,7 +21,7 @@
   margin: 10px
 }
 
-.menu-options {
+.menu-spots {
   /* border: red solid 1px; */
   margin: 10px 0;
   display: flex;
@@ -36,7 +36,7 @@
   padding: 2px 40px 2px 5px;
 }
 
-.menu-options:hover {
+.menu-spots:hover {
   background-color: rgba(235, 233, 233, 0.5);
 }
 

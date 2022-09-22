@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
@@ -9,8 +8,6 @@ import Spots from './components/Spots/index'
 import SingleSpot from "./components/SingleSpot";
 import CreateSpotForm from "./components/CreateSpotForm.js";
 import GetSpotsCurrentUser from "./components/Spots/CurrentUserSpots";
-import EditSpotForm from "./components/Spots/EditSpotForm";
-import Reviews from "./components/Reviews/Reviews";
 import UserReviews from "./components/Reviews/UserReviews";
 import CreateReview from "./components/Reviews/CreateReview";
 

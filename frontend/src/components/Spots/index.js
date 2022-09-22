@@ -32,8 +32,8 @@ const Spots = () => {
               <span id='night'>night</span>
             </div>
             <div className='reviews'>
-              <i class="fa-sharp fa-solid fa-star"></i>
-              {`${spot.avgRating}`}
+              <i className="fa-sharp fa-solid fa-star"></i>
+              {`${spot.avgRating}` ? `${spot.avgRating}` : "new"}
             </div>
           </div>
         </div>
