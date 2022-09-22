@@ -45,31 +45,33 @@ const SingleSpot = () => {
         <div>
           <h2 id='spot-name'>{singleSpot.name}</h2>
           <div>
-            <span>
+            <span id='avg-rating-star'>
               <i id='star' className="fa-sharp fa-solid fa-star"></i>
+              <span id='avg-rating'>{singleSpot.avgStarRating ?? 'new'}</span>
             </span>
-            {/* dis wrong v */}
-            <span>{singleSpot.avgStarRating ?? 'new'}</span>
+            <span id='dots'>•</span>
             <NavLink id='review-link' to={`/spots/${singleSpot.id}/reviews`}>{singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}</NavLink>
-            <span>
+            <span id='dots'>•</span>
+            <span id='location'>
               {`${singleSpot.city}, ${singleSpot.state}, ${singleSpot.country}`}
             </span>
           </div>
           <div className='spot-images'>
             <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? { broken }} alt='broken-img' />
             <div id='quad-images'>
-              <span>
+              <div id='first-two'>
                 <img id='one' src={singleSpot?.SpotImages?.[1]?.url ?? { broken }} alt='broken-img' />
                 <img id='one' src={singleSpot?.SpotImages?.[2]?.url ?? { broken }} alt='broken-img' />
-              </span>
-              <span>
+              </div>
+              <div id='second-two'>
                 <img id='two' src={singleSpot?.SpotImages?.[3]?.url ?? { broken }} alt='broken-img' />
-                <img id='two' src={singleSpot?.SpotImages?.[4]?.url ?? { broken }} alt='broken-img' />
-              </span>
+                <img id='three' src={singleSpot?.SpotImages?.[4]?.url ?? { broken }} alt='broken-img' />
+              </div>
             </div>
-
           </div>
-          <p>{`Entire home hosted by ${singleSpot?.Owner.firstName}`}</p>
+          <p>
+            {`Entire home hosted by ${singleSpot?.Owner.firstName}`}
+          </p>
           <br></br>
           <br></br>
           {addEditButton}
