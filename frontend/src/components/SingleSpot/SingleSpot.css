@@ -3,7 +3,10 @@
   font-weight: 500;
   padding-left: 0;
   padding-right: 0;
+}
 
+#avg-rating-star {
+  padding: 0;
 }
 
 #avg-rating {
@@ -12,24 +15,56 @@
 
 #dots {
   padding-right: 0;
+  font-size: 12px;
 }
 
 #first-two {
   margin: 8px;
 }
 
+#grid-spot {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 6fr 0.5fr 2fr;
+  grid-template-areas:
+  ". name ."
+  ". info ."
+  ". images ."
+  ". deets ."
+  ". reviews .";
+}
+
+#ed-buttons {
+  grid-area: info;
+  align-self: center;
+  margin-left: auto;
+}
+
+#edit-delete-button {
+  background-color: rgb(230, 30, 87);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+}
+
+#edit-delete-button:hover {
+  background-color: rgb(153, 19, 57);
+}
+
 #location {
   font-weight: 500;
   font-size: 14px;
   padding-right: 0;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 #one,
 #two,
 #three {
-  height: 170px;
-  width: 175px;
+  height: 246px;
+  width: 246px;
   display: flex;
   align-items: center;
   padding: auto;
@@ -44,15 +79,43 @@
   border-bottom-right-radius: 20px;
 }
 
+#price {
+  font-weight: 500;
+  font-size: 22px;
+  /* border: red 1px solid; */
+  /* margin-left: 20px; */
+}
+
+#price-review-side-box {
+  grid-area: deets;
+  display: flex;
+  align-items: center;
+  align-self: center;
+
+  border: rgba(235,233,233,0.5) solid 1px;
+  box-shadow: 2px 2px 5px rgb(148, 148, 148);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 12px;
+  padding: 20px;
+  margin-left: auto;
+}
+
 #quad-images {
   /* border: 1px red solid; */
   display: flex;
   align-items: center;
   /* margin: 0 800px 20px 80px; */
 
-  height: 350px;
+  height: 500px;
   width: 420px;
 
+}
+
+#reviews {
+  grid-area: reviews;
+  align-self: center;
+  margin-top: 20px;
 }
 
 #review-link {
@@ -61,31 +124,54 @@
   color: black;
   margin-left: 12px;
   padding-right: 0;
+  /* text-decoration: underline; */
 }
 
 #single-image {
-  height: 350px;
-  width: 400px;
+  height: 500px;
+  width: 628px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   margin: 0 auto;
 }
 
 .spot-images {
+  grid-area: images;
   display: flex;
-  align-items: center;
-  margin: 0 80px;
   height: 400px;
   width: fit-content;
   /* border: 1px red solid; */
 }
 
 #spot-name {
-  margin: 20px 80px 0 80px;
+  grid-area: name;
+  /* padding: 0 400px; */
+  margin-right: auto;
+  align-self: end;
+}
+
+#spot-name-container {
+  width: 100%;
+  grid-area: name;
+  display: flex;
+
   font-weight: 500;
+  font-size: 26px;
 }
 
 #star {
-  margin-left: 70px;
   font-size: 14px;
+}
+
+#star-deets {
+  font-size: 12px;
+}
+
+#top-info {
+  grid-area: info;
+}
+
+#user-para {
+  grid-area: deets;
+  align-self: center;
 }

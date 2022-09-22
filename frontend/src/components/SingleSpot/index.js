@@ -28,7 +28,7 @@ const SingleSpot = () => {
   if (sessionUser.id === singleSpot.ownerId) {
     addEditButton = (
       <>
-        <button onClick={() => setEditModal(true)}>Edit Spot</button>
+        <button id='edit-delete-button' onClick={() => setEditModal(true)}>Edit Spot</button>
         {editModal && (
           <Modal onClose={() => setEditModal(false)}>
             <EditSpotForm />
@@ -42,20 +42,26 @@ const SingleSpot = () => {
   return (
     <div>
       {singleSpot.id && (
-        <div>
-          <h2 id='spot-name'>{singleSpot.name}</h2>
-          <div>
+        <div id='grid-spot'>
+          <div id='spot-name-container'>
+            <div id='spot-name'>{singleSpot.name}</div>
+          </div>
+
+          <div id='top-info'>
             <span id='avg-rating-star'>
               <i id='star' className="fa-sharp fa-solid fa-star"></i>
               <span id='avg-rating'>{singleSpot.avgStarRating ?? 'new'}</span>
             </span>
             <span id='dots'>•</span>
-            <NavLink id='review-link' to={`/spots/${singleSpot.id}/reviews`}>{singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}</NavLink>
+            <span id='review-link'>
+              {singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
+            </span>
             <span id='dots'>•</span>
             <span id='location'>
               {`${singleSpot.city}, ${singleSpot.state}, ${singleSpot.country}`}
             </span>
           </div>
+
           <div className='spot-images'>
             <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? { broken }} alt='broken-img' />
             <div id='quad-images'>
@@ -69,13 +75,38 @@ const SingleSpot = () => {
               </div>
             </div>
           </div>
-          <p>
-            {`Entire home hosted by ${singleSpot?.Owner.firstName}`}
-          </p>
+
+          <div id='price-review-side-box'>
+            <span id='price'>
+              ${singleSpot.price}
+              <span id='night'>night</span>
+            </span>
+              <i id='star-deets' className="fa-sharp fa-solid fa-star"></i>
+              <span id='avg-rating'>{singleSpot.avgStarRating ?? 'new'}</span>
+            <span id='dots'>•</span>
+            <span id='review-link'>
+              {singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
+            </span>
+          </div>
+
+          <div id='user-para'>
+            <div id='user-deets'>
+              <p>
+                {`Entire home hosted by ${singleSpot?.Owner.firstName}`}
+              </p>
+              <img id='bear' src={bear} />
+            </div>
+          </div>
+
           <br></br>
           <br></br>
-          {addEditButton}
-          <Reviews />
+          <div id='ed-buttons'>
+            {addEditButton}
+          </div>
+      
+          <div id='reviews'>
+            <Reviews />
+          </div>
         </div>
       )}
     </div>

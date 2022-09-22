@@ -10,6 +10,7 @@ const Reviews = () => {
   // console.log('id', spotId)
   const reviews = useSelector(state => state.reviews);
   const reviewsArr = Object.values(reviews);
+  const spotAvgRating = useSelector(state => state.spots.singleSpot.avgStarRating);
   // console.log(reviewsArr)
   const dispatch = useDispatch();
 
@@ -22,22 +23,29 @@ const Reviews = () => {
   return (
     <div id='review-container'>
 
-        <div id='review-title'>
-          <i id='star' className="fa-sharp fa-solid fa-star"></i>
-          <h2>{reviewsArr.length} {reviewsArr.length === 1 ? 'review' : 'reviews'}</h2>
+      <div id='review-title'>
+        <div id='avgStarRating'>
+          <i id='star-review' className="fa-sharp fa-solid fa-star"></i>
+          {spotAvgRating}
         </div>
-        {reviewsArr.map(review => (
-          <div id='each-review' key={review.id}>
+        <div id='dots'>•</div>
+        <div id='review-number'>
+          {reviewsArr.length} {reviewsArr.length === 1 ? 'review' : 'reviews'}
+        </div>
+      </div>
 
-            <div id='bear-name'>
-              <img id='bear' src={bear} />
-              <div id='reviewer-name'>{review.User?.firstName}</div>
-            </div>
-            <div id='reviewer-review'>{review.review}</div>
-            <div>{review.stars}</div>
+      {reviewsArr.map(review => (
+        <div id='each-review' key={review.id}>
+
+          <div id='bear-name'>
+            <img id='bear' src={bear} />
+            <div id='reviewer-name'>{review.User?.firstName}</div>
+            {/* <div id='num-stars'>{review.stars}</div> */}
           </div>
-        ))}
-        <NavLink id='button-leave-review' to={`/spots/${spotId}/reviews`}>Leave a review</NavLink>
+          <div id='reviewer-review'>{review.review}</div>
+        </div>
+      ))}
+      <NavLink id='button-leave-review' to={`/spots/${spotId}/reviews`}>Leave a review</NavLink>
 
     </div>
   )
