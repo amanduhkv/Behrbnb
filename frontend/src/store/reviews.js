@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_REVIEWS = 'reviews/GET_REVIEWS';
 const USER_REVIEWS = 'review/USER_REVIEWS';
 const CREATE_REVIEW = 'review/CREATE_REVIEW';
-
+const DELETE_REVIEW = 'review/DELETE_REVIEW';
 
 const loadReviews = (reviews, spotId) => ({
   type: GET_REVIEWS,
@@ -20,6 +20,11 @@ const create = (review, spotId) => ({
   type: CREATE_REVIEW,
   review,
   spotId
+});
+
+const deletion = id => ({
+  type: DELETE_REVIEW,
+  id
 });
 
 export const getReviews = (spotId) => async dispatch => {
@@ -54,13 +59,24 @@ export const createReview = (review, spotId) => async dispatch => {
   };
 };
 
+export const deleteReview = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/reviews/${id}`, {
+    method: 'DELETE'
+  });
+
+  if(response.ok) {
+    // const deleteReview = await response.json();
+    dispatch(deletion(id));
+    // return ('Successfully deleted');
+  };
+};
+
 const initialState = {
   spot: {},
   user: {}
 }
 
 const reviewsReducer = (state = initialState, action) => {
-  const newState = { ...state };
   switch (action.type) {
     case GET_REVIEWS:
       const reviews = {}
@@ -83,6 +99,13 @@ const reviewsReducer = (state = initialState, action) => {
         }
       }
       return createState;
+    case DELETE_REVIEW:
+      const deleteState = {
+        user: { ...state.user }
+      }
+
+      delete deleteState.user[action.id]
+      return deleteState;
     default:
       return state
   }

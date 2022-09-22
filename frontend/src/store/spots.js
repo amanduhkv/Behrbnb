@@ -95,9 +95,9 @@ export const deleteSpot = (id) => async dispatch => {
   });
 
   if(response.ok) {
-    const deletedSpot = await response.json();
-    dispatch(deletion(deletedSpot));
-    return ('Successfully deleted');
+    // const deletedSpot = await response.json();
+    dispatch(deletion(id));
+    // return ('Successfully deleted');
   }
 }
 
@@ -107,7 +107,6 @@ const initialState = {
 }
 
 const spotsReducer = (state = initialState, action) => {
-  const newState = { ...state };
   switch (action.type) {
     case LOAD_SPOTS:
       const allSpots = {}
@@ -142,7 +141,10 @@ const spotsReducer = (state = initialState, action) => {
         singleSpot: { ...state.singleSpot }
       }
       // console.log('this about to be yeeted', deleteState)
-      delete deleteState.singleSpot.id;
+      if (deleteState.singleSpot.id === action.id) {
+        deleteState.singleSpot = {}
+      }
+      delete deleteState.allSpots[action.id];
       return deleteState;
     default:
       return state;

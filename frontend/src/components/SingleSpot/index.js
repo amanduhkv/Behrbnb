@@ -10,7 +10,7 @@ import Reviews from '../Reviews/Reviews';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector(state => state.session.user);
   const singleSpot = useSelector(state => state.spots.singleSpot);
   console.log('single spot', singleSpot)
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const SingleSpot = () => {
 
   return (
     <div>
-      <h2>{singleSpot.name}</h2>
+      <h2 id='spot-name'>{singleSpot.name}</h2>
       <div>
         <span>
           <i className="fa-sharp fa-solid fa-star"></i>
