@@ -16,6 +16,7 @@ const CreateSpotForm = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [image, setImage] = useState('');
 
   const history = useHistory();
 
@@ -38,7 +39,7 @@ const CreateSpotForm = () => {
       price
     };
 
-    let createdSpot = await dispatch(createSpot(payload));
+    let createdSpot = await dispatch(createSpot(payload, image));
     // console.log('this is the spot', createdSpot)
     if (createdSpot) {
       history.push(`/spots/${createdSpot.id}`)
@@ -120,6 +121,14 @@ const CreateSpotForm = () => {
             min="0"
             value={price}
             onChange={e => setPrice(e.target.value)}
+            required
+          />
+          <input
+            id='spot-image'
+            placeholder='url'
+            type='text'
+            value={image}
+            onChange={e => setImage(e.target.value)}
             required
           />
         </div>

@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { getASpot } from '../../store/spots';
 import { Modal } from '../../context/Modal';
 import EditSpotForm from '../Spots/EditSpotForm';
 import DeleteSpot from '../Spots/DeleteSpot';
+import '../SingleSpot/SingleSpot.css'
+import Reviews from '../Reviews/Reviews';
+import broken from '../../assets/no-image.svg';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector(state => state.session.user);
   const singleSpot = useSelector(state => state.spots.singleSpot);
   console.log('single spot', singleSpot)
   const dispatch = useDispatch();
@@ -21,14 +24,14 @@ const SingleSpot = () => {
   if (!singleSpot) return null;
 
   let addEditButton;
-  if(sessionUser.id === singleSpot.ownerId) {
+  if (sessionUser.id === singleSpot.ownerId) {
     addEditButton = (
       <>
         <button onClick={() => setEditModal(true)}>Edit Spot</button>
         {editModal && (
-        <Modal onClose={() => setEditModal(false)}>
-          <EditSpotForm />
-        </Modal>
+          <Modal onClose={() => setEditModal(false)}>
+            <EditSpotForm />
+          </Modal>
         )}
         <DeleteSpot />
       </>
@@ -37,25 +40,37 @@ const SingleSpot = () => {
 
   return (
     <div>
-      <h2>{singleSpot.name}</h2>
+      <h2 id='spot-name'>{singleSpot.name}</h2>
       <div>
         <span>
-          <i class="fa-sharp fa-solid fa-star"></i>
+          <i className="fa-sharp fa-solid fa-star"></i>
         </span>
         {/* dis wrong v */}
         {/* <span>{singleSpot.avgRating}</span> */}
-        <span>{singleSpot.numReviews} reviews</span>
+        <NavLink id='review-link' to={`/spots/${singleSpot.id}/reviews`}>{singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}</NavLink>
         <span>
           {`${singleSpot.city}, ${singleSpot.state}, ${singleSpot.country}`}
         </span>
       </div>
-      <div>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn2rxCQ-CBZqmyMh9k5H5T-LgcBlN7TbK-Sw&usqp=CAU' alt='polar-bears' />
+      <div className='spot-images'>
+        <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? { broken }} alt='broken-img' />
+        <div id='quad-images'>
+          <span>
+            <img id='one' src={singleSpot?.SpotImages?.[1]?.url ?? { broken }} alt='broken-img' />
+            <img id='one' src={singleSpot?.SpotImages?.[2]?.url ?? { broken }} alt='broken-img' />
+          </span>
+          <span>
+            <img id='two' src={singleSpot?.SpotImages?.[3]?.url ?? { broken }} alt='broken-img' />
+            <img id='two' src={singleSpot?.SpotImages?.[4]?.url ?? { broken }} alt='broken-img' />
+          </span>
+        </div>
       </div>
       {/* <p>{`Entire home hosted by ${singleSpot.Owner.firstName}`}</p> */}
+      <br></br>
+      <br></br>
       <hr></hr>
       {addEditButton}
-      {/* <DeleteSpot /> */}
+      <Reviews />
     </div>
   )
 }

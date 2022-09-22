@@ -1,41 +1,60 @@
 #bear {
   width: 44px;
   margin-right: 10px;
+  /* border: blue 1px solid; */
 }
 
 #bear-name {
   display: flex;
   align-items: center;
-  /* border: solid red 1px; */
-  margin: 10px 0;
+}
+
+#button-leave-review {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(230,30,87);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  width: 300px;
+  margin: auto;
+}
+
+#each-review {
+  margin: 12px 0;
 }
 
 #review-container {
-  /* border: rgb(235, 233, 233) solid 1px;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 20px;
-  border: solid red 1px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 20px;
-  border: rgba(235,233,233,0.5) solid 1px;
-  box-shadow: 2px 2px 5px rgb(148, 148, 148);
-  width: 550px;
+  margin: 20px auto;
+  /* border: rgba(235,233,233,0.5) solid 1px;
+  box-shadow: 2px 2px 5px rgb(148, 148, 148); */
+  width: fit-content;
   border-radius: 12px;
-  padding: 10px;
+  padding: 20px;
 }
 
 #review-title {
   display: flex;
   align-items: center;
+  font-weight: 400;
 }
 
 #reviewer-name {
   font-size: 16px;
   font-weight: 600;
+}
+
+#reviewer-review {
+  /* border: blue 1px solid; */
+  margin-top: 4px;
+}
+
+#star {
+  margin-right: 8px;
 }

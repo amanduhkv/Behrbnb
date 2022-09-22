@@ -44,7 +44,7 @@ function ProfileButton({ user }) {
             <div id='user-creds'>{user.username}</div>
             <div id='user-creds'>{user.email}</div>
           <div className="menu-options">
-            <NavLink id='my-spots' to='/spots/current'>My Spots</NavLink>
+            <NavLink id='my-spots' to='/spots/current'>Manage listings</NavLink>
           </div>
           <div id='logout-button'>
             <button id='logout-button' onClick={logout}>Log Out</button>

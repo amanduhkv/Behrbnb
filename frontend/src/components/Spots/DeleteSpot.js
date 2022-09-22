@@ -1,17 +1,17 @@
 import { useHistory, useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { deleteSpot } from '../../store/spots';
 
 function DeleteSpot() {
-  const { spotId } = useParams();
+  const spot = useSelector(state => state.spots.singleSpot);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleDelete = async e => {
     e.preventDefault();
 
-    const deletion = await dispatch(deleteSpot(spotId));
+    const deletion = dispatch(deleteSpot(spot.id));
     if(deletion) {
       history.push('/');
     }

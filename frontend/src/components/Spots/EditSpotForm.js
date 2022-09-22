@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 import { getASpot, updateSpot } from '../../store/spots';
+import './EditSpotForm.css';
 
 const EditSpotForm = () => {
   const {spotId} = useParams();
