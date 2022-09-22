@@ -33,12 +33,11 @@ const Spots = () => {
             </div>
             <div className='reviews'>
               <i className="fa-sharp fa-solid fa-star"></i>
-              {`${spot.avgRating}` ? `${spot.avgRating}` : "new"}
+              {spot.avgRating}
             </div>
           </div>
         </div>
       ))}
-
     </div>
   )
 }

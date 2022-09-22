@@ -215,6 +215,8 @@ router.get('/', async (req, res, next) => {
 
     thisSpot.avgRating = avgRating;
 
+    if(!avgRating) thisSpot.avgRating = 'new'
+
     const previewImage = await SpotImage.findOne({
       where: {
         preview: true,

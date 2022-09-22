@@ -44,6 +44,7 @@ const CreateReview = () => {
             required
           />
           <input
+            id='review-rating'
             type='number'
             min='0'
             max='5'

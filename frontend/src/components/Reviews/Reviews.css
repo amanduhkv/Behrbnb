@@ -23,6 +23,15 @@
   margin: auto;
 }
 
+#delete-review-button {
+  background-color: rgb(230,30,87);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  margin-left: 10px;
+}
+
 #each-review {
   margin: 12px 0;
 }
