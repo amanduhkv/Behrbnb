@@ -1,10 +1,39 @@
+#one,
+#two {
+  height: 175px;
+  width: 175px;
+}
+
+#quad-images {
+  display: flex;
+  margin: 0 800px 20px 80px;
+
+  height: 420px;
+  width: 420px;
+
+}
+
 #review-link {
   font-size: 14px;
   color: black;
 }
 
+#single-image {
+  height: 350px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin: 0 auto;
+}
+
+.spot-images {
+  display: flex;
+
+  height: 400px;
+  width: 600px;
+}
+
 #spot-name {
   display: flex;
-  border: 1px red solid;
-  justify-content: center;
+  /* border: 1px red solid; */
+  margin: 0 800px 0 80px;
 }

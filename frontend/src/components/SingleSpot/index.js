@@ -7,6 +7,7 @@ import EditSpotForm from '../Spots/EditSpotForm';
 import DeleteSpot from '../Spots/DeleteSpot';
 import '../SingleSpot/SingleSpot.css'
 import Reviews from '../Reviews/Reviews';
+import broken from '../../assets/no-image.svg';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
@@ -23,14 +24,14 @@ const SingleSpot = () => {
   if (!singleSpot) return null;
 
   let addEditButton;
-  if(sessionUser.id === singleSpot.ownerId) {
+  if (sessionUser.id === singleSpot.ownerId) {
     addEditButton = (
       <>
         <button onClick={() => setEditModal(true)}>Edit Spot</button>
         {editModal && (
-        <Modal onClose={() => setEditModal(false)}>
-          <EditSpotForm />
-        </Modal>
+          <Modal onClose={() => setEditModal(false)}>
+            <EditSpotForm />
+          </Modal>
         )}
         <DeleteSpot />
       </>
@@ -51,10 +52,22 @@ const SingleSpot = () => {
           {`${singleSpot.city}, ${singleSpot.state}, ${singleSpot.country}`}
         </span>
       </div>
-      <div>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn2rxCQ-CBZqmyMh9k5H5T-LgcBlN7TbK-Sw&usqp=CAU' alt='polar-bears' />
+      <div className='spot-images'>
+        <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? { broken }} alt='broken-img' />
+        <div id='quad-images'>
+          <span>
+            <img id='one' src={singleSpot?.SpotImages?.[1]?.url ?? { broken }} alt='broken-img' />
+            <img id='one' src={singleSpot?.SpotImages?.[2]?.url ?? { broken }} alt='broken-img' />
+          </span>
+          <span>
+            <img id='two' src={singleSpot?.SpotImages?.[3]?.url ?? { broken }} alt='broken-img' />
+            <img id='two' src={singleSpot?.SpotImages?.[4]?.url ?? { broken }} alt='broken-img' />
+          </span>
+        </div>
       </div>
       {/* <p>{`Entire home hosted by ${singleSpot.Owner.firstName}`}</p> */}
+      <br></br>
+      <br></br>
       <hr></hr>
       {addEditButton}
       <Reviews />
