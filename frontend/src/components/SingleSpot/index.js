@@ -80,8 +80,8 @@ const SingleSpot = () => {
               ${singleSpot.price}
               <span id='night'>night</span>
             </span>
-              <i id='star-deets' className="fa-sharp fa-solid fa-star"></i>
-              <span id='avg-rating'>{singleSpot.avgStarRating ?? 'new'}</span>
+            <i id='star-deets' className="fa-sharp fa-solid fa-star"></i>
+            <span id='avg-rating'>{singleSpot.avgStarRating ?? 'new'}</span>
             <span id='dots'>•</span>
             <span id='review-link'>
               {singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
@@ -90,10 +90,30 @@ const SingleSpot = () => {
 
           <div id='user-para'>
             <div id='user-deets'>
-              <p>
+              <p id='user-p'>
                 {`Entire home hosted by ${singleSpot?.Owner?.firstName}`}
               </p>
-              <img id='bear' src={bear} />
+              <img id='bear' className='user-bear' src={bear} />
+            </div>
+            <div className='p'>
+              <div id='p-title'>Self check-in</div>
+              <div id='p-des'>
+                Check yourself in with the lockbox.
+              </div>
+              <div id='p-title'>{singleSpot?.Owner?.firstName} is a Superhost</div>
+              <div id='p-des'>
+                Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
+              </div>
+              <div id='p-title'>Free cancellation</div>
+            </div>
+            <div id='p-protect'>
+              <img id='aircover' src='https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg' />
+              <div id='air-des'>
+                Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.
+              </div>
+            </div>
+            <div id='user-des'>
+              {singleSpot.description}
             </div>
           </div>
 
