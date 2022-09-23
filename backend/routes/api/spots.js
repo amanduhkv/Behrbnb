@@ -20,7 +20,9 @@ router.get('/current', requireAuth, async (req, res) => {
   for (let aSpot of spots) {
     let thisSpot = aSpot.toJSON();
 
-    const sumOfReviews = await Review.sum('stars')
+    const sumOfReviews = await Review.sum('stars', {
+      where: {spotId: thisSpot.id}
+    })
     const allReviews = await Review.count();
     const avgRating = (sumOfReviews / allReviews)
 
