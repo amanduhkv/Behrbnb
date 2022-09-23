@@ -49,17 +49,24 @@
   font-size: 14px;
 }
 
+#host-button:hover {
+  background-color: rgb(220, 30, 87);
+}
+
+#spot-image {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: rgb(197, 191, 191) 0.2px solid;
+  padding: 15px;
+  font-size: 16px;
+}
+
 #spot-input1{
   padding: 15px;
   font-size: 16px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border: rgb(197, 191, 191) 0.2px solid;
-}
-
-#spot-input2{
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
 }
 
 #spot-input,

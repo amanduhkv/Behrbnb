@@ -7,7 +7,6 @@ import EditSpotForm from '../Spots/EditSpotForm';
 import DeleteSpot from '../Spots/DeleteSpot';
 import '../SingleSpot/SingleSpot.css'
 import Reviews from '../Reviews/Reviews';
-import broken from '../../assets/no-image.svg';
 import bear from '../../assets/bear.svg';
 
 const SingleSpot = () => {
@@ -63,15 +62,15 @@ const SingleSpot = () => {
           </div>
 
           <div className='spot-images'>
-            <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? { broken }} alt='broken-img' />
+            <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnAe4iFTE1nJiQAnaY8hqwwNwP7E27mTHk2g&usqp=CAU'} alt='no-img' />
             <div id='quad-images'>
               <div id='first-two'>
-                <img id='one' src={singleSpot?.SpotImages?.[1]?.url ?? { broken }} alt='broken-img' />
-                <img id='one' src={singleSpot?.SpotImages?.[2]?.url ?? { broken }} alt='broken-img' />
+                <img id='one' src={singleSpot?.SpotImages?.[1]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' />
+                <img id='one' src={singleSpot?.SpotImages?.[2]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' />
               </div>
               <div id='second-two'>
-                <img id='two' src={singleSpot?.SpotImages?.[3]?.url ?? { broken }} alt='broken-img' />
-                <img id='three' src={singleSpot?.SpotImages?.[4]?.url ?? { broken }} alt='broken-img' />
+                <img id='two' src={singleSpot?.SpotImages?.[3]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' />
+                <img id='three' src={singleSpot?.SpotImages?.[4]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' />
               </div>
             </div>
           </div>
@@ -92,7 +91,7 @@ const SingleSpot = () => {
           <div id='user-para'>
             <div id='user-deets'>
               <p>
-                {`Entire home hosted by ${singleSpot?.Owner.firstName}`}
+                {`Entire home hosted by ${singleSpot?.Owner?.firstName}`}
               </p>
               <img id='bear' src={bear} />
             </div>
@@ -103,7 +102,7 @@ const SingleSpot = () => {
           <div id='ed-buttons'>
             {addEditButton}
           </div>
-      
+
           <div id='reviews'>
             <Reviews />
           </div>
