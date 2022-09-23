@@ -147,7 +147,7 @@ const EditSpotForm = () => {
           onChange={updatePrice}
           required
         />
-        <button id='update-button' type='submit'>Update</button>
+        {/* <button id='update-button' type='submit'>Update</button> */}
       </form>
     </div>
   )
