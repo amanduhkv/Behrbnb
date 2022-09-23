@@ -4,11 +4,12 @@ import { useHistory } from "react-router-dom";
 import { getUserReviews } from "../../store/reviews";
 import bear from '../../assets/bear.svg'
 import { deleteReview } from "../../store/reviews";
+import './UserReviews.css';
 
 const UserReviews = () => {
   const reviews = useSelector(state => state.reviews.user);
-  console.log('Pooh reviews: ', reviews)
   const reviewsArr = Object.values(reviews);
+  console.log('Pooh reviews: ', reviews)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +22,8 @@ const UserReviews = () => {
     <div id='review-container'>
       <div id='review-title'>
         <i id='star' className="fa-sharp fa-solid fa-star"></i>
-        <h2>{reviewsArr.length} {reviewsArr.length === 1 ? 'review' : 'reviews'}</h2>
+        {/* <div id='dots'>•</div> */}
+        <h2 id='review-title'>{reviewsArr.length} {reviewsArr.length === 1 ? 'review' : 'reviews'}</h2>
       </div>
       {reviewsArr.map(review => (
         <div id='each-review' key={review.id}>

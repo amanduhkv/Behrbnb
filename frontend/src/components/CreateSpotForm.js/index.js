@@ -54,7 +54,7 @@ const CreateSpotForm = () => {
           <input
             id='spot-input1'
             type='text'
-            placeholder='Address'
+            placeholder='address'
             value={address}
             onChange={e => setAddress(e.target.value)}
             required
@@ -62,7 +62,7 @@ const CreateSpotForm = () => {
           <input
             id='spot-input'
             type='text'
-            placeholder='City'
+            placeholder='city'
             value={city}
             onChange={e => setCity(e.target.value)}
             required
@@ -70,7 +70,7 @@ const CreateSpotForm = () => {
           <input
             id='spot-input'
             type='state'
-            placeholder='State'
+            placeholder='state'
             value={state}
             onChange={e => setState(e.target.value)}
             required
@@ -78,7 +78,7 @@ const CreateSpotForm = () => {
           <input
             id='spot-input'
             type='country'
-            placeholder='Country'
+            placeholder='country'
             value={country}
             onChange={e => setCountry(e.target.value)}
             required
@@ -86,7 +86,7 @@ const CreateSpotForm = () => {
           <input
             id='spot-input'
             type='number'
-            placeholder='Latitude'
+            placeholder='latitude'
             value={lat}
             onChange={e => setLat(e.target.value)}
             required
@@ -94,7 +94,7 @@ const CreateSpotForm = () => {
           <input
             id='spot-input'
             type='number'
-            placeholder='Longitude'
+            placeholder='longitude'
             value={lng}
             onChange={e => setLng(e.target.value)}
             required
@@ -102,14 +102,14 @@ const CreateSpotForm = () => {
           <input
             id='spot-input'
             type='name'
-            placeholder='Name'
+            placeholder='name'
             value={name}
             onChange={e => setName(e.target.value)}
             required
           />
           <textarea
-            id='spot-input'
-            placeholder='Description'
+            id='spot-input-textarea'
+            placeholder='description'
             value={description}
             onChange={e => setDescription(e.target.value)}
             required
@@ -124,7 +124,7 @@ const CreateSpotForm = () => {
             required
           />
           <input
-            id='spot-image'
+            id='spot-input-url'
             placeholder='url'
             type='text'
             value={image}
@@ -132,8 +132,10 @@ const CreateSpotForm = () => {
             required
           />
         </div>
-        <button id='host-button' type='submit'>Host the Spot</button>
-        <NavLink id='cancel-link' to='/'>Cancel</NavLink>
+        <div id='buttons-submit'>
+          <button id='host-button' type='submit'>Host the Spot</button>
+          <NavLink id='cancel-link' to='/'>Cancel</NavLink>
+        </div>
       </form>
     </div>
   )

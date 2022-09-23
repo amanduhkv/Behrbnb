@@ -22,7 +22,7 @@ const CreateReview = () => {
 
     let newReview = await dispatch(createReview(payload, spotId));
     if (newReview) {
-      history.push(`/spots/${spotId}/reviews`)
+      history.push(`/spots/${spotId}`)
     };
     reset();
   }

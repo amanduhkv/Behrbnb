@@ -83,13 +83,17 @@ const reviewsReducer = (state = initialState, action) => {
       action.reviews.Reviews.forEach(review => {
         reviews[review.id] = review
       });
-      return reviews;
+      return {
+        ...state,
+        spot: { ...reviews },
+        user: {}
+      };
     case USER_REVIEWS:
-      const user = {}
+      const newReview = { ...state, user: { ...state.user }}
       action.reviews.Reviews.forEach(review => {
-        user[review.id] = review
+        newReview.user[review.id] = review
       });
-      return {user};
+      return newReview;
     case CREATE_REVIEW:
       const createState = {
         ...state,
@@ -101,6 +105,8 @@ const reviewsReducer = (state = initialState, action) => {
       return createState;
     case DELETE_REVIEW:
       const deleteState = {
+        ...state,
+        spot: {},
         user: { ...state.user }
       }
 

@@ -9,7 +9,7 @@ const Reviews = () => {
   const { spotId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   // console.log('id', spotId)
-  const reviews = useSelector(state => state.reviews);
+  const reviews = useSelector(state => state.reviews.spot);
   const reviewsArr = Object.values(reviews);
   const spot = useSelector(state => state.spots.singleSpot);
   // console.log(reviewsArr)

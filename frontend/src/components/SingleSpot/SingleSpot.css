@@ -53,15 +53,18 @@
 #edit-delete-button {
   background-color: rgb(230, 30, 87);
   color: white;
+  text-decoration: none;
+  font-size: 14px;
 
   border: none;
   border-radius: 8px;
   padding: 8px;
   margin: 5px;
+  cursor: pointer;
 }
 
 #edit-delete-button:hover {
-  background-color: rgb(153, 19, 57);
+  background-color: rgb(220, 30, 87);
 }
 
 #location {

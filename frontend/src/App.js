@@ -10,6 +10,7 @@ import CreateSpotForm from "./components/CreateSpotForm.js";
 import GetSpotsCurrentUser from "./components/Spots/CurrentUserSpots";
 import UserReviews from "./components/Reviews/UserReviews";
 import CreateReview from "./components/Reviews/CreateReview";
+import EditSpotForm from "./components/Spots/EditSpotForm";
 
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path='/spots/current'>
             <GetSpotsCurrentUser />
+          </Route>
+          <Route exact path='/spots/:spotId/edit'>
+            <EditSpotForm />
           </Route>
           <Route exact path='/spots/:spotId/reviews'>
             <CreateReview />

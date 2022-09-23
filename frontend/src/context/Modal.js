@@ -32,10 +32,27 @@ export function Modal({ onClose, children }) {
       <div id="modal-background" onClick={onClose} />
       <div id="modal-content">
         {children}
-        <div id='cancel'>
-          <button id='update-button' type='submit' onClick={onClose}>Update</button>
+        {/* <div id='cancel'>
           <button id='cancel-button' onClick={onClose}>Cancel</button>
-        </div>
+        </div> */}
+      </div>
+    </div>,
+    modalNode
+  );
+}
+
+export function EditModal({ onClose, children }) {
+  const modalNode = useContext(ModalContext);
+  if (!modalNode) return null;
+
+  return ReactDOM.createPortal(
+    <div id="modal">
+      <div id="edit-modal-background" onClick={onClose} />
+      <div id="modal-content">
+        {children}
+        {/* <div id='cancel'>
+          <button id='cancel-button' onClick={onClose}>Cancel</button>
+        </div> */}
       </div>
     </div>,
     modalNode

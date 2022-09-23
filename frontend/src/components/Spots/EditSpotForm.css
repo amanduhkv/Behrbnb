@@ -6,11 +6,22 @@
 #cancel-button {
   display: flex;
   justify-content: center;
-  margin: 10px auto 20px auto;
+  width: 471px;
+  text-decoration: none;
+
+  margin: 10px auto 0 auto;
 }
 
-.form-for-spot {
-  width: 100%;
+.form-for-update {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto;
+  border: rgba(235,233,233,0.5) solid 1px;
+  box-shadow: 2px 2px 5px rgb(148, 148, 148);
+  width: 550px;
+  border-radius: 12px;
+  padding: 10px;
 }
 
 #spot-input-address {
@@ -30,7 +41,7 @@
   border-top: none;
 }
 
-#spot-input-price {
+#spot-input-url {
   padding: 15px;
   font-size: 16px;
   border: rgb(197, 191, 191) 1px solid;
@@ -60,7 +71,7 @@
   border-radius: 8px;
   padding: 10px;
   font-size: 14px;
-  width: 250px;
+  width: 490px;
   margin: 10px auto 0 auto;
 }
 
@@ -74,6 +85,4 @@
   flex-wrap: wrap;
   padding: 20px;
   padding-bottom: 0;
-  height: 100%;
-  width: 100%;
 }

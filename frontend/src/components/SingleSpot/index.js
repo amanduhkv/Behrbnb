@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { getASpot } from '../../store/spots';
-import { Modal } from '../../context/Modal';
-import EditSpotForm from '../Spots/EditSpotForm';
+
 import DeleteSpot from '../Spots/DeleteSpot';
 import '../SingleSpot/SingleSpot.css'
 import Reviews from '../Reviews/Reviews';
@@ -27,12 +26,7 @@ const SingleSpot = () => {
   if (sessionUser.id === singleSpot.ownerId) {
     addEditButton = (
       <>
-        <button id='edit-delete-button' onClick={() => setEditModal(true)}>Edit Spot</button>
-        {editModal && (
-          <Modal onClose={() => setEditModal(false)}>
-            <EditSpotForm />
-          </Modal>
-        )}
+        <NavLink id='edit-delete-button' to={`/spots/${spotId}/edit`}>Edit</NavLink>
         <DeleteSpot />
       </>
     );
