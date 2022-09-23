@@ -43,6 +43,14 @@
   height: 100px
 }
 
+#spot-input-address:hover,
+#spot-input-mid:hover,
+#spot-input-textarea:hover,
+#spot-input-price:hover {
+  background-color: rgba(235,233,233,0.5);;
+}
+
+
 #update-button {
   display: flex;
   justify-content: center;

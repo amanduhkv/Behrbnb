@@ -7,12 +7,22 @@ import bear from '../../assets/bear.svg';
 
 const Reviews = () => {
   const { spotId } = useParams();
+  const sessionUser = useSelector(state => state.session.user);
   // console.log('id', spotId)
   const reviews = useSelector(state => state.reviews);
   const reviewsArr = Object.values(reviews);
-  const spotAvgRating = useSelector(state => state.spots.singleSpot.avgStarRating);
+  const spot = useSelector(state => state.spots.singleSpot);
   // console.log(reviewsArr)
   const dispatch = useDispatch();
+
+  let sessionLinks;
+  if (sessionUser && sessionUser.id !== spot.ownerId) {
+    sessionLinks = (
+      <>
+        <NavLink id='button-leave-review' to={`/spots/${spotId}/reviews`}>Leave a review</NavLink>
+      </>
+    )
+  }
 
   useEffect(() => {
     dispatch(getReviews(spotId))
@@ -26,7 +36,7 @@ const Reviews = () => {
       <div id='review-title'>
         <div id='avgStarRating'>
           <i id='star-review' className="fa-sharp fa-solid fa-star"></i>
-          {spotAvgRating}
+          {spot.avgStarRating}
         </div>
         <div id='dots'>•</div>
         <div id='review-number'>
@@ -45,8 +55,7 @@ const Reviews = () => {
           <div id='reviewer-review'>{review.review}</div>
         </div>
       ))}
-      <NavLink id='button-leave-review' to={`/spots/${spotId}/reviews`}>Leave a review</NavLink>
-
+      {sessionLinks}
     </div>
   )
 }

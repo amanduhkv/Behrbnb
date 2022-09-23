@@ -9,7 +9,6 @@ const EditSpotForm = () => {
   const {spotId} = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showUpdate, setShowUpdate] = useState(false);
 
   const spot = useSelector(state => state.spots.singleSpot)
 

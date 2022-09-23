@@ -32,12 +32,13 @@
 
 img.logo {
   width: 150px;
-  margin: 30px 20px 20px 80px;
+  margin: 30px 20px 20px 160px;
 }
 
 .upper-right {
   display: flex;
   align-items: center;
   margin: 20px;
+  margin-right: 160px;
   padding: 0
 }
