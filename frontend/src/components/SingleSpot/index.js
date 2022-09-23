@@ -14,7 +14,6 @@ const SingleSpot = () => {
   const singleSpot = useSelector(state => state.spots.singleSpot);
   console.log('single spot', singleSpot)
   const dispatch = useDispatch();
-  const [editModal, setEditModal] = useState(false);
 
   useEffect(() => {
     dispatch(getASpot(spotId));
@@ -22,15 +21,17 @@ const SingleSpot = () => {
 
   if (!singleSpot) return null;
 
-  let addEditButton;
-  if (sessionUser.id === singleSpot.ownerId) {
-    addEditButton = (
-      <>
-        <NavLink id='edit-delete-button' to={`/spots/${spotId}/edit`}>Edit</NavLink>
-        <DeleteSpot />
-      </>
-    );
-  }
+  // let addEditButton;
+  // if (sessionUser.id === singleSpot.ownerId) {
+  //   addEditButton = (
+  //     <>
+  //       <NavLink id='edit-delete-button' to={`/spots/${spotId}/edit`}>Edit</NavLink>
+  //       <DeleteSpot />
+  //     </>
+  //   );
+  // } else {
+  //   addEditButton = addEditButton
+  // }
 
   return (
     <div>
@@ -113,9 +114,13 @@ const SingleSpot = () => {
 
           <br></br>
           <br></br>
-          <div id='ed-buttons'>
-            {addEditButton}
-          </div>
+
+          {sessionUser && sessionUser.id === singleSpot.ownerId && (
+            <div id='ed-buttons'>
+              <NavLink id='edit-delete-button' to={`/spots/${spotId}/edit`}>Edit</NavLink>
+              <DeleteSpot />
+            </div>
+          )}
 
           <div id='reviews'>
             <Reviews />

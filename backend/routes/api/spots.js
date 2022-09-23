@@ -26,7 +26,7 @@ router.get('/current', requireAuth, async (req, res) => {
     const allReviews = await Review.count();
     const avgRating = (sumOfReviews / allReviews)
 
-    thisSpot.avgRating = avgRating;
+    thisSpot.avgRating = Number(avgRating).toFixed(2);
 
     const previewImage = await SpotImage.findOne({
       where: {
@@ -153,7 +153,7 @@ router.get('/:spotId', async (req, res) => {
     const avgRating = (sumOfReviews / allReviews)
 
     newSpot.numReviews = allReviews
-    newSpot.avgStarRating = avgRating;
+    newSpot.avgStarRating = Number(avgRating).toFixed(2);
 
 
     updatedSpot.push(newSpot)
@@ -219,7 +219,7 @@ router.get('/', async (req, res, next) => {
     });
     const avgRating = (sumOfReviews / allReviews)
 
-    thisSpot.avgRating = avgRating;
+    thisSpot.avgRating = Number(avgRating).toFixed(2);
 
     if(!avgRating) thisSpot.avgRating = 'new'
 

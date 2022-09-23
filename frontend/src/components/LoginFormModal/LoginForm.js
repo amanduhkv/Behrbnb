@@ -18,7 +18,7 @@ function LoginForm({ onClose }) {
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        if (data && data.message) setErrors([data.message]);
       }
     );
   };
@@ -32,11 +32,11 @@ function LoginForm({ onClose }) {
       {showModal && (
         <form id='login-form' onSubmit={handleSubmit}>
           <div className='modal-cred'>Welcome to Behrbnb</div>
-          <ul>
+          <div>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <div key={idx}>{error}</div>
             ))}
-          </ul>
+          </div>
 
           <input
             id='cred1'
