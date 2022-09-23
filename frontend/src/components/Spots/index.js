@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Route, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { getSpots } from '../../store/spots'
 import './Spots.css'
 
@@ -32,13 +32,12 @@ const Spots = () => {
               <span id='night'>night</span>
             </div>
             <div className='reviews'>
-              <i class="fa-sharp fa-solid fa-star"></i>
-              {`${spot.avgRating}`}
+              <i className="fa-sharp fa-solid fa-star"></i>
+              {spot.avgRating}
             </div>
           </div>
         </div>
       ))}
-
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
 import { getASpot, updateSpot } from '../../store/spots';
 import './EditSpotForm.css';
@@ -74,10 +73,10 @@ const EditSpotForm = () => {
 
   return (
     <div className='form-for-spot'>
-      <form className='update-spot-form' onSubmit={handleSubmit}>
+      <form id='update-form' onSubmit={handleSubmit}>
         <h2>Update a Spot</h2>
         <input
-          id='spot-input'
+          id='spot-input-address'
           type='text'
           placeholder='address'
           value={address}
@@ -85,7 +84,7 @@ const EditSpotForm = () => {
           required
         />
         <input
-          id='spot-input'
+          id='spot-input-mid'
           type='text'
           placeholder='city'
           value={city}
@@ -93,7 +92,7 @@ const EditSpotForm = () => {
           required
         />
         <input
-          id='spot-input'
+          id='spot-input-mid'
           type='state'
           placeholder='state'
           value={state}
@@ -101,7 +100,7 @@ const EditSpotForm = () => {
           required
         />
         <input
-          id='spot-input'
+          id='spot-input-mid'
           type='country'
           placeholder='country'
           value={country}
@@ -109,7 +108,7 @@ const EditSpotForm = () => {
           required
         />
         <input
-          id='spot-input'
+          id='spot-input-mid'
           type='number'
           placeholder='latitude'
           value={lat}
@@ -117,7 +116,7 @@ const EditSpotForm = () => {
           required
         />
         <input
-          id='spot-input'
+          id='spot-input-mid'
           type='number'
           placeholder='longitude'
           value={lng}
@@ -125,7 +124,7 @@ const EditSpotForm = () => {
           required
         />
         <input
-          id='spot-input'
+          id='spot-input-mid'
           type='name'
           placeholder='name'
           value={name}
@@ -133,14 +132,14 @@ const EditSpotForm = () => {
           required
         />
         <textarea
-          id='spot-input'
+          id='spot-input-textarea'
           placeholder='description'
           value={description}
           onChange={updateDescription}
           required
         />
         <input
-          id='spot-input'
+          id='spot-input-price'
           placeholder='$'
           type='number'
           min="0"
@@ -148,8 +147,7 @@ const EditSpotForm = () => {
           onChange={updatePrice}
           required
         />
-        <button id='host-button' type='submit'>Update</button>
-        <NavLink id='cancel-link' to='/'>Cancel</NavLink>
+        {/* <button id='update-button' type='submit'>Update</button> */}
       </form>
     </div>
   )

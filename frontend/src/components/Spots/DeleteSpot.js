@@ -18,7 +18,7 @@ function DeleteSpot() {
   }
 
   return (
-    <button onClick={handleDelete}>Delete Spot</button>
+    <button id='edit-delete-button' onClick={handleDelete}>Delete Spot</button>
   )
 }
 

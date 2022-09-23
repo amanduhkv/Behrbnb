@@ -1,0 +1,79 @@
+#cancel {
+  padding-top: 0;
+  height: fit-content;
+}
+
+#cancel-button {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 20px auto;
+}
+
+.form-for-spot {
+  width: 100%;
+}
+
+#spot-input-address {
+  margin-top: 10px;
+  padding: 15px;
+  font-size: 16px;
+  border: rgb(197, 191, 191) 1px solid;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+#spot-input-mid,
+#spot-input-textarea {
+  padding: 15px;
+  font-size: 16px;
+  border: rgb(197, 191, 191) 1px solid;
+  border-top: none;
+}
+
+#spot-input-price {
+  padding: 15px;
+  font-size: 16px;
+  border: rgb(197, 191, 191) 1px solid;
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#spot-input-textarea {
+  height: 100px
+}
+
+#spot-input-address:hover,
+#spot-input-mid:hover,
+#spot-input-textarea:hover,
+#spot-input-price:hover {
+  background-color: rgba(235,233,233,0.5);;
+}
+
+
+#update-button {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(230,30,87);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  width: 250px;
+  margin: 10px auto 0 auto;
+}
+
+#update-button:hover {
+  background-color: rgb(220, 30, 87);
+}
+
+#update-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
+  padding-bottom: 0;
+  height: 100%;
+  width: 100%;
+}

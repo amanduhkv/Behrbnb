@@ -20,7 +20,9 @@ router.get('/current', requireAuth, async (req, res) => {
   for (let aSpot of spots) {
     let thisSpot = aSpot.toJSON();
 
-    const sumOfReviews = await Review.sum('stars')
+    const sumOfReviews = await Review.sum('stars', {
+      where: {spotId: thisSpot.id}
+    })
     const allReviews = await Review.count();
     const avgRating = (sumOfReviews / allReviews)
 
@@ -140,7 +142,9 @@ router.get('/:spotId', async (req, res) => {
 
   const updatedSpot = [];
   const newSpot = spots.toJSON();
-    const sumOfReviews = await Review.sum('stars')
+    const sumOfReviews = await Review.sum('stars', {
+      where: {spotId: newSpot.id}
+    })
     const allReviews = await Review.count({
       where: {
         spotId: spots.id
@@ -216,6 +220,8 @@ router.get('/', async (req, res, next) => {
     const avgRating = (sumOfReviews / allReviews)
 
     thisSpot.avgRating = avgRating;
+
+    if(!avgRating) thisSpot.avgRating = 'new'
 
     const previewImage = await SpotImage.findOne({
       where: {

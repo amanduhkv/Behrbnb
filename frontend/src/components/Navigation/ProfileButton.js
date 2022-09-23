@@ -35,16 +35,20 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className='profile-button' onClick={openMenu}>
-        <i id='burger' class="fa-sharp fa-solid fa-bars"></i>
+        <i id='burger' className="fa-sharp fa-solid fa-bars"></i>
         <img className='bear' src='https://drive.google.com/uc?export=view&id=1VREYIKcLE9WLjacwaosrzf9PyoRzlw2t' alt='bear' />
       </button>
       {showMenu && (
         <div className="profile-dropdown">
           <h3 id='greeting'>Hello, {user.firstName}!</h3>
-            <div id='user-creds'>{user.username}</div>
-            <div id='user-creds'>{user.email}</div>
-          <div className="menu-options">
+          <div id='user-creds'>{user.username}</div>
+          <div id='user-creds'>{user.email}</div>
+          
+          <div className="menu-spots">
             <NavLink id='my-spots' to='/spots/current'>Manage listings</NavLink>
+          </div>
+          <div className="menu-spots">
+            <NavLink id='my-spots' to='/reviews/current'>Manage reviews</NavLink>
           </div>
           <div id='logout-button'>
             <button id='logout-button' onClick={logout}>Log Out</button>

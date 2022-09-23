@@ -1,3 +1,18 @@
+#cancel-button {
+  color: white;
+  background-color: rgb(230, 30, 87);
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 250px;
+  margin-top: none;
+}
+
+#cancel-button:hover {
+  background-color: rgb(220, 30, 87);
+}
+
 #modal {
   position: fixed;
   top: 0;

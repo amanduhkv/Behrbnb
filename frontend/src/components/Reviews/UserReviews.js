@@ -30,7 +30,7 @@ const UserReviews = () => {
           <div id='bear-name'>
             <img id='bear' src={bear} />
             <div id='reviewer-name'>{review.User?.firstName}</div>
-            <button onClick={()=> dispatch(deleteReview(review.id))}>Delete review</button>
+            <button id='delete-review-button' onClick={()=> dispatch(deleteReview(review.id))}>Delete review</button>
           </div>
           <div id='reviewer-review'>{review.review}</div>
         </div>
