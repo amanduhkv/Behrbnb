@@ -12,7 +12,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Ursus maritimus",
-    description: "Place where presents are created. The polar bear is a hypercarnivorous bear whose native range lies largely within the Arctic Circle, encompassing the Arctic Ocean, its surrounding seas and surrounding land masses. It is the largest extant bear species, as well as the largest extant land carnivore.",
+    description: "Place where presents are created. The polar bear is a hypercarnivorous bear whose native range lies largely within the Arctic Circle, encompassing the Arctic Ocean, its surrounding seas and surrounding land masses.",
     price: 123,
   },
   {
@@ -24,7 +24,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Ursus arctos",
-    description: "Place where fires do not flourish. The brown bear is a large bear species found across Eurasia and North America. In North America, the populations of brown bears are called grizzly bears, while the subspecies that inhabits the Kodiak Islands of Alaska is known as the Kodiak bear.",
+    description: "The brown bear is a large bear species found across Eurasia and North America. In North America, the populations of brown bears are called grizzly bears, while the subspecies that inhabits the Kodiak Islands of Alaska is known as the Kodiak bear.",
     price: 456,
   },
   {
@@ -36,7 +36,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Ailuropoda melanoleuca",
-    description: "Place where bamboo gets eaten. The giant panda, also known as the panda bear, is a bear species endemic to China. It is characterised by its bold black-and-white coat and rotund body. The name 'giant panda' is sometimes used to distinguish it from the red panda, a neighboring musteloid.",
+    description: "The giant panda, also known as the panda bear, is a bear species endemic to China. It is characterised by its bold black-and-white coat and rotund body. 'Giant panda' is sometimes used to distinguish it from the red panda, a neighboring musteloid.",
     price: 567,
   },
   {
@@ -48,7 +48,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Bradypus tridactylus",
-    description: "Sloths? Here? Possibly. Sloths are a group of arboreal Neotropical xenarthran mammals constituting the suborder Folivora. Noted for their slowness of movement, they spend most of their lives hanging upside down in the trees of the tropical rainforests of South America and Central America.",
+    description: "Sloths? Here? Possibly. Noted for their slowness of movement, they spend most of their lives hanging upside down in the trees of the tropical rainforests of South America and Central America.",
     price: 789,
   },
   {
@@ -60,7 +60,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "SF Zoo",
-    description: "Place where Nemo is. It tells the story of an overprotective clownfish named Marlin who, along with a regal blue tang named Dory, searches for his missing son Nemo. Along the way, Marlin learns to take risks and comes to terms with Nemo taking care of himself.",
+    description: "Place where Nemo is. It tells the story of an overprotective clownfish named Marlin who, along with a regal blue tang named Dory, searches for his missing son Nemo.",
     price: 1010,
   },
   {
@@ -72,7 +72,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Salmonidae",
-    description: "Yum. Salmon is the common name for several species of ray-finned fish in the family Salmonidae. Other fish in the same family include trout, char, grayling, and whitefish. Salmon are native to tributaries of the North Atlantic and Pacific Ocean.",
+    description: "Yum. Salmon is the common name for several species of ray-finned fish in the family Salmonidae, native to tributaries of the North Atlantic and Pacific Ocean.",
     price: 1212,
   },
   {
@@ -84,7 +84,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "DeveloperLand",
-    description: "Place where web developers have fun. Developerland is a theme park in Anaheim, California, which opened in 1955; it is the only one designed and built under the direct supervision of Walt Disney, who came up with the concept of Developerland after visiting various amusement parks with his daughters in the 1930s and 1940s",
+    description: "Place where web developers have fun. Developerland is a theme park in Anaheim, California, which opened in 1955.",
     price: 777,
   },
   {
@@ -96,7 +96,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Phascolarctos cinereus",
-    description: "Koalty kare. Living in trees and being wedged between rough branches requires a lot of support! Luckily, the koala has strong cartilage at the end of their curved spine, allowing them to make eucalyptus trees a comfortable home! Koalas survive on a diet of eucalyptus leaves and can eat up to a kilogram a day!",
+    description: "Koalty kare. Living in trees and being wedged between rough branches requires a lot of support! Koalas survive on a diet of eucalyptus leaves and can eat up to a kilogram a day!",
     price: 8888,
   },
   {
@@ -108,7 +108,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Ailurus fulgens",
-    description: "Place where traditions are kept. I've never met nobody like you. Had friends and I've had buddies, it's true. But they don't turn my tummy the way you do. I've never met nobody like you...Let's call it what it is, it's a masterpiece.",
+    description: "Place where traditions are kept. I've never met nobody like you. Had friends and I've had buddies, it's true. But they don't turn my tummy the way you do. I've never met nobody like you.",
     price: 987,
   },
   {
@@ -120,7 +120,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Setonix brachyurus",
-    description: "Place where smiles stay. The quokka, also known as the short-tailed scrub wallaby, is a small macropod about the size of a domestic cat. It is the only member of the genus Setonix. Like other marsupials in the macropod family, the quokka is herbivorous and mainly nocturnal.",
+    description: "Place where smiles stay. The quokka, also known as the short-tailed scrub wallaby, is a small macropod about the size of a domestic cat. Like other marsupials in the macropod family, the quokka is herbivorous and mainly nocturnal.",
     price: 2250,
   },
   {
@@ -132,7 +132,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Hydrochoerus hydrochaeris",
-    description: "Place where ducks hang. Like beavers, capybaras are strong swimmers. Their pig-shaped bodies are adapted for life in bodies of water found in forests, seasonally flooded savannas, and wetlands. Their toes are partially webbed for paddling around, and their reddish to dark brown fur is long and brittle—perfect for drying out quickly on land. Small eyes, noses, and hairless ears are located high on their heads so that their faces remain exposed and alert when most of their body is submerged.",
+    description: "Place where ducks hang. Like beavers, capybaras are strong swimmers. Their pig-shaped bodies are adapted for life in bodies of water. Their faces remain exposed and alert when most of their body is submerged underwater.",
     price: 2200,
   },
   {
@@ -144,7 +144,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Cynomys socialis",
-    description: "Place where the grass is greener. Prairie dogs are highly social, living in large groups called 'towns'. They co-operate to share food, protect their burrow and often groom each other. When group members meet each other they give them a prairie dog kiss, or nuzzle.",
+    description: "Prairie dogs are highly social, living in large groups called 'towns'. They co-operate to share food, protect their burrow and often groom each other. When group members meet each other they give them a prairie dog kiss, or nuzzle.",
     price: 200,
   },
   {
@@ -168,7 +168,7 @@ const validSpots = [
     lat: 37.7645358,
     lng: -122.4730327,
     name: "Eeyore's Hut",
-    description: "The nicest thing about the rain is that it always stops. Eventually. They're funny things, Accidents. You never have them till you're having them. It's not much of a tail, but I'm sort of attached to it. Days. Weeks. Months. Who knows? Thanks for noticin' me.",
+    description: "The nicest thing about the rain is that it always stops. Eventually. They're funny things, Accidents. You never have them till you're having them. It's not much of a tail, but I'm sort of attached to it. Days. Weeks. Months. Who knows?",
     price: 789,
   },
   {
@@ -180,7 +180,7 @@ const validSpots = [
     lat: 37.7331,
     lng: 122.5052,
     name: "Oh, bother",
-    description: "Got a hankering for some honey. It is more fun to talk with someone who doesn't use long, difficult words but rather short, easy words like 'What about lunch?'. People say that nothing is impossible, but I do nothing every day. When all else fails, take a nap.",
+    description: "Got a hankering for some honey. It is more fun to talk with someone who doesn't use long, difficult words but rather short, easy words like 'What about lunch?'. When all else fails, take a nap.",
     price: 75,
   },
   // {
