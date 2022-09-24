@@ -57,7 +57,7 @@ const SingleSpot = () => {
           </div>
 
           <div className='spot-images'>
-            <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnAe4iFTE1nJiQAnaY8hqwwNwP7E27mTHk2g&usqp=CAU'} alt='no-img' />
+            <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' />
             <div id='quad-images'>
               <div id='first-two'>
                 <img id='one' src={singleSpot?.SpotImages?.[1]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' />

@@ -10,6 +10,7 @@ const Spots = () => {
   });
   const spotsArr = Object.values(spots);
   // console.log('These are spots:', spots)
+  const singleOne = useSelector(state => state.spots.singleSpot);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Spots = () => {
         <div key={spot.id}>
           <div className='each-card'>
             <NavLink to={`/spots/${spot.id}`}>
-              <img className='spot-image' src='https://t4.ftcdn.net/jpg/02/65/70/73/360_F_265707361_N79UdgpbERwsjHZxIWRixuodCKqYsBF5.jpg' />
+              <img className='spot-image' src={spot.previewImage} />
             </NavLink>
             <div className='city-state'>{`${spot.city}, ${spot.state}`}</div>
             <div className='price'>
