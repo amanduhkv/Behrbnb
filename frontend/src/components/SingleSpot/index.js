@@ -48,7 +48,7 @@ const SingleSpot = () => {
             </span>
             <span id='dots'>•</span>
             <span id='review-link'>
-              {singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
+              {singleSpot.numReviews ?? 0} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
             </span>
             <span id='dots'>•</span>
             <span id='location'>
@@ -79,7 +79,7 @@ const SingleSpot = () => {
             <span id='avg-rating'>{singleSpot.avgStarRating ?? 'new'}</span>
             <span id='dots'>•</span>
             <span id='review-link'>
-              {singleSpot.numReviews} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
+              {singleSpot.numReviews ?? 0} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
             </span>
           </div>
 

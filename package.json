@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "js-cookie": "^3.0.1",
-    "pg": "^8.8.0"
+    "pg": "^8.8.0",
+    "react-favicon": "^1.0.1"
   },
   "name": "authenticate-me",
   "description": "## Database Schema Design",

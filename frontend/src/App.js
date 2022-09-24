@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import Favicon from "react-favicon";
 
 import Spots from './components/Spots/index'
 import SingleSpot from "./components/SingleSpot";
@@ -23,6 +24,7 @@ function App() {
 
   return (
     <>
+      <Favicon url='https://drive.google.com/uc?export=view&id=13wJ_PryCVGVqu6OF9kFAc941u0JvNZLm' />
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
