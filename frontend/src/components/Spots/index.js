@@ -10,7 +10,6 @@ const Spots = () => {
   });
   const spotsArr = Object.values(spots);
   // console.log('These are spots:', spots)
-  const singleOne = useSelector(state => state.spots.singleSpot);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,19 +21,28 @@ const Spots = () => {
   return (
     <div className='card'>
       {spotsArr.map(spot => (
-        <div key={spot.id}>
-          <div className='each-card'>
-            <NavLink to={`/spots/${spot.id}`}>
-              <img className='spot-image' src={spot.previewImage} />
-            </NavLink>
-            <div className='city-state'>{`${spot.city}, ${spot.state}`}</div>
-            <div className='price'>
-              <span id='number'>{`$${spot.price}`}</span>
-              <span id='night'>night</span>
+        <div id='card-info' key={spot.id}>
+          <NavLink to={`/spots/${spot.id}`}>
+            <img className='spot-image' src={spot.previewImage} />
+          </NavLink>
+          <div id='each'>
+            <div className='each-card'>
+              <div className='city-state'>{`${spot.city}, ${spot.state}`}</div>
+              <div id='extra-info'>
+                <div>{spot.country}</div>
+                <div>{spot.name}</div>
+              </div>
+              <div className='price'>
+                <span id='number'>{`$${spot.price}`}</span>
+                <span id='night'>night</span>
+              </div>
             </div>
+
             <div className='reviews'>
-              <i className="fa-sharp fa-solid fa-star"></i>
-              {spot.avgRating}
+              <i id='star-spot' className="fa-sharp fa-solid fa-star"></i>
+              <div>
+                {spot.avgRating}
+              </div>
             </div>
           </div>
         </div>
