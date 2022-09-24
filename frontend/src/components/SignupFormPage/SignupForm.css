@@ -7,6 +7,26 @@
   border-bottom-right-radius: 8px;
 }
 
+#error-div {
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgb(230, 30, 87)
+}
+
+#error-list {
+  padding-left: 60px;
+  align-items: space-evenly;
+  justify-content: flex-end;
+}
+
+#errors {
+  font-size: 11px;
+}
+
 #firstname {
   padding: 15px;
   font-size: 16px;
@@ -27,8 +47,7 @@
 
 #signup-form {
   /* border: red solid 1px; */
-  padding: 20px;
-  padding-top: 0;
+  padding: 0 20px;
 }
 
 #signup-button {
@@ -38,8 +57,14 @@
   color: white;
   padding: 10px;
   font-size: 14px;
-  margin: 20px;
-  margin-bottom: 0;
+  /* margin: 20px; */
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+#signup-button:hover {
+  background-color: rgb(220, 30, 87);
 }
 
 #signup-content {

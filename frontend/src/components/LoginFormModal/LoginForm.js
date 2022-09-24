@@ -3,8 +3,6 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import '../LoginFormModal/LoginForm.css'
 
-import x from '../../assets/x.svg';
-
 function LoginForm({ onClose }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
@@ -18,7 +16,7 @@ function LoginForm({ onClose }) {
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.message) setErrors([data.message]);
+        if (data && data.message) setErrors(["Incorrect username/email or password"]);
       }
     );
   };
@@ -32,11 +30,6 @@ function LoginForm({ onClose }) {
       {showModal && (
         <form id='login-form' onSubmit={handleSubmit}>
           <div className='modal-cred'>Welcome to Behrbnb</div>
-          <div>
-            {errors.map((error, idx) => (
-              <div key={idx}>{error}</div>
-            ))}
-          </div>
 
           <input
             id='cred1'
@@ -54,6 +47,11 @@ function LoginForm({ onClose }) {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <div id='cred-error'>
+            {errors.map((error, idx) => (
+              <div key={idx}>{error}</div>
+            ))}
+          </div>
 
           <button id='modal-button' type="submit">Log In</button>
 

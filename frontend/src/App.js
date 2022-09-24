@@ -11,6 +11,7 @@ import GetSpotsCurrentUser from "./components/Spots/CurrentUserSpots";
 import UserReviews from "./components/Reviews/UserReviews";
 import CreateReview from "./components/Reviews/CreateReview";
 import EditSpotForm from "./components/Spots/EditSpotForm";
+import SignupFormPage from "./components/SignupFormPage";
 
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route path='/spots'>
             <CreateSpotForm />
+          </Route>
+          <Route path='/signup'>
+            <SignupFormPage />
           </Route>
         </Switch>
       )}

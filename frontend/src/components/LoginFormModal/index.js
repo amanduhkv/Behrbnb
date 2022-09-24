@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
 import SignupFormPage from '../SignupFormPage';
 
@@ -14,10 +15,10 @@ function LoginFormModal() {
         <img className='bear' src='https://drive.google.com/uc?export=view&id=1VREYIKcLE9WLjacwaosrzf9PyoRzlw2t' alt='bear' />
       </button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
-          <SignupFormPage />
-        </Modal>
+        <Modal id='border-modal' onClose={() => setShowModal(false)}>
+              <LoginForm />
+              <SignupFormPage />
+          </Modal>
       )}
     </>
   );
