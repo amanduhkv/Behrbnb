@@ -1,0 +1,17 @@
+#star-num {
+  color: rgb(158, 158, 158);
+  font-weight: 300;
+  font-size: 14px;
+}
+
+#review-container-curr {
+  /* border: red 1px solid; */
+  width: fit-content;
+  margin: 20px auto;
+  /* margin-left: 160px; */
+  border: rgba(235,233,233,0.5) solid 1px;
+  box-shadow: 2px 2px 5px rgb(148, 148, 148);
+  /* width: 550px; */
+  border-radius: 12px;
+  padding: 10px;
+}

@@ -46,7 +46,7 @@
 }
 
 #review-box {
-  
+
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -82,6 +82,7 @@
 #reviewer-review {
   /* border: blue 1px solid; */
   margin-top: 4px;
+  font-weight: 300;
 }
 
 #star-review {
