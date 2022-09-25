@@ -56,7 +56,7 @@ router.post(
       return res
         .status(403)
         .json({
-          "message": "User already exists",
+          "message": "User with that email already exists",
           "statusCode": 403,
           "errors": {
             "email": "User with that email already exists"
@@ -67,7 +67,7 @@ router.post(
       return res
         .status(403)
         .json({
-          "message": "User already exists",
+          "message": "User with that username already exists",
           "statusCode": 403,
           "errors": {
             "username": "User with that username already exists"

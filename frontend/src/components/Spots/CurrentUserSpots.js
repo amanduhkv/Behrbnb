@@ -16,7 +16,7 @@ const GetSpotsCurrentUser = () => {
     dispatch(getSpotCurrentUser())
   }, [dispatch]);
 
-  if (!spots) return null
+  if (!spots || !spotsArr.length) return (<div className='card-1'>Currently not hosting any spots</div>)
 
   return (
     <div className='card'>

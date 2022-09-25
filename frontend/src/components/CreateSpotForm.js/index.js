@@ -42,18 +42,18 @@ const CreateSpotForm = () => {
 
     setHasSubmit(true);
 
-    if (validationErrors.length) {
-      setAddress('');
-      setCity('');
-      setState('');
-      setCountry('');
-      setLat('');
-      setLng('');
-      setName('');
-      setDescription('');
-      setPrice('')
-      setImage('');
-    }
+    // if (validationErrors.length) {
+    //   setAddress('');
+    //   setCity('');
+    //   setState('');
+    //   setCountry('');
+    //   setLat('');
+    //   setLng('');
+    //   setName('');
+    //   setDescription('');
+    //   setPrice('')
+    //   setImage('');
+    // }
 
     const payload = {
       address,
@@ -86,7 +86,7 @@ const CreateSpotForm = () => {
             placeholder='address'
             value={address}
             onChange={e => setAddress(e.target.value)}
-            required
+            // required
           />
           <input
             id='spot-input'
@@ -94,7 +94,7 @@ const CreateSpotForm = () => {
             placeholder='city'
             value={city}
             onChange={e => setCity(e.target.value)}
-            required
+            // required
           />
           <input
             id='spot-input'
@@ -102,7 +102,7 @@ const CreateSpotForm = () => {
             placeholder='state'
             value={state}
             onChange={e => setState(e.target.value)}
-            required
+            // required
           />
           <input
             id='spot-input'
@@ -110,7 +110,7 @@ const CreateSpotForm = () => {
             placeholder='country'
             value={country}
             onChange={e => setCountry(e.target.value)}
-            required
+            // required
           />
           <input
             id='spot-input'
@@ -118,7 +118,7 @@ const CreateSpotForm = () => {
             placeholder='latitude'
             value={lat}
             onChange={e => setLat(e.target.value)}
-            required
+            // required
           />
           <input
             id='spot-input'
@@ -126,7 +126,7 @@ const CreateSpotForm = () => {
             placeholder='longitude'
             value={lng}
             onChange={e => setLng(e.target.value)}
-            required
+            // required
           />
           <input
             id='spot-input'
@@ -134,14 +134,14 @@ const CreateSpotForm = () => {
             placeholder='name'
             value={name}
             onChange={e => setName(e.target.value)}
-            required
+            // required
           />
           <textarea
             id='spot-input-textarea'
             placeholder='description'
             value={description}
             onChange={e => setDescription(e.target.value)}
-            required
+            // required
           />
           <input
             id='spot-input2'
@@ -150,7 +150,7 @@ const CreateSpotForm = () => {
             min="0"
             value={price}
             onChange={e => setPrice(e.target.value)}
-            required
+            // required
           />
           <input
             id='spot-input-url'
@@ -158,7 +158,7 @@ const CreateSpotForm = () => {
             type='text'
             value={image}
             onChange={e => setImage(e.target.value)}
-            required
+            // required
           />
         </div>
         {hasSubmit && validationErrors.length > 0 && (

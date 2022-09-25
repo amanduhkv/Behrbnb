@@ -15,14 +15,14 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
-  // const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     const errors = [];
-    if (!firstName) errors.push("Please provide your first name");
-    if (!lastName) errors.push("Please provide your last name");
+    if (!firstName.length) errors.push("Please provide your first name");
+    if (!lastName.length) errors.push("Please provide your last name");
     if (!email.includes('@')) errors.push("Please provide a valid email (between 4 and 30 characters)");
-    if (!username.length < 3) errors.push("Usernames must be greater than 3 characters");
+    if (username.length < 3) errors.push("Usernames must be greater than 3 characters");
     if (password !== confirmPassword) errors.push("Passwords do not match");
     setValidationErrors(errors)
   }, [firstName, lastName, email, username, password, confirmPassword])
@@ -35,22 +35,27 @@ function SignupFormPage() {
 
     setHasSubmit(true);
 
-    if (validationErrors.length) {
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setUsername('');
-      setPassword('');
-      setConfirmPassword('');
-    }
+    // if (validationErrors.length > 0) {
+    //   setFirstName('');
+    //   setLastName('');
+    //   setEmail('');
+    //   setUsername('');
+    //   setPassword('');
+    //   setConfirmPassword('');
+    // }
 
-    if (password === confirmPassword && !validationErrors.length) {
-    //   setErrors([]);
+    setErrors([]);
+    if (password === confirmPassword) {
       return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
-    //     .catch(async (res) => {
-    //       const data = await res.json();
-    //       if (data && data.message) setErrors([data.message]);
-    //     });
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors.email) {
+            setErrors(['Email already exists'])
+          };
+          if (data && data.errors.username) {
+            setErrors(['Username already exists'])
+          };
+        });
     }
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
@@ -110,10 +115,11 @@ function SignupFormPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-        {hasSubmit && validationErrors.length > 0 && (
+        {hasSubmit && (
         <div id='error-div'>
           The following errors were found:
           <ul id='error-list'>
+          {errors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
           {validationErrors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
           </ul>
         </div>
