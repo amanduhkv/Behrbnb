@@ -16,7 +16,7 @@ const Spots = () => {
     dispatch(getSpots())
   }, [dispatch]);
 
-  if (!spots) return null
+  if (!spots || !spotsArr.length) return (<div className='card-1'>Loading spots...</div>)
 
   return (
     <div className='card'>
