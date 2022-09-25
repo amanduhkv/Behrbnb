@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import { createSpot } from '../../store/spots';
@@ -17,15 +17,43 @@ const CreateSpotForm = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [hasSubmit, setHasSubmit] = useState(false);
 
   const history = useHistory();
 
-  // useEffect(() => {
-  //   dispatch(createSpot())
-  // }, [dispatch]);
+  useEffect(() => {
+    const errors = [];
+    if (!address.length) errors.push("Please enter an address");
+    if (!city.length) errors.push("Please enter a city");
+    if (!state.length) errors.push("Please enter a state");
+    if (!country.length) errors.push("Please enter a country");
+    if (!lat) errors.push("Please enter a valid latitude");
+    if (!lng) errors.push("Please enter a valid longitude");
+    if (!name) errors.push("Please enter a name for the new spot");
+    if (!description) errors.push('Please enter a description for the new spot');
+    if (!price) errors.push("Please enter a price");
+    if (!image) errors.push("Please provide a valid image url for the spot");
+    setValidationErrors(errors);
+  }, [address, city, state, country, lat, lng, name, description, price, image]);
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    setHasSubmit(true);
+
+    if (validationErrors.length) {
+      setAddress('');
+      setCity('');
+      setState('');
+      setCountry('');
+      setLat('');
+      setLng('');
+      setName('');
+      setDescription('');
+      setPrice('')
+      setImage('');
+    }
 
     const payload = {
       address,
@@ -38,11 +66,12 @@ const CreateSpotForm = () => {
       description,
       price
     };
-
-    let createdSpot = await dispatch(createSpot(payload, image));
-    // console.log('this is the spot', createdSpot)
-    if (createdSpot) {
-      history.push(`/spots/${createdSpot.id}`)
+    if (!validationErrors.length) {
+      let createdSpot = await dispatch(createSpot(payload, image));
+      // console.log('this is the spot', createdSpot)
+      if (createdSpot) {
+        history.push(`/spots/${createdSpot.id}`)
+      }
     }
   }
 
@@ -132,6 +161,14 @@ const CreateSpotForm = () => {
             required
           />
         </div>
+        {hasSubmit && validationErrors.length > 0 && (
+        <div id='error-div'>
+          The following errors were found:
+          <ul id='error-list'>
+          {validationErrors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
+          </ul>
+        </div>
+        )}
         <div id='buttons-submit'>
           <button id='host-button' type='submit'>Host the Spot</button>
           <NavLink id='cancel-link' to='/'>Cancel</NavLink>
