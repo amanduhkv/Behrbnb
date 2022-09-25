@@ -60,6 +60,7 @@
   height: 275px;
   width: 300px;
   border-radius: 12px;
+  object-fit: cover;
 }
 
 #star-spot {

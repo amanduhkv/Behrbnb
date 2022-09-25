@@ -16,7 +16,7 @@ const CreateReview = () => {
 
   useEffect(() => {
     const errors = [];
-    if (!review) errors.push('Review field left blank');
+    if (!review.length) errors.push('Review field left blank');
     if (!stars) errors.push('Number of stars invalid');
     setValidationErrors(errors);
   }, [review, stars]);
@@ -42,13 +42,13 @@ const CreateReview = () => {
         history.push(`/spots/${spotId}`)
       };
     }
-    reset();
+    // reset();
   }
 
-  const reset = () => {
-    setReview('');
-    setStars('');
-  }
+  // const reset = () => {
+  //   setReview('');
+  //   setStars('');
+  // }
 
   return (
     <div>
@@ -60,13 +60,13 @@ const CreateReview = () => {
             placeholder="review"
             value={review}
             onChange={e => setReview(e.target.value)}
-            required
+            // required
           />
           <input
             id='review-rating'
             type='number'
-            placeholder="0 stars"
-            min='0'
+            placeholder="1-5 stars"
+            min='1'
             max='5'
             value={stars}
             onChange={e => setStars(e.target.value)}

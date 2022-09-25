@@ -16,7 +16,9 @@ const Reviews = () => {
   const dispatch = useDispatch();
 
   let sessionLinks;
-  if (sessionUser && sessionUser.id !== spot.ownerId) {
+  let userReviewExists = reviewsArr.find(review => review.userId === sessionUser.id)
+  console.log(userReviewExists)
+  if (sessionUser && sessionUser.id !== spot.ownerId && !userReviewExists) {
     sessionLinks = (
       <>
         <NavLink id='button-leave-review' to={`/spots/${spotId}/reviews`}>Leave a review</NavLink>

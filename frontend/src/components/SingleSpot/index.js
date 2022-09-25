@@ -12,6 +12,7 @@ const SingleSpot = () => {
   const { spotId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const singleSpot = useSelector(state => state.spots.singleSpot);
+  const reviews = useSelector(state => state.reviews.spot);
   console.log('single spot', singleSpot)
   const dispatch = useDispatch();
 
@@ -77,7 +78,7 @@ const SingleSpot = () => {
             </span>
             <div id='star-review'>
               <i id='star-deets' className="fa-sharp fa-solid fa-star"></i>
-              <span id='avg-rating'>{Number(singleSpot.avgStarRating).toFixed(1) ?? 'new'}</span>
+              <span id='avg-rating'>{singleSpot.avgStarRating ?? singleSpot.avgStarRating === 'new'}</span>
               <span id='dots'>•</span>
               <span id='review-link'>
                 {singleSpot.numReviews ?? 0} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
@@ -123,7 +124,7 @@ const SingleSpot = () => {
               <DeleteSpot />
             </div>
           )}
-
+          {/* {sessionUser && reviews.find(review => userId === sessionUser.id)} */}
           <div id='reviews'>
             <Reviews />
           </div>

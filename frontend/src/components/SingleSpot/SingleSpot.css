@@ -90,6 +90,7 @@
   align-items: center;
   padding: auto;
   margin: 8px 0;
+  object-fit: cover;
 }
 
 #two {
@@ -179,6 +180,7 @@
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   margin: 0 auto;
+  object-fit: cover;
 }
 
 .spot-images {

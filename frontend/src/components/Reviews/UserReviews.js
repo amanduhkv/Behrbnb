@@ -16,7 +16,7 @@ const UserReviews = () => {
     dispatch(getUserReviews())
   }, [dispatch]);
 
-  if (!reviews) return null;
+  if (!reviews || !reviewsArr.length) return (<div className="card-1">No reviews found</div>);
 
   return (
     <div id='review-container-curr'>
