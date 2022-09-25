@@ -16,8 +16,11 @@ const Reviews = () => {
   const dispatch = useDispatch();
 
   let sessionLinks;
-  let userReviewExists = reviewsArr.find(review => review.userId === sessionUser.id)
-  console.log(userReviewExists)
+  let userReviewExists;
+  if(sessionUser) {
+    userReviewExists = reviewsArr.find(review => review.userId === sessionUser.id)
+    console.log(userReviewExists)
+  }
   if (sessionUser && sessionUser.id !== spot.ownerId && !userReviewExists) {
     sessionLinks = (
       <>
