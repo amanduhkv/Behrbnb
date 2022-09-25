@@ -7,6 +7,12 @@ Have extra room in your house? Host it on Behrbnb and share your wonderful home 
 
 Live site: [Behrbnb](https://behrbnb.herokuapp.com/) 
 
+## Table of Contents:
+- [Technology Stack](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#technology-stack)
+- [Features](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#features)
+- Roadmap
+- Get Started
+- Contact Information
 
 ## Technology Stack
 ### 📋 Languages
