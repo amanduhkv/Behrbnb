@@ -44,17 +44,19 @@ const Reviews = () => {
         </div>
       </div>
 
+      <div id='review-box'>
       {reviewsArr.map(review => (
         <div id='each-review' key={review.id}>
 
           <div id='bear-name'>
-            <img id='bear' src={bear} />
+            <img id='bear' alt='bear' src={bear} />
             <div id='reviewer-name'>{review.User?.firstName}</div>
-            {/* <div id='num-stars'>{review.stars}</div> */}
+            {/* <div id='num-stars'>{(review.createdAt).toString()}</div> */}
           </div>
           <div id='reviewer-review'>{review.review}</div>
         </div>
       ))}
+      </div>
       {sessionLinks}
     </div>
   )
