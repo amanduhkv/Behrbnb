@@ -40,7 +40,17 @@
 }
 
 #each-review {
+
   margin: 12px 0;
+  width: 500px
+}
+
+#review-box {
+  
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: fit-content;
 }
 
 #review-container {

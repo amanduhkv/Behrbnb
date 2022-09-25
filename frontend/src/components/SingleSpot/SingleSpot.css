@@ -24,8 +24,8 @@
 }
 
 #dots {
-  padding-right: 0;
-  font-size: 12px;
+  padding: 2px;
+  font-size: 10px;
 }
 
 #first-two {
@@ -72,6 +72,13 @@
   font-size: 14px;
   padding-right: 0;
   /* text-decoration: underline; */
+}
+
+#night-price {
+  font-size: 16px;
+  font-weight: 300;
+  padding-left: 5px;
+  padding-right: 40px;
 }
 
 #one,
@@ -160,9 +167,9 @@
 #review-link {
   font-size: 14px;
   font-weight:500;
-  color: black;
-  margin-left: 12px;
-  padding-right: 0;
+  color: rgb(113, 113, 113);
+  margin-left: 2px;
+  padding: 0;
   /* text-decoration: underline; */
 }
 
@@ -203,7 +210,16 @@
 }
 
 #star-deets {
+  /* border: red 1px solid; */
   font-size: 12px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+}
+
+#star-review {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
 }
 
 #top-info {
@@ -231,7 +247,7 @@
 }
 
 #user-para {
-  width: 750px;
+  width: 675px;
   grid-area: deets;
   align-self: center;
   padding-top: 20px;

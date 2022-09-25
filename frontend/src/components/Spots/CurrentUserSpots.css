@@ -1,0 +1,19 @@
+/* .each-card {
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  margin: 0px 100px;
+}*/
+
+#each-one {
+  /* border: red 1px solid; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviews-1 {
+  display: flex;
+}
