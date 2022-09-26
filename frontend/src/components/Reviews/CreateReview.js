@@ -17,6 +17,7 @@ const CreateReview = () => {
   useEffect(() => {
     const errors = [];
     if (!review.length) errors.push('Review field left blank');
+    if (review.length > 255) errors.push('Review too long (255 characters or less)');
     if (!stars) errors.push('Number of stars invalid');
     setValidationErrors(errors);
   }, [review, stars]);

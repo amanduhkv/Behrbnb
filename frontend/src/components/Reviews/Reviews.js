@@ -19,7 +19,7 @@ const Reviews = () => {
   let userReviewExists;
   if(sessionUser) {
     userReviewExists = reviewsArr.find(review => review.userId === sessionUser.id)
-    console.log(userReviewExists)
+    // console.log(userReviewExists)
   }
   if (sessionUser && sessionUser.id !== spot.ownerId && !userReviewExists) {
     sessionLinks = (

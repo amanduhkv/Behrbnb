@@ -30,7 +30,7 @@ const CreateSpotForm = () => {
     if (!country.length) errors.push("Please enter a country");
     if (!lat) errors.push("Please enter a valid latitude");
     if (!lng) errors.push("Please enter a valid longitude");
-    if (!name) errors.push("Please enter a name for the new spot");
+    if (!name || name.length > 50) errors.push("Please enter a valid name for the new spot");
     if (!description) errors.push('Please enter a description for the new spot');
     if (!price) errors.push("Please enter a price");
     if (!image) errors.push("Please provide a valid image url for the spot");
@@ -84,6 +84,7 @@ const CreateSpotForm = () => {
             id='spot-input1'
             type='text'
             placeholder='address'
+            maxLength='255'
             value={address}
             onChange={e => setAddress(e.target.value)}
             // required
@@ -92,6 +93,7 @@ const CreateSpotForm = () => {
             id='spot-input'
             type='text'
             placeholder='city'
+            maxLength='255'
             value={city}
             onChange={e => setCity(e.target.value)}
             // required
@@ -100,6 +102,7 @@ const CreateSpotForm = () => {
             id='spot-input'
             type='state'
             placeholder='state'
+            maxLength='255'
             value={state}
             onChange={e => setState(e.target.value)}
             // required
@@ -108,6 +111,7 @@ const CreateSpotForm = () => {
             id='spot-input'
             type='country'
             placeholder='country'
+            maxLength='255'
             value={country}
             onChange={e => setCountry(e.target.value)}
             // required
@@ -132,6 +136,7 @@ const CreateSpotForm = () => {
             id='spot-input'
             type='name'
             placeholder='name'
+            maxLength='50'
             value={name}
             onChange={e => setName(e.target.value)}
             // required
@@ -139,6 +144,7 @@ const CreateSpotForm = () => {
           <textarea
             id='spot-input-textarea'
             placeholder='description'
+            maxLength='255'
             value={description}
             onChange={e => setDescription(e.target.value)}
             // required
@@ -156,6 +162,7 @@ const CreateSpotForm = () => {
             id='spot-input-url'
             placeholder='url'
             type='text'
+            maxLength='255'
             value={image}
             onChange={e => setImage(e.target.value)}
             // required
