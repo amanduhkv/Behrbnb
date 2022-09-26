@@ -23,6 +23,7 @@ function SignupFormPage() {
     if (!lastName.length) errors.push("Please provide your last name");
     if (!email.includes('@')) errors.push("Please provide a valid email (between 4 and 30 characters)");
     if (username.length < 3) errors.push("Usernames must be greater than 3 characters");
+    if(password.length < 6) errors.push("Password must be at least 6 characters")
     if (password !== confirmPassword) errors.push("Passwords do not match");
     setValidationErrors(errors)
   }, [firstName, lastName, email, username, password, confirmPassword])
@@ -44,16 +45,16 @@ function SignupFormPage() {
     //   setConfirmPassword('');
     // }
 
-    setErrors([]);
+    // setErrors([]);
     if (password === confirmPassword) {
       return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors.email) {
-            setErrors(['Email already exists'])
+            setValidationErrors(['Email already exists'])
           };
           if (data && data.errors.username) {
-            setErrors(['Username already exists'])
+            setValidationErrors(['Username already exists'])
           };
         });
     }
@@ -73,7 +74,6 @@ function SignupFormPage() {
           placeholder="First name"
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
-          required
         />
         <input
           id='lastname'
@@ -81,7 +81,6 @@ function SignupFormPage() {
           placeholder="Last name"
           value={lastName}
           onChange={e => setLastName(e.target.value)}
-          required
         />
         <input
           id='email-sign'
@@ -89,7 +88,6 @@ function SignupFormPage() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
         <input
           id='username-sign'
@@ -97,7 +95,6 @@ function SignupFormPage() {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          required
         />
         <input
           id='password-sign'
@@ -105,7 +102,6 @@ function SignupFormPage() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
         <input
           id='confirm-pass'
@@ -113,17 +109,25 @@ function SignupFormPage() {
           placeholder="Confirm password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          required
         />
-        {hasSubmit && (
+        {hasSubmit && validationErrors.length > 0 && (
         <div id='error-div'>
           The following errors were found:
           <ul id='error-list'>
-          {errors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
           {validationErrors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
           </ul>
         </div>
         )}
+        {/* {hasSubmit && errors.length > 0 && (
+        <div id='error-div'>
+          The following errors were found:
+          <ul id='error-list'>
+          {errors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
+          </ul>
+        </div>
+        )} */}
+
+
 
           <button id='signup-button' type="submit">Sign Up</button>
 

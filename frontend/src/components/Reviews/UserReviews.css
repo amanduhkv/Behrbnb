@@ -1,3 +1,8 @@
+#spot-stars {
+  display: flex;
+  padding-top: 5px;
+}
+
 #star-num {
   color: rgb(158, 158, 158);
   font-weight: 300;
@@ -14,4 +19,11 @@
   /* width: 550px; */
   border-radius: 12px;
   padding: 10px;
+}
+
+#reviewer-spot-name {
+  font-style: italic;
+  font-weight: 200;
+  font-size: 14px;
+  margin-right: 10px;
 }

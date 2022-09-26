@@ -35,7 +35,7 @@ const SingleSpot = () => {
   // }
 
   return (
-    <div>
+    <div id='single-spot-page'>
       {singleSpot.id && (
         <div id='grid-spot'>
           <div id='spot-name-container'>

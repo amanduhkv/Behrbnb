@@ -35,13 +35,15 @@
 #grid-spot {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 45px 50px 510px 0.5fr 2fr;
+  grid-template-rows: 45px 50px 510px 0.5fr 1fr;
   grid-template-areas:
   ". name ."
   ". info ."
   ". images ."
   ". deets ."
   ". reviews .";
+
+  /* width: 100%; */
 }
 
 #ed-buttons {
@@ -181,6 +183,11 @@
   border-bottom-left-radius: 20px;
   margin: 0 auto;
   object-fit: cover;
+}
+
+#single-spot-page {
+  width: 100%;
+  height: 100%;
 }
 
 .spot-images {
