@@ -1,3 +1,7 @@
+#delete-review-button:hover {
+  cursor: pointer;
+}
+
 #spot-stars {
   display: flex;
   padding-top: 5px;
