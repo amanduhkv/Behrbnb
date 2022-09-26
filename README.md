@@ -14,11 +14,11 @@ Live site: [Behrbnb](https://behrbnb.herokuapp.com/)
 - [Redux Store State](https://github.com/amanduhkv/Behrbnb/wiki#redux-store-state)
 
 ## Table of Contents:
-- [Technology Stack](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#technology-stack)
-- [Features](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#features)
-- [Roadmap](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#roadmap)
-- [Get Started](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#getting-started)
-- [Contact Information](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#contact-information)
+- [Technology Stack](https://github.com/amanduhkv/Behrbnb/README.md#technology-stack)
+- [Features](https://github.com/amanduhkv/Behrbnb/README.md#features)
+- [Roadmap](https://github.com/amanduhkv/Behrbnb/README.md#roadmap)
+- [Get Started](https://github.com/amanduhkv/Behrbnb/README.md#getting-started)
+- [Contact Information](https://github.com/amanduhkv/Behrbnb/README.md#contact-information)
 
 ## Technology Stack
 ### 📋 Languages
