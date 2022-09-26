@@ -7,12 +7,18 @@ Have extra room in your house? Host it on Behrbnb and share your wonderful home 
 
 Live site: [Behrbnb](https://behrbnb.herokuapp.com/) 
 
+## Wiki Links
+- [API Documentation](https://github.com/amanduhkv/Behrbnb/wiki#api-documentation)
+- [Database Schema](https://github.com/amanduhkv/Behrbnb/wiki#database-schema)
+- [Feature List](https://github.com/amanduhkv/Behrbnb/wiki#feature-list)
+- [Redux Store State](https://github.com/amanduhkv/Behrbnb/wiki#redux-store-state)
+
 ## Table of Contents:
 - [Technology Stack](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#technology-stack)
 - [Features](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#features)
-- Roadmap
-- Get Started
-- Contact Information
+- [Roadmap](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#roadmap)
+- [Get Started](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#getting-started)
+- [Contact Information](https://github.com/amanduhkv/Behrbnb/edit/main/README.md#contact-information)
 
 ## Technology Stack
 ### 📋 Languages
@@ -25,6 +31,9 @@ Live site: [Behrbnb](https://behrbnb.herokuapp.com/)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+
+## 💾 Databases
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
 ### ☁️ Hosting
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
@@ -54,4 +63,26 @@ Live site: [Behrbnb](https://behrbnb.herokuapp.com/)
 #### Create a New Spot to be hosted:
 ![image](https://user-images.githubusercontent.com/105696861/192137984-950c8b96-6f9c-49bb-bfb0-9fb9dae6114f.png)
 
+### Update or delete a Spot:
+![image](https://user-images.githubusercontent.com/105696861/192198010-dfbf1e46-a6d5-46b1-9dc0-b21aa9135a0e.png)
+
+### Leave a Review for a Spot:
+![image](https://user-images.githubusercontent.com/105696861/192198178-7fa5d1b4-dc3e-4052-8362-934645a772b1.png)
+
+### View the Reviews for a Spot:
+![image](https://user-images.githubusercontent.com/105696861/192198253-90063274-d915-4b34-afe1-5f21784c0b36.png)
+
+### View the Current User's Reviews:
+![image](https://user-images.githubusercontent.com/105696861/192198342-412820fa-4675-475a-b4ac-c6fa4e17f416.png)
+![image](https://user-images.githubusercontent.com/105696861/192198373-25b7790f-206a-45af-a16a-59bfe65fcacd.png)
+
+### Delete a Review from a Spot:
+![image](https://user-images.githubusercontent.com/105696861/192198433-88fa6ccc-0f99-430d-a195-6ba4b431b25c.png)
+
+
+## Roadmap
+## Getting Started
+## Contact Information
+- [LinkedIn](https://www.linkedin.com/in/amandakvien/)
+- [Github](https://github.com/amanduhkv)
 
