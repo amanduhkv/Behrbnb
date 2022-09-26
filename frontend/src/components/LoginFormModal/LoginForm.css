@@ -108,6 +108,11 @@ label, span {
   font-weight: 600;
 }
 
+#modal-button:hover {
+  background-color: rgb(220, 30, 87);
+  cursor: pointer;
+}
+
 .modal-x {
   background-color: white;
   border: none;

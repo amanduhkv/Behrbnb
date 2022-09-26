@@ -30,6 +30,11 @@
   margin: auto;
 }
 
+#button-leave-review:hover,
+#delete-review-button:hover {
+  background-color: rgb(220,30,87);
+}
+
 #delete-review-button {
   background-color: rgb(230,30,87);
   color: white;

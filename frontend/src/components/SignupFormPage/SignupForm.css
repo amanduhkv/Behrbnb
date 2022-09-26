@@ -65,6 +65,7 @@
 
 #signup-button:hover {
   background-color: rgb(220, 30, 87);
+  cursor: pointer;
 }
 
 #signup-content {

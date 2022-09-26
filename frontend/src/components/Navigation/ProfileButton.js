@@ -43,14 +43,14 @@ function ProfileButton({ user }) {
           <h3 id='greeting'>Hello, {user.firstName}!</h3>
           <div id='user-creds'>{user.username}</div>
           <div id='user-creds'>{user.email}</div>
-          
+
           <div className="menu-spots">
             <NavLink id='my-spots' to='/spots/current'>Manage listings</NavLink>
           </div>
           <div className="menu-spots">
             <NavLink id='my-spots' to='/reviews/current'>Manage reviews</NavLink>
           </div>
-          <div id='logout-button'>
+          <div id='logout-div'>
             <button id='logout-button' onClick={logout}>Log Out</button>
           </div>
         </div>

@@ -6,6 +6,10 @@
   margin: auto;
 }
 
+#cancel-link:hover {
+  background-color: rgb(220,30,87);
+}
+
 #cancel-link {
   text-decoration: none;
   background-color: rgb(230,30,87);
@@ -64,6 +68,7 @@
 
 #host-button:hover {
   background-color: rgb(220, 30, 87);
+  cursor: pointer;
 }
 
 #spot-image {

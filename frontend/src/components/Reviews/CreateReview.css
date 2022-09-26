@@ -3,6 +3,7 @@
   justify-content: center;
 }
 
+
 #create-review-form {
   display: flex;
   flex-direction: column;
@@ -23,6 +24,12 @@
   padding: 10px;
   font-size: 14px;
   width: 300px;
+}
+
+#review-button:hover,
+#review-cancel:hover {
+    background-color: rgb(220,30,87);
+    cursor: pointer;
 }
 
 #review-cancel {

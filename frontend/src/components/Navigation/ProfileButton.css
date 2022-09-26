@@ -12,15 +12,23 @@
 }
 
 #logout-button {
-  display: grid;
-  grid-template-columns: 1fr;
-
   color: white;
   background-color: rgb(230, 30, 87);
   border-radius: 8px;
   border: none;
+  width: 150px;
+  padding: 8px;
+  cursor: pointer;
+}
 
-  margin: 10px
+#logout-button:hover {
+  background-color: rgb(220,30,87);
+}
+
+#logout-div {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
 
 .menu-spots {
