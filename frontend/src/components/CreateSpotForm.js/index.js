@@ -120,6 +120,8 @@ const CreateSpotForm = () => {
             id='spot-input'
             type='number'
             placeholder='latitude'
+            min='-90'
+            max='90'
             value={lat}
             onChange={e => setLat(e.target.value)}
             // required
@@ -128,6 +130,8 @@ const CreateSpotForm = () => {
             id='spot-input'
             type='number'
             placeholder='longitude'
+            min='-180'
+            max='180'
             value={lng}
             onChange={e => setLng(e.target.value)}
             // required

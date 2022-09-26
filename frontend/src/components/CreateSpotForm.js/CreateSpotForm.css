@@ -98,6 +98,7 @@
   font-size: 16px;
   border: rgb(197, 191, 191) 1px solid;
   border-top: none;
+  text-overflow: ellipsis;
 }
 
 
@@ -112,4 +113,5 @@ textarea:hover {
 textarea {
   height: 125px;
   resize: none;
+  text-overflow: ellipsis;
 }

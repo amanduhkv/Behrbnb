@@ -131,6 +131,8 @@ const EditSpotForm = () => {
             id='spot-input-mid'
             type='number'
             placeholder='latitude'
+            min='-90'
+            max='90'
             value={lat}
             onChange={updateLat}
           />
@@ -138,6 +140,8 @@ const EditSpotForm = () => {
             id='spot-input-mid'
             type='number'
             placeholder='longitude'
+            min='-180'
+            max='180'
             value={lng}
             onChange={updateLng}
           />

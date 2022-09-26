@@ -36,15 +36,15 @@
   margin: 10px 0;
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
 }
 
 #my-spots {
   text-decoration: none;
   font-size: 14px;
-  margin: 10px;
+  /* margin: 10px; */
   color: black;
-  padding: 2px 40px 2px 5px;
+  padding: 10px 5px 10px 25px;
 }
 
 .menu-spots:hover {
