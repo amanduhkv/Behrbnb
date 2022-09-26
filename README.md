@@ -81,7 +81,22 @@ Live site: [Behrbnb](https://behrbnb.herokuapp.com/)
 
 
 ## Roadmap
+- [ ] When creating a new spot, allow users to add more than one photo.
+- [ ] Allow users to update their spot's images.
+- [ ] Add the functionality of adding an image to a review.
+- [ ] Add the Bookings feature:
+  - [ ] Create a booking for a spot.
+  - [ ] View all of the bookings the user has made.
+  - [ ] Edit any bookings the user has made.
+  - [ ] Delete any bookings the user has made.  
+
 ## Getting Started
+1. Clone the repository from Github, or download the .zip file.
+2. Within the project's command line, npm install in the backend and frontend directories.
+3. Add a .env file to the backend of the project and make sure there is a proxy for the frontend of the project. 
+4. Migrate and seed the database (*npx dotenv sequelize-cli db:migrate* and *npx dotenv sequelize-cli db:seed:all*) in the backend directory.
+5. Start the server in the backend and frontend directories (*npm start*).
+
 ## Contact Information
 - [LinkedIn](https://www.linkedin.com/in/amandakvien/)
 - [Github](https://github.com/amanduhkv)
