@@ -8,10 +8,10 @@ Have extra room in your house? Host it on Behrbnb and share your wonderful home 
 Live site: [Behrbnb](https://behrbnb.herokuapp.com/) 
 
 ## Wiki Links
-- [API Documentation](https://github.com/amanduhkv/Behrbnb/wiki#api-documentation)
-- [Database Schema](https://github.com/amanduhkv/Behrbnb/wiki#database-schema)
-- [Feature List](https://github.com/amanduhkv/Behrbnb/wiki#feature-list)
-- [Redux Store State](https://github.com/amanduhkv/Behrbnb/wiki#redux-store-state)
+- [API Documentation](https://github.com/amanduhkv/Behrbnb/wiki/API-Documentation)
+- [Database Schema](https://github.com/amanduhkv/Behrbnb/wiki/Database-Schema)
+- [Feature List](https://github.com/amanduhkv/Behrbnb/wiki/Feature-List)
+- [Redux Store State](https://github.com/amanduhkv/Behrbnb/wiki/Redux-Store-State)
 
 ## Table of Contents:
 - [Technology Stack](https://github.com/amanduhkv/Behrbnb/blob/main/README.md#technology-stack)
