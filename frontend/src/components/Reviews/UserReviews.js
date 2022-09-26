@@ -9,7 +9,7 @@ import './UserReviews.css';
 const UserReviews = () => {
   const reviews = useSelector(state => state.reviews.user);
   const reviewsArr = Object.values(reviews);
-  console.log('Pooh reviews: ', reviews)
+  // console.log('Pooh reviews: ', reviews)
   const dispatch = useDispatch();
 
   useEffect(() => {

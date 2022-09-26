@@ -13,7 +13,7 @@ const SingleSpot = () => {
   const sessionUser = useSelector(state => state.session.user);
   const singleSpot = useSelector(state => state.spots.singleSpot);
   const reviews = useSelector(state => state.reviews.spot);
-  console.log('single spot', singleSpot)
+  // console.log('single spot', singleSpot)
   const dispatch = useDispatch();
 
   useEffect(() => {
