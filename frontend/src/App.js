@@ -13,6 +13,7 @@ import UserReviews from "./components/Reviews/UserReviews";
 import CreateReview from "./components/Reviews/CreateReview";
 import EditSpotForm from "./components/Spots/EditSpotForm";
 import SignupFormPage from "./components/SignupFormPage";
+import CreateBookingForm from "./components/Bookings/CreateBooking";
 
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path='/spots/current'>
             <GetSpotsCurrentUser />
+          </Route>
+          <Route path='/spots/:spotId/bookings'>
+            <CreateBookingForm />
           </Route>
           <Route exact path='/spots/:spotId/edit'>
             <EditSpotForm />
