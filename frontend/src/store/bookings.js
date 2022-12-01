@@ -65,13 +65,13 @@ export const getABooking = bookingId => async dispatch => {
 };
 
 // CREATE A BOOKING
-export const createBooking = (booking) => async dispatch => {
-  const response = await csrfFetch(`/api/bookings`, {
+export const createBooking = (booking, spotId) => async dispatch => {
+  const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(booking)
   });
-  // console.log('here')
+  console.log('here')
   if (response.ok) {
     const newBooking = await response.json();
 
@@ -82,7 +82,7 @@ export const createBooking = (booking) => async dispatch => {
 
 // UPDATE A BOOKING
 export const updateBooking = (booking, id) => async dispatch => {
-  const response = await csrfFetch(`/api/bookings/${id}`, {
+  const response = await csrfFetch(`/api/${id}/bookings`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(booking)

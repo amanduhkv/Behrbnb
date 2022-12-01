@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { createBooking } from '../../store/bookings';
 
 const CreateBookingForm = () => {
+  const { spotId } = useParams();
   const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState();
@@ -16,7 +17,7 @@ const CreateBookingForm = () => {
 
   // TODAY'S DATE ======================
   let currentDate = new Date();
-  console.log("CURRENT DATE", currentDate)
+  // console.log("CURRENT DATE", currentDate)
 
   // ERROR HANDLING ====================
   useEffect(() => {
@@ -30,6 +31,7 @@ const CreateBookingForm = () => {
 
   // SUBMIT FXN ========================
   const handleSubmit = async e => {
+    console.log('HITTING THE SUBMIT')
     e.preventDefault();
 
     setHasSubmit(true);
@@ -39,8 +41,10 @@ const CreateBookingForm = () => {
       endDate
     };
 
-    const data = await dispatch(createBooking(payload));
+    const data = await dispatch(createBooking(payload, spotId));
     if(data) {
+      console.log("BOOKING DATA", data)
+      console.log("BOOKING DATA MESSAGE", data.message)
       setValidationErrors(data.message)
     }
 
@@ -60,11 +64,15 @@ const CreateBookingForm = () => {
         <input
           id='start'
           type="date"
+          value={startDate}
+          onChange={e => {setStartDate(e.target.value)}}
         />
         <label for='end'>Checkout:</label>
         <input
           id='end'
           type="date"
+          value={endDate}
+          onChange={e => {setEndDate(e.target.value)}}
         />
         <button type='submit'>Reserve</button>
       </form>
