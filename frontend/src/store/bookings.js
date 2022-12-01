@@ -1,20 +1,21 @@
 import { csrfFetch } from "./csrf";
 
-export const LOAD_BOOKING = 'bookings/LOAD_BOOKING';
-export const A_BOOKING = 'bookings/A_BOOKING';
+export const SPOT_BOOKINGS = 'bookings/SPOT_BOOKINGS';
+export const USER_BOOKINGS = 'bookings/USER_BOOKINGS';
 export const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
 export const UPDATE_BOOKING = 'bookings/UPDATE_BOOKING';
 export const DELETE_BOOKING = 'bookings/DELETE_BOOKING';
 
 
-const load = (bookingList) => ({
-  type: LOAD_BOOKING,
-  bookingList
+const load = (bookingList, spotId) => ({
+  type: SPOT_BOOKINGS,
+  bookingList,
+  spotId
 });
 
-const singleBooking = (booking) => ({
-  type: A_BOOKING,
-  booking
+const userBookings = (bookings) => ({
+  type: USER_BOOKINGS,
+  bookings
 });
 
 const create = booking => ({
@@ -34,9 +35,9 @@ const deletion = (id) => ({
 });
 
 
-// GET ALL BOOKINGS
-export const getBookings = () => async dispatch => {
-  const response = await fetch('/api/bookings');
+// GET ALL BOOKINGS BASED ON SPOT ID
+export const getBookings = (spotId) => async dispatch => {
+  const response = await fetch(`/api/spots/${spotId}/bookings`);
 
   if (response.ok) {
     const list = await response.json();
@@ -50,17 +51,7 @@ export const getCurrentUserBooking = () => async dispatch => {
 
   if(response.ok) {
     const currentUserBookings = await response.json();
-    dispatch(load(currentUserBookings));
-  };
-};
-
-// GET SINGLE BOOKING
-export const getABooking = bookingId => async dispatch => {
-  const response = await fetch(`/api/bookings/${bookingId}`);
-
-  if (response.ok) {
-    const booking = await response.json();
-    dispatch(singleBooking(booking))
+    dispatch(userBookings(currentUserBookings));
   };
 };
 
@@ -82,7 +73,7 @@ export const createBooking = (booking, spotId) => async dispatch => {
 
 // UPDATE A BOOKING
 export const updateBooking = (booking, id) => async dispatch => {
-  const response = await csrfFetch(`/api/${id}/bookings`, {
+  const response = await csrfFetch(`/api/bookings/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(booking)
@@ -115,16 +106,40 @@ const initialState = {
 
 const bookingsReducer = (state=initialState, action) => {
   switch(action.type) {
-    case LOAD_BOOKING:
+    case SPOT_BOOKINGS:
       const bookings = {}
       action.bookings.Bookings.forEach(booking => {
         bookings[booking.id] = booking
       });
       return {
         ...state,
-        user: {},
+        user: { ...state.user },
         spot: { ...bookings }
       };
+    case USER_BOOKINGS:
+      const newReview = { ...state, user: { ...state.user }}
+      action.reviews.Reviews.forEach(review => {
+        newReview.user[review.id] = review
+      });
+      return newReview;
+    case CREATE_BOOKING:
+      const createState = {
+        ...state,
+        spot: {
+          ...state.spot,
+          [action.review.id]: action.review
+        }
+      }
+      return createState;
+    case DELETE_BOOKING:
+      const deleteState = {
+        ...state,
+        spot: {},
+        user: { ...state.user }
+      }
+
+      delete deleteState.user[action.id]
+      return deleteState;
     default:
       return state;
   }
