@@ -7,6 +7,7 @@ import DeleteSpot from '../Spots/DeleteSpot';
 import '../SingleSpot/SingleSpot.css'
 import Reviews from '../Reviews/Reviews';
 import bear from '../../assets/bear.svg';
+import CreateBookingForm from '../Bookings/CreateBooking';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
@@ -72,17 +73,22 @@ const SingleSpot = () => {
           </div>
 
           <div id='price-review-side-box'>
-            <span id='price'>
-              ${singleSpot.price}
-              <span id='night-price'>night</span>
-            </span>
-            <div id='star-review'>
-              <i id='star-deets' className="fa-sharp fa-solid fa-star"></i>
-              <span id='avg-rating'>{singleSpot.avgStarRating ?? singleSpot.avgStarRating === 'new'}</span>
-              <span id='dots'>•</span>
-              <span id='review-link'>
-                {singleSpot.numReviews ?? 0} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
+            <div id='price-rev'>
+              <span id='price'>
+                ${singleSpot.price}
+                <span id='night-price'>night</span>
               </span>
+              <div id='star-review'>
+                <i id='star-deets' className="fa-sharp fa-solid fa-star"></i>
+                <span id='avg-rating'>{singleSpot.avgStarRating ?? singleSpot.avgStarRating === 'new'}</span>
+                <span id='dots'>•</span>
+                <span id='review-link'>
+                  {singleSpot.numReviews ?? 0} {singleSpot.numReviews === 1 ? 'review' : 'reviews'}
+                </span>
+              </div>
+            </div>
+            <div id='pr-booking'>
+              <CreateBookingForm />
             </div>
           </div>
 

@@ -1,0 +1,62 @@
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.booking-form button {
+  margin: 10px 0;
+  padding: 10px;
+
+  border: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: rgb(224,16,98);
+  background: linear-gradient(281deg, rgba(224,16,98,1) 0%, rgba(230,30,77,1) 100%);
+}
+
+.booking-form input {
+  border: none;
+  font-size: 14px;
+}
+
+.booking-form label {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 0;
+}
+
+#dates {
+  display: flex;
+}
+
+#date-checkin,
+#date-checkout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+
+  border: 1px solid rgb(182, 181, 181);
+  padding: 10px;
+}
+
+#date-checkin {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-right: none;
+}
+
+#date-checkout {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+
+#error-div popup {
+  border:rgb(182, 181, 181) 1px solid;
+}
