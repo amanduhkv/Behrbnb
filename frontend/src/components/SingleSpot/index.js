@@ -13,7 +13,7 @@ const SingleSpot = () => {
   const { spotId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const singleSpot = useSelector(state => state.spots.singleSpot);
-  const reviews = useSelector(state => state.reviews.spot);
+  
   // console.log('single spot', singleSpot)
   const dispatch = useDispatch();
 
@@ -87,9 +87,11 @@ const SingleSpot = () => {
                 </span>
               </div>
             </div>
-            <div id='pr-booking'>
-              <CreateBookingForm />
-            </div>
+            {sessionUser && sessionUser.id !== singleSpot.ownerId && (
+              <div id='pr-booking'>
+                <CreateBookingForm />
+              </div>
+            )}
           </div>
 
           <div id='user-para'>
