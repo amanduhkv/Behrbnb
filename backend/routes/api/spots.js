@@ -266,11 +266,22 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     }
   })
 
-  if(!startDate || !endDate || endDate <= startDate) {
+  if(!startDate || !endDate) {
     return res
       .status(400)
       .json({
-        "message": "Validation error",
+        "message": "Please choose check-in and checkout dates.",
+        "statusCode": 400,
+        "errors": {
+          "endDate": "endDate cannot be on or before startDate"
+        }
+      })
+  }
+  if(endDate <= startDate) {
+    return res
+      .status(400)
+      .json({
+        "message": "The checkout date cannot be on or before the check-in date.",
         "statusCode": 400,
         "errors": {
           "endDate": "endDate cannot be on or before startDate"
