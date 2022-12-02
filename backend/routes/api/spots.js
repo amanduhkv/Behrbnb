@@ -67,7 +67,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
       where: {
         spotId: spot.id
       },
-      attributes: ['id', 'spotId', 'startDate', 'endDate']
+      // attributes: ['id', 'userId', 'spotId', 'startDate', 'endDate']
     })
     return res.json({Bookings: bookings})
   }
@@ -131,7 +131,7 @@ router.get('/:spotId', async (req, res) => {
       }
     ]
   });
-  console.log(spots)
+  // console.log(spots)
 
   if (!spots || spots === null) {
     return res
@@ -265,6 +265,24 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
       spotId: spot.id
     }
   })
+
+  const date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+  let currentDate = `${year}-${month}-${day}`
+
+  if(startDate <= currentDate) {
+    return res
+      .status(400)
+      .json({
+        "message": "Check-in dates start tomorrow.",
+        "statusCode": 400,
+        "errors": {
+          "startDate": "startDate conflicts with today's date."
+        }
+      })
+  }
 
   if(!startDate || !endDate) {
     return res
