@@ -1,6 +1,7 @@
 .indiv-res {
   display: flex;
-  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .reservation {
@@ -10,17 +11,22 @@
   margin: 20px;
 }
 
-.res-container {
+.res-user-container {
   display: flex;
   flex-direction: column;
 
-  margin: 5vh auto;
   width: fit-content;
   height: 80vh;
   overflow-y: auto;
 }
 
-#res-listings {
+#res-user-delete {
+  display: flex;
+  align-items: center;
+}
+
+#res-user-listings {
+  width: 70%;
   list-style: none;
   display: flex;
   border-bottom: 1px solid rgb(182, 181, 181);
@@ -28,8 +34,8 @@
   margin: 0 20px;
 }
 
-#res-list-checkin,
-#res-list-checkout {
+#res-user-list-checkin,
+#res-user-list-checkout {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -39,22 +45,22 @@
   font-size: 14px;
 }
 
-#res-list-checkin {
+#res-user-list-checkin {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   border-right: 1px solid rgb(182, 181, 181);
   margin: 20px;
 }
 
-#res-list-checkout {
+#res-user-list-checkout {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   margin: 20px;
 }
 
 
-#res-list-checkin div,
-#res-list-checkout div {
+#res-user-list-checkin div,
+#res-user-list-checkout div {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 5px;

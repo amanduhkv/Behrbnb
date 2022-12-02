@@ -73,17 +73,17 @@ const Bookings = () => {
               <div key={booking.id}>
                 {sessionUser.id === booking.userId && (
                   <div className="indiv-res">
-                    <li id='res-listings'>
-                      <div id='res-list-checkin'>
+                    <li id='res-user-listings'>
+                      <div id='res-user-list-checkin'>
                         <div>Check-in</div>
                         {formatDate(booking.startDate)}
                       </div>
-                      <div id='res-list-checkout'>
+                      <div id='res-user-list-checkout'>
                         <div>Checkout</div>
                         {formatDate(booking.endDate)}
                       </div>
                     </li>
-                    <div>
+                    <div id='res-user-delete'>
                     <DeleteBooking bookingId={booking.id} />
                     </div>
                   </div>
