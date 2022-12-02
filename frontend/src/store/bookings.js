@@ -40,6 +40,8 @@ export const getBookings = (spotId) => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}/bookings`);
 
   if (response.ok) {
+    const user = await fetch('/api/users');
+    console.log('This the user', user)
     const list = await response.json();
     dispatch(load(list));
   };
@@ -122,6 +124,7 @@ const bookingsReducer = (state=initialState, action) => {
         userBooking.user[booking.id] = booking
       });
       return userBooking;
+    case UPDATE_BOOKING:
     case CREATE_BOOKING:
       const createState = {
         ...state,

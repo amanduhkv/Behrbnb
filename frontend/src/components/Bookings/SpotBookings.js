@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
 
 import { getBookings } from "../../store/bookings";
+import { getASpot } from "../../store/spots";
 
 const Bookings = () => {
   const { spotId } = useParams();
@@ -16,26 +17,42 @@ const Bookings = () => {
 
 
   useEffect(() => {
+    dispatch(getASpot(spotId))
     dispatch(getBookings(spotId))
   }, [dispatch, spotId]);
 
-  if(!bookings) return null;
+  if (!bookings) return null;
 
   return (
     <div>
-      <ul>
-        {bookingsArr.map(booking => (
-          <>
-            <li key={booking.id}>
-              <div>Name's Reservation:</div>
-              Check-in date: {booking.startDate}
-              <br/>
-              Checkout date: {booking.endDate}
-            </li>
-            <br />
-          </>
-        ))}
-      </ul>
+      {sessionUser.id === spot.ownerId && (
+        <ul>
+          {bookingsArr.map(booking => (
+            <>
+              <li key={booking.id}>
+                <div>{booking.User.firstName}'s Reservation:</div>
+                Check-in date: {booking.startDate}
+                <br />
+                Checkout date: {booking.endDate}
+              </li>
+              <br />
+            </>
+          ))}
+        </ul>
+      )}
+      {sessionUser.id !== spot.ownerId && (
+        <div>Your stay at {spot.Owner?.firstName}'s place
+          <div>
+            {bookingsArr.map(booking => (
+              <div>
+                {sessionUser.id === booking.userId && (
+                  <div>{booking.startDate}</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

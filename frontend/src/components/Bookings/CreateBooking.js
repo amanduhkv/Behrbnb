@@ -27,6 +27,9 @@ const CreateBookingForm = () => {
   nextDay.setDate(nextDay.getDate() + 1);
   let newMonth = nextDay.getMonth();
   let newDay = nextDay.getDate();
+  if (newDay.toString().length === 1) {
+    newDay = `0${newDay}`
+  }
   let newYear = nextDay.getFullYear();
 
   let today = `${currentMonth + 1}-${currentDay}-${currentYear}`
@@ -34,6 +37,7 @@ const CreateBookingForm = () => {
   let tomorrow = `${newMonth + 1}-${newDay}-${newYear}`
   // console.log("Tomorrow is ", tomorrow)
   console.log("MIN", `${newYear}-${newMonth + 1}-${newDay}`)
+  console.log("END DATE", endDate)
 
 
   // ERROR HANDLING ====================
@@ -41,7 +45,6 @@ const CreateBookingForm = () => {
     const errors = [];
 
     if (startDate <= today) errors.push('The first available check-in date is tomorrow.')
-    if (startDate < tomorrow) errors.push('The first available check-in date is tomorrow.')
 
     setValidationErrors(errors);
   }, [startDate, endDate]);
@@ -52,7 +55,6 @@ const CreateBookingForm = () => {
     e.preventDefault();
 
     setHasSubmit(true);
-    setValidationErrors([]);
 
     const payload = {
       startDate,
@@ -60,15 +62,21 @@ const CreateBookingForm = () => {
     };
 
 
-    return dispatch(createBooking(payload, spotId)).catch(
-      async (res) => {
+    try {
+      let newBooking = await dispatch(createBooking(payload, spotId));
+
+      if(newBooking) {
+        setValidationErrors([]);
+        history.push(`/spots/${spotId}/bookings`)
+      }
+    } catch (res) {
         const data = await res.json();
         if (data && data.message) {
           console.log('DATA', data)
           setValidationErrors([data.message])
         }
-      }
-    )
+    }
+
 
 
     // if (!validationErrors.length) {

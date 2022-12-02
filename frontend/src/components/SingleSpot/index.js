@@ -8,12 +8,13 @@ import '../SingleSpot/SingleSpot.css'
 import Reviews from '../Reviews/Reviews';
 import bear from '../../assets/bear.svg';
 import CreateBookingForm from '../Bookings/CreateBooking';
+import Calendar from '../Calendar/calendar';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const singleSpot = useSelector(state => state.spots.singleSpot);
-  
+
   // console.log('single spot', singleSpot)
   const dispatch = useDispatch();
 
@@ -132,6 +133,10 @@ const SingleSpot = () => {
               <DeleteSpot />
             </div>
           )}
+
+          {/* <div>
+            <Calendar />
+          </div> */}
           {/* {sessionUser && reviews.find(review => userId === sessionUser.id)} */}
           <div id='reviews'>
             <Reviews />
