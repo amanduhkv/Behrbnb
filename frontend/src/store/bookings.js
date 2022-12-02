@@ -40,8 +40,6 @@ export const getBookings = (spotId) => async dispatch => {
   const response = await fetch(`/api/spots/${spotId}/bookings`);
 
   if (response.ok) {
-    const user = await fetch('/api/users');
-    console.log('This the user', user)
     const list = await response.json();
     dispatch(load(list));
   };
