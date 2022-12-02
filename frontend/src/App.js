@@ -14,6 +14,8 @@ import CreateReview from "./components/Reviews/CreateReview";
 import EditSpotForm from "./components/Spots/EditSpotForm";
 import SignupFormPage from "./components/SignupFormPage";
 import CreateBookingForm from "./components/Bookings/CreateBooking";
+import Bookings from "./components/Bookings/SpotBookings";
+import Calendar from "./components/Calendar/calendar";
 
 
 function App() {
@@ -42,7 +44,8 @@ function App() {
             <GetSpotsCurrentUser />
           </Route>
           <Route path='/spots/:spotId/bookings'>
-            <CreateBookingForm />
+            <Bookings />
+            <Calendar />
           </Route>
           <Route exact path='/spots/:spotId/edit'>
             <EditSpotForm />
