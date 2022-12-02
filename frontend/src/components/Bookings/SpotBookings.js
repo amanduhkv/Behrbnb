@@ -42,11 +42,11 @@ const Bookings = () => {
               <li id='res-listings'>
                 <div id='res-username'>{booking.User.firstName}'s Reservation:</div>
                 <div id='res-list-checkin'>
-                  <div>CHECK-IN</div>
+                  <div>Check-in</div>
                   {formatDate(booking.startDate)}
                 </div>
                 <div id='res-list-checkout'>
-                  <div>CHECKOUT</div>
+                  <div>Checkout</div>
                   {formatDate(booking.endDate)}
                 </div>
               </li>
@@ -56,18 +56,28 @@ const Bookings = () => {
         </ul>
       )}
       {sessionUser.id !== spot.ownerId && (
-        <div>Your stay at {spot.Owner?.firstName}'s place
-          <ul>
+        <div className="reservation">
+          <div className="res-title" style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+              backgroundImage: `url(${spot?.SpotImages[0]?.url})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              maxWidth: '100%'
+            }}>
+            Your stay at {spot.Owner?.firstName}'s place
+          </div>
+          <ul className="res-user-container">
             {bookingsArr.map(booking => (
-              <div>
+              <div key={booking.id}>
                 {sessionUser.id === booking.userId && (
                   <li id='res-listings'>
                     <div id='res-list-checkin'>
-                      <div>CHECK-IN</div>
+                      <div>Check-in</div>
                       {formatDate(booking.startDate)}
                     </div>
                     <div id='res-list-checkout'>
-                      <div>CHECKOUT</div>
+                      <div>Checkout</div>
                       {formatDate(booking.endDate)}
                     </div>
                   </li>

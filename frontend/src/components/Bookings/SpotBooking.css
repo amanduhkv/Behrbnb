@@ -1,3 +1,10 @@
+.reservation {
+  box-sizing: border-box;
+
+  display: flex;
+  margin: 20px;
+}
+
 .res-container {
   display: flex;
   flex-direction: column;
@@ -11,6 +18,9 @@
 #res-listings {
   list-style: none;
   display: flex;
+  border-bottom: 1px solid rgb(182, 181, 181);
+  padding: 0 10px;
+  margin: 0 20px;
 }
 
 #res-list-checkin,
@@ -22,31 +32,62 @@
   height: fit-content;
 
   font-size: 14px;
-
-  border: 1px solid rgb(182, 181, 181);
-  padding: 10px;
 }
 
 #res-list-checkin {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  border-right: none;
+  border-right: 1px solid rgb(182, 181, 181);
+  margin: 20px;
 }
 
 #res-list-checkout {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+  margin: 20px;
 }
 
 
 #res-list-checkin div,
 #res-list-checkout div {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
 }
 
 #res-username {
   margin: 10px;
   font-weight: 600;
   text-align: center;
+}
+
+
+.res-user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 50%;
+  height: 50vh;
+  background-color: rgb(235,235,235);
+
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  overflow-y: auto;
+}
+
+.res-title {
+  box-sizing: border-box;
+  width: 50%;
+  height: 50vh;
+
+  color: white;
+  font-size: 32px;
+  font-weight: 500;
+
+  padding: 4rem;
+
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
