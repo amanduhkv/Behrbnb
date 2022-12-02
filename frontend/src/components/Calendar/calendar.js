@@ -41,7 +41,7 @@ export default function Calendar() {
       <div>
         {months[currentDate.getMonth()]} {currentDate.getFullYear()}
       </div>
-      <table>
+      <table className='calendar'>
         <tr>
           {weekdays.map(day => (
             <th colSpan='1' scope="col">{day.slice(0, 3)}</th>

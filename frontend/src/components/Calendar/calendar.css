@@ -1,3 +1,19 @@
 table, th, td {
-  border: 1px red solid;
+  /* border: 1px red solid; */
+  font-size: 14px;
+
+  text-align: center;
+}
+
+.calendar td {
+  width: 3em;
+  height: 3em;
+  border:rgba(0, 0, 0, 0.5)
+}
+
+.calendar td:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border:rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  cursor: pointer;
 }

@@ -23,7 +23,19 @@ const Bookings = () => {
 
   return (
     <div>
-      {bookingsArr.map(booking => (booking.startDate))}
+      <ul>
+        {bookingsArr.map(booking => (
+          <>
+            <li key={booking.id}>
+              <div>Name's Reservation:</div>
+              Check-in date: {booking.startDate}
+              <br/>
+              Checkout date: {booking.endDate}
+            </li>
+            <br />
+          </>
+        ))}
+      </ul>
     </div>
   )
 }
