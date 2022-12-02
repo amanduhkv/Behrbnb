@@ -11,7 +11,7 @@ function DeleteSpot() {
   const handleDelete = async e => {
     e.preventDefault();
 
-    const deletion = dispatch(deleteSpot(spot.id));
+    const deletion = await dispatch(deleteSpot(spot.id));
     if(deletion) {
       history.push('/');
     }

@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-import { getBookings } from "../../store/bookings";
+import { getBookings, deleteBooking } from "../../store/bookings";
 import { getASpot } from "../../store/spots";
 
+
+import DeleteBooking from "./DeleteBooking";
 import './SpotBooking.css';
 
 const Bookings = () => {
@@ -16,7 +18,6 @@ const Bookings = () => {
   const spot = useSelector(state => state.spots.singleSpot);
 
   const dispatch = useDispatch();
-
 
   // helper fxn to format dates with slashes
   const formatDate = (date) => {
@@ -58,29 +59,34 @@ const Bookings = () => {
       {sessionUser.id !== spot.ownerId && (
         <div className="reservation">
           <div className="res-title" style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.2)',
-              backgroundImage: `url(${spot?.SpotImages[0]?.url})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              maxWidth: '100%'
-            }}>
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            backgroundImage: `url(${spot?.SpotImages[0]?.url})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            maxWidth: '100%'
+          }}>
             Your stay at {spot.Owner?.firstName}'s place
           </div>
           <ul className="res-user-container">
             {bookingsArr.map(booking => (
               <div key={booking.id}>
                 {sessionUser.id === booking.userId && (
-                  <li id='res-listings'>
-                    <div id='res-list-checkin'>
-                      <div>Check-in</div>
-                      {formatDate(booking.startDate)}
+                  <div className="indiv-res">
+                    <li id='res-listings'>
+                      <div id='res-list-checkin'>
+                        <div>Check-in</div>
+                        {formatDate(booking.startDate)}
+                      </div>
+                      <div id='res-list-checkout'>
+                        <div>Checkout</div>
+                        {formatDate(booking.endDate)}
+                      </div>
+                    </li>
+                    <div>
+                    <DeleteBooking bookingId={booking.id} />
                     </div>
-                    <div id='res-list-checkout'>
-                      <div>Checkout</div>
-                      {formatDate(booking.endDate)}
-                    </div>
-                  </li>
+                  </div>
                 )}
               </div>
             ))}

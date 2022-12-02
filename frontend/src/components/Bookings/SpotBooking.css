@@ -1,3 +1,8 @@
+.indiv-res {
+  display: flex;
+  width: 100%;
+}
+
 .reservation {
   box-sizing: border-box;
 
