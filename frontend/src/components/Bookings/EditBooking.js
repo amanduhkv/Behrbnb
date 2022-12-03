@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom"
 
 import { updateBooking } from "../../store/bookings";
 
-const EditBookingForm = ({bookingId, start, end}) => {
+const EditBookingForm = ({bookingId, start, end, updateModal}) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
 
@@ -62,6 +62,7 @@ const EditBookingForm = ({bookingId, start, end}) => {
       if(updatedBooking) {
         // console.log('UPDATE WORKING')
         setValidationErrors([]);
+        updateModal(false)
         history.push(`/spots/${spotId}/bookings`)
       }
     } catch (res) {

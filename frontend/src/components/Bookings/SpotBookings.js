@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
+import { Modal } from "../../context/Modal";
 
 import { getBookings } from "../../store/bookings";
 import { getASpot } from "../../store/spots";
@@ -19,6 +20,8 @@ const Bookings = () => {
   const spot = useSelector(state => state.spots.singleSpot);
 
   const dispatch = useDispatch();
+
+  const [showUpdate, setShowUpdate] = useState(false);
 
   // helper fxn to format dates with slashes
   const formatDate = (date) => {
@@ -88,7 +91,12 @@ const Bookings = () => {
                         </div>
                       </li>
                       <div>
-                        <EditBookingForm bookingId={booking.id} start={booking.startDate} end={booking.endDate} />
+                        <button id='edit-delete-button' onClick={() => setShowUpdate(true)}>Update</button>
+                        {showUpdate && (
+                        <Modal onClose={() => setShowUpdate(false)}>
+                          <EditBookingForm bookingId={booking.id} start={booking.startDate} end={booking.endDate} updateModal={setShowUpdate} />
+                        </Modal>
+                        )}
                       </div>
                       <div id='res-user-delete'>
                         <DeleteBooking bookingId={booking.id} />
