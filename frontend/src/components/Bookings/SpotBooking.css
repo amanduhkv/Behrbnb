@@ -9,15 +9,7 @@
 
   display: flex;
   margin: 20px;
-}
-
-.res-user-container {
-  display: flex;
-  flex-direction: column;
-
-  width: fit-content;
-  height: 80vh;
-  overflow-y: auto;
+  height: fit-content;
 }
 
 #res-user-delete {

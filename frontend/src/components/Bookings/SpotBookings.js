@@ -29,6 +29,13 @@ const Bookings = () => {
     const formatted = [month, day, year].join('/');
     return formatted;
   }
+  // getting current date
+  let currentDate = new Date();
+  let currentMonth = currentDate.getMonth();
+  let currentDay = currentDate.getDate();
+  let currentYear = currentDate.getFullYear();
+
+  let today = `${currentYear}-${currentMonth + 1}-${currentDay}`
 
 
   useEffect(() => {
@@ -74,11 +81,12 @@ const Bookings = () => {
           }}>
             Your upcoming stay at {spot.Owner?.firstName}'s place
           </div>
+
           <div className="res-user-container">
             <ul>
               {bookingsArr.map(booking => (
                 <div key={booking.id}>
-                  {sessionUser.id === booking.userId && (
+                  {sessionUser.id === booking.userId && today < booking.endDate && (
                     <div className="indiv-res">
                       <li id='res-user-listings'>
                         <div id='res-user-list-checkin'>
@@ -111,6 +119,53 @@ const Bookings = () => {
               <div>Address: {spot.address}</div>
             </div> */}
           </div>
+        </div>
+      )}
+      {sessionUser.id !== spot.ownerId && (
+        <div className="reservation">
+          <div className="res-title" style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            backgroundImage: `url(${spot?.SpotImages[0]?.url})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            maxWidth: '100%'
+          }}>
+            Your previous stay at {spot.Owner?.firstName}'s place
+          </div>
+          {/* {bookingsArr && (
+            <div className="res-user-container">
+            <div className="indiv-res">You haven't stayed here before.</div>
+            </div>
+          )} */}
+
+          <div className="res-user-container">
+            <ul>
+              {bookingsArr.map(booking => (
+                <div key={booking.id}>
+                  {sessionUser.id === booking.userId && today > booking.endDate && (
+                    <div className="indiv-res">
+                      <li id='res-user-listings'>
+                        <div id='res-user-list-checkin'>
+                          <div>Check-in</div>
+                          {formatDate(booking.startDate)}
+                        </div>
+                        <div id='res-user-list-checkout'>
+                          <div>Checkout</div>
+                          {formatDate(booking.endDate)}
+                        </div>
+                      </li>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </ul>
+            {/* <div>
+              <div>Getting there</div>
+              <div>Address: {spot.address}</div>
+            </div> */}
+          </div>
+
         </div>
       )}
     </div>
