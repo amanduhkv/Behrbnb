@@ -93,7 +93,7 @@ const Bookings = () => {
                       <div>
                         <button id='edit-delete-button' onClick={() => setShowUpdate(true)}>Update</button>
                         {showUpdate && (
-                        <Modal onClose={() => setShowUpdate(false)}>
+                        <Modal id='update-booking-modal' onClose={() => setShowUpdate(false)}>
                           <EditBookingForm bookingId={booking.id} start={booking.startDate} end={booking.endDate} updateModal={setShowUpdate} />
                         </Modal>
                         )}

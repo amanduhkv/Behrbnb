@@ -108,7 +108,9 @@ const EditBookingForm = ({bookingId, start, end, updateModal}) => {
             />
           </div>
         </div>
-        <button type='submit'>Update</button>
+        <br/>
+        <button id='edit-delete-button' type='submit'>Update</button>
+        <button id='edit-delete-button' onClick={() => updateModal(false)}>Cancel</button>
 
 
         {validationErrors.length > 0 && (
