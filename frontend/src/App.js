@@ -14,6 +14,7 @@ import CreateReview from "./components/Reviews/CreateReview";
 import EditSpotForm from "./components/Spots/EditSpotForm";
 import SignupFormPage from "./components/SignupFormPage";
 import Bookings from "./components/Bookings/SpotBookings";
+import CurrentUserBookings from "./components/Bookings/CurrentUserBookings";
 // import Calendar from "./components/Calendar/calendar";
 
 
@@ -36,6 +37,9 @@ function App() {
           {/* <Route path="/signup">
             <SignupFormPage />
           </Route> */}
+          <Route path='/bookings/current'>
+            <CurrentUserBookings />
+          </Route>
           <Route path='/reviews/current'>
             <UserReviews />
           </Route>

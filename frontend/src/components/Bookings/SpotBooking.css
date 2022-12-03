@@ -4,6 +4,19 @@
   justify-content: space-evenly;
 }
 
+#nav-booking {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  background-color: rgb(220,30,87);
+  width: fit-content;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 .reservation {
   box-sizing: border-box;
 
@@ -81,6 +94,8 @@
 }
 
 .res-title {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   width: 50%;
   height: 50vh;
