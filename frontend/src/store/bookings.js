@@ -72,17 +72,19 @@ export const createBooking = (booking, spotId) => async dispatch => {
 };
 
 // UPDATE A BOOKING
-export const updateBooking = (booking, id) => async dispatch => {
-  const response = await csrfFetch(`/api/bookings/${id}`, {
+export const updateBooking = (booking, bookingId) => async dispatch => {
+  // console.log("UPDATING?")
+  const response = await csrfFetch(`/api/bookings/${bookingId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(booking)
   });
+  // console.log("RESPONSE FOR UPDATE", response)
 
   if(response.ok) {
     const updateBooking = await response.json();
 
-    dispatch(update(updateBooking));
+    dispatch(update(updateBooking, bookingId));
     return updateBooking;
   }
 }

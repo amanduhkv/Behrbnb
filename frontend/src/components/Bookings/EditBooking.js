@@ -1,12 +1,15 @@
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
 
-const EditBookingForm = () => {
+import { updateBooking } from "../../store/bookings";
+
+const EditBookingForm = ({bookingId, start, end}) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
 
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState(start);
+  const [endDate, setEndDate] = useState(end);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
 
@@ -28,11 +31,7 @@ const EditBookingForm = () => {
   let newYear = nextDay.getFullYear();
 
   let today = `${currentMonth + 1}-${currentDay}-${currentYear}`
-  // console.log("Today is ", today)
-  let tomorrow = `${newMonth + 1}-${newDay}-${newYear}`
-  // console.log("Tomorrow is ", tomorrow)
-  console.log("MIN", `${newYear}-${newMonth + 1}-${newDay}`)
-  console.log("END DATE", endDate)
+
 
 
   // ERROR HANDLING ====================
@@ -45,8 +44,8 @@ const EditBookingForm = () => {
   }, [startDate, endDate]);
 
   // SUBMIT FXN ========================
-  const handleSubmit = async e => {
-    console.log('HITTING THE SUBMIT')
+  const handleUpdate = async e => {
+    // console.log('HITTING THE SUBMIT')
     e.preventDefault();
 
     setHasSubmit(true);
@@ -58,16 +57,17 @@ const EditBookingForm = () => {
 
 
     try {
-      let newBooking = await dispatch(createBooking(payload, spotId));
-
-      if(newBooking) {
+      // console.log('INSIDE THE TRY BLOCK')
+      let updatedBooking = await dispatch(updateBooking(payload, bookingId));
+      if(updatedBooking) {
+        // console.log('UPDATE WORKING')
         setValidationErrors([]);
         history.push(`/spots/${spotId}/bookings`)
       }
     } catch (res) {
         const data = await res.json();
         if (data && data.message) {
-          console.log('DATA', data)
+          // console.log('DATA', data)
           setValidationErrors([data.message])
         }
     }
@@ -85,21 +85,20 @@ const EditBookingForm = () => {
 
   return (
     <div className="form-for-booking">
-      <form className="booking-form" onSubmit={handleSubmit}>
+      <form className="booking-form" onSubmit={handleUpdate}>
+
         <div id='dates'>
           <div id='date-checkin'>
-            <label for='start'>CHECK-IN</label>
+            <label for='start'>Check-in</label>
             <input
               id='start'
               type="date"
-              min={`${newYear}-${newMonth + 1}-${newDay}`}
-              max={endDate}
               value={startDate}
               onChange={e => { setStartDate(e.target.value) }}
             />
           </div>
           <div id='date-checkout'>
-            <label for='end'>CHECKOUT</label>
+            <label for='end'>Checkout</label>
             <input
               id='end'
               type="date"
@@ -108,7 +107,7 @@ const EditBookingForm = () => {
             />
           </div>
         </div>
-        <button type='submit'>Reserve</button>
+        <button type='submit'>Update</button>
 
 
         {validationErrors.length > 0 && (

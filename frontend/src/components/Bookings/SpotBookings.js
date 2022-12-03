@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { getBookings, deleteBooking } from "../../store/bookings";
+import { getBookings } from "../../store/bookings";
 import { getASpot } from "../../store/spots";
 
 
 import DeleteBooking from "./DeleteBooking";
+import EditBookingForm from "./EditBooking";
 import './SpotBooking.css';
 
 const Bookings = () => {
@@ -36,6 +37,7 @@ const Bookings = () => {
 
   return (
     <div>
+      {/* ====================== if user owns spot ====================== */}
       {sessionUser.id === spot.ownerId && (
         <ul className="res-container">
           {bookingsArr.map(booking => (
@@ -56,6 +58,7 @@ const Bookings = () => {
           ))}
         </ul>
       )}
+      {/* ==================== if user doesn't own spot =================== */}
       {sessionUser.id !== spot.ownerId && (
         <div className="reservation">
           <div className="res-title" style={{
@@ -66,31 +69,40 @@ const Bookings = () => {
             backgroundPosition: 'center',
             maxWidth: '100%'
           }}>
-            Your stay at {spot.Owner?.firstName}'s place
+            Your upcoming stay at {spot.Owner?.firstName}'s place
           </div>
-          <ul className="res-user-container">
-            {bookingsArr.map(booking => (
-              <div key={booking.id}>
-                {sessionUser.id === booking.userId && (
-                  <div className="indiv-res">
-                    <li id='res-user-listings'>
-                      <div id='res-user-list-checkin'>
-                        <div>Check-in</div>
-                        {formatDate(booking.startDate)}
+          <div className="res-user-container">
+            <ul>
+              {bookingsArr.map(booking => (
+                <div key={booking.id}>
+                  {sessionUser.id === booking.userId && (
+                    <div className="indiv-res">
+                      <li id='res-user-listings'>
+                        <div id='res-user-list-checkin'>
+                          <div>Check-in</div>
+                          {formatDate(booking.startDate)}
+                        </div>
+                        <div id='res-user-list-checkout'>
+                          <div>Checkout</div>
+                          {formatDate(booking.endDate)}
+                        </div>
+                      </li>
+                      <div>
+                        <EditBookingForm bookingId={booking.id} start={booking.startDate} end={booking.endDate} />
                       </div>
-                      <div id='res-user-list-checkout'>
-                        <div>Checkout</div>
-                        {formatDate(booking.endDate)}
+                      <div id='res-user-delete'>
+                        <DeleteBooking bookingId={booking.id} />
                       </div>
-                    </li>
-                    <div id='res-user-delete'>
-                    <DeleteBooking bookingId={booking.id} />
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </ul>
+                  )}
+                </div>
+              ))}
+            </ul>
+            {/* <div>
+              <div>Getting there</div>
+              <div>Address: {spot.address}</div>
+            </div> */}
+          </div>
         </div>
       )}
     </div>
