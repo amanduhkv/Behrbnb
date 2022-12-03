@@ -1,9 +1,16 @@
 const express = require('express');
 
-const {requireAuth} = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { Booking, Spot, User, SpotImage } = require('../../db/models');
 
 const router = express.Router();
+
+
+const date = new Date();
+let day = date.getDate();
+let month = date.getMonth();
+let year = date.getFullYear();
+let currentDate = `${year}-${month}-${day}`
 
 //GET all current user's bookings
 router.get('/current', requireAuth, async (req, res) => {
@@ -30,7 +37,7 @@ router.get('/current', requireAuth, async (req, res) => {
         spotId: thisReview.spotId
       }
     });
-    if(previewImage) {
+    if (previewImage) {
       thisReview.Spot.previewImage = previewImage.url;
     }
     else {
@@ -38,16 +45,21 @@ router.get('/current', requireAuth, async (req, res) => {
     }
     bookings.push(thisReview)
   }
-  return res.json({Bookings: bookings});
+  return res.json({ Bookings: bookings });
 })
 
 
 //UPDATE a booking
 router.put('/:bookingId', requireAuth, async (req, res) => {
+  // console.log("INSIDE THE BACKEND ROUTE FOR PUT")
   const { startDate, endDate } = req.body;
+  // console.log("REQ ======", req)
+  // console.log("REQ ======", req.user.id)
   const updateBooking = await Booking.findByPk(req.params.bookingId);
 
-  if(!startDate || !endDate || endDate <= startDate) {
+  // console.log("BOOKING USER ID =====", updateBooking.userId)
+
+  if (!startDate || !endDate || endDate <= startDate) {
     return res
       .status(400)
       .json({
@@ -58,7 +70,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         }
       })
   }
-  if(!updateBooking) {
+  if (!updateBooking) {
     return res
       .status(404)
       .json({
@@ -66,7 +78,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         "statusCode": 404
       })
   }
-  if(endDate < updateBooking.endDate) {
+  if (currentDate > updateBooking.endDate) {
     return res
       .status(403)
       .json({
@@ -74,24 +86,27 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         "statusCode": 403
       })
   }
-  if(updateBooking.startDate >= startDate && updateBooking.endDate <= endDate || updateBooking.startDate <= startDate && updateBooking.endDate >= endDate) {
-    return res
-    .status(403)
-    .json({
-      "message": "Sorry, this spot is already booked for the specified dates",
-      "statusCode": 403,
-      "errors": {
-        "startDate": "Start date conflicts with an existing booking",
-        "endDate": "End date conflicts with an existing booking"
-      }
-    })
+
+  if (req.user.id !== updateBooking.userId) {
+    if (updateBooking.startDate >= startDate && updateBooking.endDate <= endDate || updateBooking.startDate <= startDate && updateBooking.endDate >= endDate) {
+      return res
+        .status(403)
+        .json({
+          "message": "Sorry, this spot is already booked for the specified dates",
+          "statusCode": 403,
+          "errors": {
+            "startDate": "Start date conflicts with an existing booking",
+            "endDate": "End date conflicts with an existing booking"
+          }
+        })
+    }
   }
+    // console.log("HITTING THE BACKEND ===========")
+    updateBooking.startDate = startDate;
+    updateBooking.endDate = endDate;
+    updateBooking.save();
 
-  updateBooking.startDate = startDate;
-  updateBooking.endDate = endDate;
-  updateBooking.save();
-
-  return res.json(updateBooking);
+    return res.json(updateBooking);
 })
 
 
@@ -99,13 +114,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 router.delete('/:bookingId', requireAuth, async (req, res) => {
   const deleteBooking = await Booking.findByPk(req.params.bookingId);
 
-  const date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth();
-  let year = date.getFullYear();
-  let currentDate = `${year}-${month}-${day}`
-
-  if(!deleteBooking) {
+  if (!deleteBooking) {
     return res
       .status(404)
       .json({
@@ -113,7 +122,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         "statusCode": 404
       })
   }
-  if(currentDate >= deleteBooking.startDate && currentDate <= deleteBooking.endDate) {
+  if (currentDate >= deleteBooking.startDate && currentDate <= deleteBooking.endDate) {
     return res
       .status(403)
       .json({
