@@ -85,7 +85,7 @@ const EditBookingForm = ({bookingId, start, end, updateModal}) => {
   };
 
   return (
-    <div className="form-for-booking">
+    <div className="form-for-booking" id='edit'>
       <form className="booking-form" onSubmit={handleUpdate}>
 
         <div id='dates'>
