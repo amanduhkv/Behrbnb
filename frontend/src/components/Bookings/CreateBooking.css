@@ -57,6 +57,11 @@
   border-bottom-right-radius: 8px;
 }
 
+#start:hover,
+#end:hover {
+  cursor: pointer;
+}
+
 
 #error-div popup {
   border:rgb(182, 181, 181) 1px solid;
