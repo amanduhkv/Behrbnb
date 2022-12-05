@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { getSpots } from '../../store/spots'
 import './Spots.css'
 
+import brokenImg from '../../assets/no-image.svg';
+
 const Spots = () => {
   const spots = useSelector(state => {
     return state.spots.allSpots;
@@ -23,7 +25,7 @@ const Spots = () => {
       {spotsArr.map(spot => (
         <div id='card-info' key={spot.id}>
           <NavLink to={`/spots/${spot.id}`}>
-            <img className='spot-image' src={spot.previewImage} />
+            <img className='spot-image' src={spot.previewImage} onError={e => e.target.src=brokenImg} />
           </NavLink>
           <div id='each'>
             <div className='each-card'>

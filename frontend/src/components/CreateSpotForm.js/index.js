@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import { createSpot } from '../../store/spots';
+import brokenImg from '../../assets/no-image.svg';
 import './CreateSpotForm.css';
 
 const CreateSpotForm = () => {
