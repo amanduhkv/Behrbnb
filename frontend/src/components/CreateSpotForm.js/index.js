@@ -69,7 +69,7 @@ const CreateSpotForm = () => {
     };
     if (!validationErrors.length) {
       let createdSpot = await dispatch(createSpot(payload, image));
-      // console.log('this is the spot', createdSpot)
+      console.log('this is the spot', createdSpot)
       if (createdSpot) {
         history.push(`/spots/${createdSpot.id}`)
       }

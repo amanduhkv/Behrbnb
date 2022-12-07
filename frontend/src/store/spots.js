@@ -1,3 +1,4 @@
+import { startTransition } from "react";
 import { csrfFetch } from "./csrf";
 
 export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
@@ -33,9 +34,9 @@ const update = (spot, id) => ({
   id
 });
 
-const deletion = (id) => ({
+const deletion = (spotId) => ({
   type: DELETE_SPOT,
-  id
+  spotId
 });
 
 export const getSpots = () => async dispatch => {
@@ -50,7 +51,7 @@ export const getSpots = () => async dispatch => {
 export const getSpotCurrentUser = () => async dispatch => {
   const response = await csrfFetch('/api/spots/current');
 
-  if(response.ok) {
+  if (response.ok) {
     const currentUserSpots = await response.json();
     dispatch(load(currentUserSpots));
   };
@@ -85,10 +86,10 @@ export const createSpot = (spot, img) => async dispatch => {
       })
     });
 
-    if(res.ok) {
+    if (res.ok) {
       const spotWImage = await res.json();
-      dispatch(create(spotWImage));
-      return spotWImage;
+      dispatch(create(newSpot));
+      return newSpot;
     };
   };
 };
@@ -104,7 +105,7 @@ export const updateSpot = (spot, id) => async dispatch => {
     body: JSON.stringify(spot)
   });
 
-  if(response.ok) {
+  if (response.ok) {
     const updatedSpot = await response.json();
     // console.log('this is working', updatedSpot)
     dispatch(update(updatedSpot));
@@ -112,14 +113,14 @@ export const updateSpot = (spot, id) => async dispatch => {
   };
 };
 
-export const deleteSpot = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/spots/${id}`, {
+export const deleteSpot = (spotId) => async dispatch => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: 'DELETE'
   });
 
-  if(response.ok) {
+  if (response.ok) {
     // const deletedSpot = await response.json();
-    dispatch(deletion(id));
+    dispatch(deletion(spotId));
     // return ('Successfully deleted');
   }
 }
@@ -151,29 +152,16 @@ const spotsReducer = (state = initialState, action) => {
       }
     case UPDATE_SPOT:
     case CREATE_SPOT:
-      const createState = {
-        ...state,
-        allSpots: {
-          ...state.allSpots,
-          [action.spot.id]: action.spot
-        },
-        singleSpot: {
-          ...state.singleSpot,
-        }
-      }
-      createState.singleSpot = action.spot
-      return createState;
+      const createState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot } }
+      const newSpot = { ...action.spot };
+      createState.singleSpot[action.spot.id] = newSpot;
     case DELETE_SPOT:
-      const deleteState = {
-        allSpots: { ...state.allSpots },
-        singleSpot: { ...state.singleSpot }
+      const newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot } };
+      delete newState.allSpots[action.spotId];
+      if (newState.singleSpot.id === action.spotId) {
+        newState.singleSpot = {}
       }
-      // console.log('this about to be yeeted', deleteState)
-      if (deleteState.singleSpot.id === action.id) {
-        deleteState.singleSpot = {}
-      }
-      delete deleteState.allSpots[action.id];
-      return deleteState;
+      return newState;
     default:
       return state;
   }
