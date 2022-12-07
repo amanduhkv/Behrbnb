@@ -35,6 +35,10 @@ const Bookings = () => {
   let currentDay = currentDate.getDate();
   let currentYear = currentDate.getFullYear();
 
+  if (currentDay.toString().length === 1) {
+    currentDay = `0${currentDay}`
+  }
+
   let today = `${currentYear}-${currentMonth + 1}-${currentDay}`
 
 
@@ -143,7 +147,7 @@ const Bookings = () => {
             <ul>
               {bookingsArr.map(booking => (
                 <div key={booking.id}>
-                  {sessionUser.id === booking.userId && today > booking.endDate && (
+                  {sessionUser.id === booking.userId && today > booking.startDate && (
                     <div className="indiv-res">
                       <li id='res-user-listings'>
                         <div id='res-user-list-checkin'>
