@@ -10,6 +10,8 @@ import bear from '../../assets/bear.svg';
 import CreateBookingForm from '../Bookings/CreateBooking';
 import Calendar from '../Calendar/calendar';
 
+import brokenImg from '../../assets/no-image.svg';
+
 const SingleSpot = () => {
   const { spotId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
@@ -60,7 +62,7 @@ const SingleSpot = () => {
           </div>
 
           <div className='spot-images'>
-            <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' />
+            <img id='single-image' src={singleSpot?.SpotImages?.[0]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' onError={e => e.target.src='https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} />
             <div id='quad-images'>
               <div id='first-two'>
                 <img id='one' src={singleSpot?.SpotImages?.[1]?.url ?? 'https://drive.google.com/uc?export=view&id=1tksFIkzN8aVDjYOR58LGNE31Kgsyfnja'} alt='no-img' />

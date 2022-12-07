@@ -87,8 +87,8 @@ export const createSpot = (spot, img) => async dispatch => {
 
     if(res.ok) {
       const spotWImage = await res.json();
-      dispatch(create(newSpot));
-      return newSpot;
+      dispatch(create(spotWImage));
+      return spotWImage;
     };
   };
 };
