@@ -26,6 +26,10 @@ const CurrentUserBookings = () => {
   let currentDay = currentDate.getDate();
   let currentYear = currentDate.getFullYear();
 
+  if (currentDay.toString().length === 1) {
+    currentDay = `0${currentDay}`
+  }
+
   let today = `${currentYear}-${currentMonth + 1}-${currentDay}`
 
   useEffect(() => {
