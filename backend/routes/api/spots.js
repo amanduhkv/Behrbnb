@@ -360,6 +360,8 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   });
 });
 
+
+// CREATE spot review
 router.post('/:spotId/reviews', requireAuth, async(req, res) => {
   const { review, stars } = req.body;
   const findSpot = await Spot.findByPk(req.params.spotId);
@@ -409,6 +411,8 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
   res.json(spotReview)
 })
 
+
+// CREATE spot
 router.post('/', requireAuth, async (req, res, next) => {
   const { ownerId, address, city, state, country, lat, lng, name, description, price } = req.body;
 
