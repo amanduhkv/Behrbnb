@@ -17,7 +17,12 @@ const CreateSpotForm = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState([]);
+  const [img1, setImg1] = useState('');
+  const [img2, setImg2] = useState('');
+  const [img3, setImg3] = useState('');
+  const [img4, setImg4] = useState('');
+  const [img5, setImg5] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
 
@@ -35,8 +40,28 @@ const CreateSpotForm = () => {
     if (!description) errors.push('Please enter a description for the new spot');
     if (!price) errors.push("Please enter a price");
     if (!image) errors.push("Please provide a valid image url for the spot");
+
+    let imgArr = []
+    if (img1.length) {
+      imgArr.push(img1)
+    }
+    if (img2.length) {
+      imgArr.push(img2)
+    }
+    if (img3.length) {
+      imgArr.push(img3)
+    }
+    if (img4.length) {
+      imgArr.push(img4)
+    }
+    if (img5.length) {
+      imgArr.push(img5)
+    }
+    if (imgArr.length) setImage(imgArr);
     setValidationErrors(errors);
-  }, [address, city, state, country, lat, lng, name, description, price, image]);
+  }, [address, city, state, country, lat, lng, name, description, price, img1, img2, img3, img4, img5]);
+
+
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -55,6 +80,7 @@ const CreateSpotForm = () => {
     //   setPrice('')
     //   setImage('');
     // }
+    console.log('THESE ARE THE SPOT IMAGES', image)
 
     const payload = {
       address,
@@ -88,7 +114,7 @@ const CreateSpotForm = () => {
             maxLength='255'
             value={address}
             onChange={e => setAddress(e.target.value)}
-            // required
+          // required
           />
           <input
             id='spot-input'
@@ -97,7 +123,7 @@ const CreateSpotForm = () => {
             maxLength='255'
             value={city}
             onChange={e => setCity(e.target.value)}
-            // required
+          // required
           />
           <input
             id='spot-input'
@@ -106,7 +132,7 @@ const CreateSpotForm = () => {
             maxLength='255'
             value={state}
             onChange={e => setState(e.target.value)}
-            // required
+          // required
           />
           <input
             id='spot-input'
@@ -115,7 +141,7 @@ const CreateSpotForm = () => {
             maxLength='255'
             value={country}
             onChange={e => setCountry(e.target.value)}
-            // required
+          // required
           />
           <input
             id='spot-input'
@@ -125,7 +151,7 @@ const CreateSpotForm = () => {
             max='90'
             value={lat}
             onChange={e => setLat(e.target.value)}
-            // required
+          // required
           />
           <input
             id='spot-input'
@@ -135,7 +161,7 @@ const CreateSpotForm = () => {
             max='180'
             value={lng}
             onChange={e => setLng(e.target.value)}
-            // required
+          // required
           />
           <input
             id='spot-input'
@@ -144,7 +170,7 @@ const CreateSpotForm = () => {
             maxLength='50'
             value={name}
             onChange={e => setName(e.target.value)}
-            // required
+          // required
           />
           <textarea
             id='spot-input-textarea'
@@ -152,7 +178,7 @@ const CreateSpotForm = () => {
             maxLength='255'
             value={description}
             onChange={e => setDescription(e.target.value)}
-            // required
+          // required
           />
           <input
             id='spot-input2'
@@ -161,25 +187,56 @@ const CreateSpotForm = () => {
             min="0"
             value={price}
             onChange={e => setPrice(e.target.value)}
-            // required
+          // required
           />
           <input
             id='spot-input-url'
             placeholder='url'
             type='text'
             maxLength='255'
-            value={image}
-            onChange={e => setImage(e.target.value)}
-            // required
+            value={img1}
+            onChange={e => setImg1(e.target.value)}
+          />
+          <input
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img2}
+            onChange={e => setImg2(e.target.value)}
+          />
+          <input
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img3}
+            onChange={e => setImg3(e.target.value)}
+          />
+          <input
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img4}
+            onChange={e => setImg4(e.target.value)}
+          />
+          <input
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img5}
+            onChange={e => setImg5(e.target.value)}
           />
         </div>
         {hasSubmit && validationErrors.length > 0 && (
-        <div id='error-div'>
-          The following errors were found:
-          <ul id='error-list'>
-          {validationErrors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
-          </ul>
-        </div>
+          <div id='error-div'>
+            The following errors were found:
+            <ul id='error-list'>
+              {validationErrors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
+            </ul>
+          </div>
         )}
         <div id='buttons-submit'>
           <button id='host-button' type='submit'>Host the Spot</button>
