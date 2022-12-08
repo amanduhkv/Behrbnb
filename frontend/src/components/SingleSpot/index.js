@@ -8,9 +8,10 @@ import '../SingleSpot/SingleSpot.css'
 import Reviews from '../Reviews/Reviews';
 import bear from '../../assets/bear.svg';
 import CreateBookingForm from '../Bookings/CreateBooking';
-import Calendar from '../Calendar/calendar';
+// import Calendar from '../Calendar/calendar';
 
-import brokenImg from '../../assets/no-image.svg';
+// import brokenImg from '../../assets/no-image.svg';
+import aircover from '../../assets/aircover.svg';
 
 const SingleSpot = () => {
   const { spotId } = useParams();
@@ -116,7 +117,7 @@ const SingleSpot = () => {
               <div id='p-title'>Free cancellation</div>
             </div>
             <div id='p-protect'>
-              <img id='aircover' alt='aircover' src='https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg' />
+              <img id='aircover' alt='aircover' src={aircover} />
               <div id='air-des'>
                 Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.
               </div>
