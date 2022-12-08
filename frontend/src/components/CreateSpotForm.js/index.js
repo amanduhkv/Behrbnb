@@ -43,19 +43,39 @@ const CreateSpotForm = () => {
 
     let imgArr = []
     if (img1.length) {
-      imgArr.push(img1)
+      if(!img1.endsWith('.jpg') && !img1.endsWith('jpeg') && !img1.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
+        imgArr.push(img1)
+      }
     }
     if (img2.length) {
+      if(!img2.endsWith('.jpg') && !img2.endsWith('jpeg') && !img2.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
       imgArr.push(img2)
+      }
     }
     if (img3.length) {
+      if(!img3.endsWith('.jpg') && !img3.endsWith('jpeg') && !img3.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
       imgArr.push(img3)
+      }
     }
     if (img4.length) {
+      if(!img4.endsWith('.jpg') && !img4.endsWith('jpeg') && !img4.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
       imgArr.push(img4)
+      }
     }
     if (img5.length) {
+      if(!img5.endsWith('.jpg') && !img5.endsWith('jpeg') && !img5.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
       imgArr.push(img5)
+      }
     }
     if (imgArr.length) setImage(imgArr);
     setValidationErrors(errors);
@@ -80,7 +100,7 @@ const CreateSpotForm = () => {
     //   setPrice('')
     //   setImage('');
     // }
-    console.log('THESE ARE THE SPOT IMAGES', image)
+    // console.log('THESE ARE THE SPOT IMAGES', image)
 
     const payload = {
       address,
@@ -95,7 +115,7 @@ const CreateSpotForm = () => {
     };
     if (!validationErrors.length) {
       let createdSpot = await dispatch(createSpot(payload, image));
-      console.log('this is the spot', createdSpot)
+      // console.log('this is the spot', createdSpot)
       if (createdSpot) {
         history.push(`/spots/${createdSpot.id}`)
       }
