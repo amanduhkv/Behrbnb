@@ -26,6 +26,9 @@ const CurrentUserBookings = () => {
   let currentDay = currentDate.getDate();
   let currentYear = currentDate.getFullYear();
 
+  if (currentMonth.toString().length === 1) {
+    currentMonth = `0${currentMonth}`
+  }
   if (currentDay.toString().length === 1) {
     currentDay = `0${currentDay}`
   }
