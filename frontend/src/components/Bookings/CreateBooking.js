@@ -6,7 +6,7 @@ import { createBooking } from '../../store/bookings';
 
 import './CreateBooking.css';
 
-const CreateBookingForm = () => {
+const CreateBookingForm = ({ singleSpot }) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
 
@@ -33,12 +33,14 @@ const CreateBookingForm = () => {
   let newYear = nextDay.getFullYear();
 
   let today = `${currentMonth + 1}-${currentDay}-${currentYear}`
-  // console.log("Today is ", today)
-  let tomorrow = `${newMonth + 1}-${newDay}-${newYear}`
-  // console.log("Tomorrow is ", tomorrow)
-  console.log("MIN", `${newYear}-${newMonth + 1}-${newDay}`)
-  console.log("END DATE", endDate)
 
+  let tomorrow = `${newMonth + 1}-${newDay}-${newYear}`
+
+
+  // CALCULATING PRICE =================
+  let s = Date.parse(startDate)
+  let e = Date.parse(endDate)
+  let difference = (e - s) / 86400000
 
   // ERROR HANDLING ====================
   useEffect(() => {
@@ -65,16 +67,16 @@ const CreateBookingForm = () => {
     try {
       let newBooking = await dispatch(createBooking(payload, spotId));
 
-      if(newBooking) {
+      if (newBooking) {
         setValidationErrors([]);
         history.push(`/spots/${spotId}/bookings`)
       }
     } catch (res) {
-        const data = await res.json();
-        if (data && data.message) {
-          console.log('DATA', data)
-          setValidationErrors([data.message])
-        }
+      const data = await res.json();
+      if (data && data.message) {
+        console.log('DATA', data)
+        setValidationErrors([data.message])
+      }
     }
 
 
@@ -115,7 +117,6 @@ const CreateBookingForm = () => {
         </div>
         <button type='submit'>Reserve</button>
 
-
         {validationErrors.length > 0 && (
           <div id='error-div'>
             The following errors were found:
@@ -124,6 +125,41 @@ const CreateBookingForm = () => {
             </ul>
           </div>
         )}
+
+        <div className="price-breakdown">
+          <div>
+            <span>
+              ${singleSpot.price} x {difference ? difference : 5} {difference === 1 ? 'night' : 'nights'}
+            </span>
+            <span>
+              ${difference ? (singleSpot.price * difference) : (singleSpot.price * 5)}
+            </span>
+          </div>
+          <div>
+            <span>
+              Cleaning fee
+            </span>
+            <span>
+              ${Math.ceil(singleSpot.price * 0.12)}
+            </span>
+          </div>
+          <div>
+            <span>
+            Service fee
+            </span>
+            <span>
+              ${Math.ceil(singleSpot.price * 0.08)}
+            </span>
+          </div>
+          <div>
+            <span id='price-bd-last'>
+            Total before taxes
+            </span>
+            <span id='price-bd-last'>
+            ${difference ? ((singleSpot.price * difference) + Math.ceil(singleSpot.price * 0.12) + Math.ceil(singleSpot.price * 0.08)) : Math.ceil((singleSpot.price * 5) + Math.ceil(singleSpot.price * 0.12) + (singleSpot.price * 0.08))}
+            </span>
+          </div>
+        </div>
 
       </form>
 

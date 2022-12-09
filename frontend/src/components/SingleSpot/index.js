@@ -93,7 +93,7 @@ const SingleSpot = () => {
             </div>
             {sessionUser && sessionUser.id !== singleSpot.ownerId && (
               <div id='pr-booking'>
-                <CreateBookingForm />
+                <CreateBookingForm singleSpot={singleSpot} />
               </div>
             )}
           </div>
