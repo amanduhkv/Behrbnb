@@ -34,14 +34,15 @@
 }
 
 #spot-input-mid,
-#spot-input-textarea {
+#spot-input-textarea,
+#spot-input-url {
   padding: 15px;
   font-size: 16px;
   border: rgb(197, 191, 191) 1px solid;
   border-top: none;
 }
 
-#spot-input-url {
+#spot-input-url:last-of-type {
   padding: 15px;
   font-size: 16px;
   border: rgb(197, 191, 191) 1px solid;
