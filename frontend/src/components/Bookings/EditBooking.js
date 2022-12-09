@@ -94,6 +94,8 @@ const EditBookingForm = ({bookingId, start, end, updateModal}) => {
             <input
               id='start'
               type="date"
+              min={`${newYear}-${newMonth + 1}-${newDay}`}
+              max={endDate}
               value={startDate}
               onChange={e => { setStartDate(e.target.value) }}
             />
