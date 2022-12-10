@@ -3,7 +3,6 @@
   justify-content: center;
 }
 
-
 #create-review-form {
   display: flex;
   flex-direction: column;
@@ -13,7 +12,15 @@
   box-shadow: 2px 2px 5px rgb(148, 148, 148);
   width: 550px;
   border-radius: 12px;
-  padding: 10px;
+  padding: 20px;
+}
+
+.star1 {
+  fill: white;
+}
+
+.star1:hover {
+  fill: rgb(220,30,87);
 }
 
 #review-button {
