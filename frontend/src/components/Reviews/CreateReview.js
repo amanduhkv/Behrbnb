@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams, NavLink } from "react-router-dom";
 import { createReview } from "../../store/reviews";
-
+import RatingIcon from "./RatingIcon";
 import '../Reviews/CreateReview.css'
 
 import starwoutline from '../../assets/starwoutline.svg';
@@ -14,9 +14,28 @@ const CreateReview = () => {
   const [stars, setStars] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
-  const [style, setStyle] = useState({fill:'white'});
+  const [style, setStyle] = useState(false);
+
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+
+  const onMouseEnter = (index) => {
+    setHoverRating(index);
+  };
+  const onMouseLeave = () => {
+    setHoverRating(0);
+  };
+  const onSaveRating = (index) => {
+    setRating(index);
+  };
 
   const history = useHistory();
+
+  const toggleStlye = () => {
+    setStyle(!style)
+  }
+
+  const starsShape = Array(5).fill(0);
 
   useEffect(() => {
     const errors = [];
@@ -57,6 +76,16 @@ const CreateReview = () => {
 
   return (
     <div>
+      {[1, 2, 3, 4, 5].map((index) => {
+              <RatingIcon
+                index={index}
+                rating={rating}
+                hoverRating={hoverRating}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                onSaveRating={onSaveRating} />
+
+            })}
       <form id='create-review-form' onSubmit={handleSubmit}>
         <h2>Leave a Review</h2>
         <div id='review-form-content'>
@@ -68,14 +97,14 @@ const CreateReview = () => {
           // required
           />
           <div>
-            <svg version="1.1" id="Layer_1" x="0px" y="0px"
+            {/* <svg version="1.1" id="Layer_1" x="0px" y="0px"
               viewBox="0 0 512 512" style={{height: '32px'}} >
               <polygon
-                className="star1"
-                onMouseOver={() => setStyle({fill:'rgb(220,30,87)'})}
-                onClick={() => setStyle({fill:'rgb(220,30,87)'})}
+                id="star1"
+                // onMouseOver={() => setStyle({fill:'rgb(220,30,87)'})}
+                onClick={() => toggleStlye()}
                 // onMouseLeave={() => setStyle({fill:'white'})}
-                // style={style}
+                style={style ? {fill:'rgb(220,30,87)'} : {fill:'white'}}
                 points="493.427,204.588 374.685,320.221 402.787,483.65 255.942,406.484 109.213,483.65 137.315,320.221 18.573,204.588 182.578,180.747 255.942,32.06 329.422,180.747 "
               />
               <path fill='rgb(220,30,87)' d="M97.732,499.448l30.299-176.21L0,198.56l176.84-25.706l79.097-160.301l79.219,160.301L512,198.56L383.969,323.237 l30.298,176.203l-158.324-83.197L97.732,499.448z M255.941,396.726l135.365,71.134l-25.905-150.656l109.453-106.587l-151.167-21.975 L255.947,51.569l-67.634,137.073L37.144,210.617l109.453,106.587l-25.903,150.649L255.941,396.726z"/>
@@ -83,11 +112,11 @@ const CreateReview = () => {
             <svg version="1.1" id="Layer_1" x="0px" y="0px"
               viewBox="0 0 512 512" style={{height: '32px'}} >
               <polygon
-                className="star1"
+                id="star1"
                 points="493.427,204.588 374.685,320.221 402.787,483.65 255.942,406.484 109.213,483.65 137.315,320.221 18.573,204.588 182.578,180.747 255.942,32.06 329.422,180.747 "
               />
               <path fill='rgb(220,30,87)' d="M97.732,499.448l30.299-176.21L0,198.56l176.84-25.706l79.097-160.301l79.219,160.301L512,198.56L383.969,323.237 l30.298,176.203l-158.324-83.197L97.732,499.448z M255.941,396.726l135.365,71.134l-25.905-150.656l109.453-106.587l-151.167-21.975 L255.947,51.569l-67.634,137.073L37.144,210.617l109.453,106.587l-25.903,150.649L255.941,396.726z"/>
-            </svg>
+            </svg> */}
 
 
           </div>

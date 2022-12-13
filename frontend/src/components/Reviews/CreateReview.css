@@ -15,11 +15,11 @@
   padding: 20px;
 }
 
-.star1 {
-  fill: white;
+#star1 {
+  fill: black;
 }
 
-.star1:hover {
+#star1:hover {
   fill: rgb(220,30,87);
 }
 
