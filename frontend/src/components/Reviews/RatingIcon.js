@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import StarIcon from "./StarIcon";
 
 function RatingIcon(props) {
@@ -11,7 +11,7 @@ function RatingIcon(props) {
     onSaveRating,
   } = props;
 
-  const fill = useEffect(() => {
+  const fill = useMemo(() => {
     if (hoverRating >= index) {
       return 'rgb(220,30,87)';
     } else if (!hoverRating && rating >= index) {
