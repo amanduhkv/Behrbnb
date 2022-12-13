@@ -75,6 +75,7 @@ const CreateReview = () => {
         <div className="stars">
         {[1, 2, 3, 4, 5].map((index) =>
           <RatingIcon
+            key={index}
             index={index}
             rating={rating}
             hoverRating={hoverRating}
