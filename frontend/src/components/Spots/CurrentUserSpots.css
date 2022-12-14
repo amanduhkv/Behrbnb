@@ -11,10 +11,17 @@
 .card-1 {
   display: flex;
   flex-wrap: wrap;
-
   justify-content: center;
-  /* width: fit-content; */
-  margin: 20px 100px;
+  align-items: center;
+  margin: 20px auto;
+  background-image: url('https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1600');
+  border-radius: 12px;
+
+  height: 80vh;
+  width: 80vw;
+
+  color: white;
+  font-size: 24px;
 }
 
 #each-one {

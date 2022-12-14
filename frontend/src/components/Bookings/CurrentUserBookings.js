@@ -8,6 +8,7 @@ import EditBookingForm from "./EditBooking";
 import { NavLink } from "react-router-dom";
 
 const CurrentUserBookings = () => {
+  const sessionUser = useSelector(state => state.session.user);
   const userBookings = useSelector(state => state.bookings.user);
   const userBookingsArr = Object.values(userBookings);
   const dispatch = useDispatch();
@@ -33,60 +34,66 @@ const CurrentUserBookings = () => {
     currentDay = `0${currentDay}`
   }
 
-  let today = `${currentYear}-${currentMonth + 1}-${currentDay}`
+  let today = `${currentYear}-${currentMonth + 1}-${currentDay}`;
 
   useEffect(() => {
     dispatch(getCurrentUserBooking());
-  }, [dispatch])
+  }, [dispatch]);
+
+  if (!userBookings || !userBookingsArr.length) return (<div className='card-1'>Currently not taking any trips.</div>);
 
   return (
     <div>
       {userBookingsArr.map(booking => (
-        <div className="reservation">
-          {today < booking.endDate && (
-            <>
-              <div className="res-title" style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                backgroundImage: `url(${booking?.Spot?.previewImage})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                maxWidth: '100%'
-              }}>
-                <>
-                Your upcoming stay at {booking?.Spot?.name}
-                </>
-                <NavLink id='nav-booking' to={`/spots/${booking.spotId}/bookings`} >Check your bookings for this spot</NavLink>
-              </div>
-              <ul className="res-user-container">
-                <div className="indiv-res">
-                  <li id='res-user-listings'>
-                    <div id='res-user-list-checkin'>
-                      <div>Check-in</div>
-                      {formatDate(booking.startDate)}
-                    </div>
-                    <div id='res-user-list-checkout'>
-                      <div>Checkout</div>
-                      {formatDate(booking.endDate)}
-                    </div>
-                  </li>
-
-                  <div>
-                    <button id='edit-delete-button' onClick={() => setShowUpdate(true)}>Update</button>
-                    {showUpdate && (
-                      <Modal id='update-booking-modal' onClose={() => setShowUpdate(false)}>
-                        <EditBookingForm bookingId={booking.id} start={booking.startDate} end={booking.endDate} updateModal={setShowUpdate} />
-                      </Modal>
-                    )}
-                  </div>
-                  <div id='res-user-delete'>
-                    <DeleteBooking bookingId={booking.id} />
-                  </div>
+        <>
+        {sessionUser.id === booking.userId && (
+          <div className="reservation">
+            {today < booking.endDate && (
+              <>
+                <div className="res-title" style={{
+                  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                  backgroundImage: `url(${booking?.Spot?.previewImage})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  maxWidth: '100%'
+                }}>
+                  <>
+                  Your upcoming stay at {booking?.Spot?.name}
+                  </>
+                  <NavLink id='nav-booking' to={`/spots/${booking.spotId}/bookings`} >Check your bookings for this spot</NavLink>
                 </div>
-              </ul>
-            </>
-          )}
-        </div>
+                <ul className="res-user-container">
+                  <div className="indiv-res">
+                    <li id='res-user-listings'>
+                      <div id='res-user-list-checkin'>
+                        <div>Check-in</div>
+                        {formatDate(booking.startDate)}
+                      </div>
+                      <div id='res-user-list-checkout'>
+                        <div>Checkout</div>
+                        {formatDate(booking.endDate)}
+                      </div>
+                    </li>
+
+                    <div>
+                      <button id='edit-delete-button' onClick={() => setShowUpdate(true)}>Update</button>
+                      {showUpdate && (
+                        <Modal id='update-booking-modal' onClose={() => setShowUpdate(false)}>
+                          <EditBookingForm bookingId={booking.id} start={booking.startDate} end={booking.endDate} updateModal={setShowUpdate} />
+                        </Modal>
+                      )}
+                    </div>
+                    <div id='res-user-delete'>
+                      <DeleteBooking bookingId={booking.id} />
+                    </div>
+                  </div>
+                </ul>
+              </>
+            )}
+          </div>
+        )}
+        </>
       ))}
     </div>
   )
