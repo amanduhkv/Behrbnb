@@ -14,9 +14,10 @@ let currentDate = `${year}-${month}-${day}`
 
 //GET all current user's bookings
 router.get('/current', requireAuth, async (req, res) => {
+  const currentUserId = req.user.id
   const currentUserBookings = await Booking.findAll({
     where: {
-      userId: req.user.id
+      userId: currentUserId
     },
     include: [
       {
