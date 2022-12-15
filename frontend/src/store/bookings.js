@@ -109,21 +109,21 @@ const initialState = {
 const bookingsReducer = (state=initialState, action) => {
   switch(action.type) {
     case SPOT_BOOKINGS:
-      const bookings = {}
+      let newState = { ...state, user: { ...state.user }, spot: { ...state.spot }};
+      const bookingsState = {};
       action.bookingList.Bookings.forEach(booking => {
-        bookings[booking.id] = booking
+        bookingsState[booking.id] = booking
       });
-      return {
-        ...state,
-        user: {},
-        spot: { ...bookings }
-      };
+      newState.spot = bookingsState
+      return newState;
     case USER_BOOKINGS:
-      const userBooking = { ...state, user: { ...state.user }}
+      let newUserBookingState = { ...state, user: { ...state.user }, spot: { ...state.spot }};
+      const userBookingState = {}
       action.bookings.Bookings.forEach(booking => {
-        userBooking.user[booking.id] = booking
+        userBookingState[booking.id] = booking
       });
-      return userBooking;
+      newUserBookingState.user = userBookingState
+      return newUserBookingState;
     case UPDATE_BOOKING:
     case CREATE_BOOKING:
       const createState = {

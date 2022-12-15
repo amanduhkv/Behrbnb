@@ -93,6 +93,9 @@ const CurrentUserBookings = () => {
             )}
           </div>
         )}
+        {sessionUser.id !== booking.userId && (
+          <div className='card-1'>Currently not taking any trips.</div>
+        )}
         </>
       ))}
     </div>
