@@ -61,7 +61,7 @@ const CurrentUserBookings = () => {
                   <>
                   Your upcoming stay at {booking?.Spot?.name}
                   </>
-                  <NavLink id='nav-booking' to={`/spots/${booking.spotId}/bookings`} >Check your bookings for this spot</NavLink>
+                  <NavLink id='nav-booking' to={`/spots/${booking.spotId}`} >Details of spot</NavLink>
                 </div>
                 <ul className="res-user-container">
                   <div className="indiv-res">
