@@ -13,32 +13,76 @@ const EditSpotForm = () => {
   const spot = useSelector(state => state.spots.singleSpot)
 
 
-  const [address, setAddress] = useState(spot.address);
-  const [city, setCity] = useState(spot.city);
-  const [state, setState] = useState(spot.state);
-  const [country, setCountry] = useState(spot.country);
-  const [lat, setLat] = useState(spot.lat);
-  const [lng, setLng] = useState(spot.lng);
-  const [name, setName] = useState(spot.name);
-  const [description, setDescription] = useState(spot.description);
-  const [price, setPrice] = useState(spot.price);
-  // const [url, setUrl] = useState('');
+  const [address, setAddress] = useState(spot?.address);
+  const [city, setCity] = useState(spot?.city);
+  const [state, setState] = useState(spot?.state);
+  const [country, setCountry] = useState(spot?.country);
+  const [lat, setLat] = useState(spot?.lat);
+  const [lng, setLng] = useState(spot?.lng);
+  const [name, setName] = useState(spot?.name);
+  const [description, setDescription] = useState(spot?.description);
+  const [price, setPrice] = useState(spot?.price);
+  const [image, setImage] = useState([]);
+  const [img1, setImg1] = useState(spot?.SpotImages[0].url ?? '');
+  const [img2, setImg2] = useState(spot?.SpotImages[1] ? spot.SpotImages[1].url : '');
+  const [img3, setImg3] = useState(spot?.SpotImages[2] ? spot.SpotImages[2].url : '');
+  const [img4, setImg4] = useState(spot?.SpotImages[3] ? spot.SpotImages[3].url : '');
+  const [img5, setImg5] = useState(spot?.SpotImages[4] ? spot.SpotImages[4].url : '');
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
 
   useEffect(() => {
     const errors = [];
-    if (!address.length) errors.push("Please enter an address");
-    if (!city.length) errors.push("Please enter a city");
-    if (!state.length) errors.push("Please enter a state");
-    if (!country.length) errors.push("Please enter a country");
-    if (!lat) errors.push("Please enter a valid latitude");
-    if (!lng) errors.push("Please enter a valid longitude");
-    if (!name) errors.push("Please enter a name for the spot");
-    if (!description) errors.push('Please enter a description for the spot');
-    if (!price) errors.push("Please enter a price");
+    if (address && !address.length) errors.push("Please enter an address");
+    if (city && !city.length) errors.push("Please enter a city");
+    if (state && !state.length) errors.push("Please enter a state");
+    if (country && !country.length) errors.push("Please enter a country");
+    if (lat && !lat) errors.push("Please enter a valid latitude");
+    if (lng && !lng) errors.push("Please enter a valid longitude");
+    if (name && !name) errors.push("Please enter a name for the spot");
+    if (description && !description) errors.push('Please enter a description for the spot');
+    if (price && !price) errors.push("Please enter a price");
+    if (!image) errors.push("Please provide a valid image url for the spot");
+
+    let imgArr = []
+    if (img1.length) {
+      if(!img1.endsWith('.jpg') && !img1.endsWith('jpeg') && !img1.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
+        imgArr.push(img1)
+      }
+    }
+    if (img2.length) {
+      if(!img2.endsWith('.jpg') && !img2.endsWith('jpeg') && !img2.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
+      imgArr.push(img2)
+      }
+    }
+    if (img3.length) {
+      if(!img3.endsWith('.jpg') && !img3.endsWith('jpeg') && !img3.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
+      imgArr.push(img3)
+      }
+    }
+    if (img4.length) {
+      if(!img4.endsWith('.jpg') && !img4.endsWith('jpeg') && !img4.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
+      imgArr.push(img4)
+      }
+    }
+    if (img5.length) {
+      if(!img5.endsWith('.jpg') && !img5.endsWith('jpeg') && !img5.endsWith('.png')) {
+        errors.push("Please provide a valid image url for the spot (.jpg, .jpeg, or .png)")
+      } else {
+      imgArr.push(img5)
+      }
+    }
+    if (imgArr.length) setImage(imgArr);
     setValidationErrors(errors);
-  }, [address, city, state, country, lat, lng, name, description, price]);
+  }, [address, city, state, country, lat, lng, name, description, price, img1, img2, img3, img4, img5]);
 
   const updateAddress = e => setAddress(e.target.value);
   const updateCity = e => setCity(e.target.value);
@@ -49,11 +93,16 @@ const EditSpotForm = () => {
   const updateName = e => setName(e.target.value);
   const updateDescription = e => setDescription(e.target.value);
   const updatePrice = e => setPrice(e.target.value);
+  const updateImg1 = e => setImg1(e.target.value);
+  const updateImg2 = e => setImg2(e.target.value);
+  const updateImg3 = e => setImg3(e.target.value);
+  const updateImg4 = e => setImg4(e.target.value);
+  const updateImg5 = e => setImg5(e.target.value);
   // const updateUrl = e => setUrl(e.target.value);
 
   useEffect(() => {
     dispatch(getASpot(spotId));
-  }, [dispatch]);
+  }, [dispatch, spotId]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -73,7 +122,7 @@ const EditSpotForm = () => {
       // url
     };
     if (!validationErrors.length) {
-      let updatedSpot = await dispatch(updateSpot(newSpot, spot.id));
+      let updatedSpot = await dispatch(updateSpot(newSpot, image, spot.id));
       if (updatedSpot) {
         history.push(`/spots/${spot.id}`)
       }
@@ -167,13 +216,45 @@ const EditSpotForm = () => {
             onChange={updatePrice}
           />
           {/* <input
-              id='spot-input-url'
-              placeholder='url'
-              type='text'
-              value={url}
-              onChange={updateUrl}
-              required
-            /> */}
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img1}
+            onChange={updateImg1}
+          />
+          <input
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img2}
+            onChange={updateImg2}
+          />
+          <input
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img3}
+            onChange={updateImg3}
+          />
+          <input
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img4}
+            onChange={updateImg4}
+          />
+          <input
+            id='spot-input-url'
+            placeholder='url'
+            type='text'
+            maxLength='255'
+            value={img5}
+            onChange={updateImg5}
+          /> */}
           {hasSubmit && validationErrors.length > 0 && (
             <div id='error-div'>
               The following errors were found:

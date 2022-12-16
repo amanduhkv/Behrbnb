@@ -29,9 +29,10 @@ const _addImage = (img, spotId) => ({
   spotId
 })
 
-const update = (spot, id) => ({
+const update = (spot, img, id) => ({
   type: UPDATE_SPOT,
   spot,
+  img,
   id
 });
 
@@ -123,7 +124,7 @@ export const addImage = (img, spotId) => async dispatch => {
   }
 }
 
-export const updateSpot = (spot, id) => async dispatch => {
+export const updateSpot = (spot, img, id) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -132,6 +133,27 @@ export const updateSpot = (spot, id) => async dispatch => {
 
   if (response.ok) {
     const updatedSpot = await response.json();
+    // console.log("UPDATED SPOT", updatedSpot)
+
+    updatedSpot.spotImages = [];
+
+    for(let i = 0; i < img.length; i++) {
+      const res = await csrfFetch(`/api/spots/${updatedSpot.id}/images`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: img[i],
+          preview: true
+        })
+      });
+
+      if (res.ok) {
+        const spotWImage = await res.json();
+        console.log("SPOT IMAGES", spotWImage)
+        updatedSpot.spotImages.push(spotWImage.url)
+      };
+
+    }
     // console.log('this is working', updatedSpot)
     dispatch(update(updatedSpot));
     return updatedSpot;
