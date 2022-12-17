@@ -79,6 +79,16 @@ Live site: [Behrbnb](https://behrbnb.herokuapp.com/)
 #### Delete a Review from a Spot:
 ![image](https://user-images.githubusercontent.com/105696861/192198433-88fa6ccc-0f99-430d-a195-6ba4b431b25c.png)
 
+#### Make a Reservation (Booking) for a Spot:
+<img src='https://user-images.githubusercontent.com/105696861/208217814-7ee386d8-4f4d-4e38-80a7-24c797d76bcd.png' height='360px' />
+
+#### View or Delete Current User's Upcoming Reservations:
+![image](https://user-images.githubusercontent.com/105696861/208217896-e629c0b4-b54e-4f5a-a706-3cd354f548d0.png)
+
+#### Update Current User's Upcoming Reservations:
+![image](https://user-images.githubusercontent.com/105696861/208217950-5e9dbb28-7d3f-4672-834a-5b1687b0a006.png)
+
+
 
 ## Roadmap
 - [ ] When creating a new spot, allow users to add more than one photo.
