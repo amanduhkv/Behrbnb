@@ -91,14 +91,14 @@ Live site: [Behrbnb](https://behrbnb.herokuapp.com/)
 
 
 ## Roadmap
-- [ ] When creating a new spot, allow users to add more than one photo.
+- [x] When creating a new spot, allow users to add more than one photo.
 - [ ] Allow users to update their spot's images.
 - [ ] Add the functionality of adding an image to a review.
-- [ ] Add the Bookings feature:
-  - [ ] Create a booking for a spot.
-  - [ ] View all of the bookings the user has made.
-  - [ ] Edit any bookings the user has made.
-  - [ ] Delete any bookings the user has made.  
+- [x] Add the Bookings feature:
+  - [x] Create a booking for a spot.
+  - [x] View all of the bookings the user has made.
+  - [x] Edit any bookings the user has made.
+  - [x] Delete any bookings the user has made.  
 
 ## Getting Started
 1. Clone the repository from Github, or download the .zip file.
