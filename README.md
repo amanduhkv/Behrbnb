@@ -110,4 +110,5 @@ Live site: [Behrbnb](https://behrbnb.herokuapp.com/)
 ## Contact Information
 - [LinkedIn](https://www.linkedin.com/in/amandakvien/)
 - [Github](https://github.com/amanduhkv)
+- [Angellist/Wellfound](https://angel.co/u/amanda-vien)
 
